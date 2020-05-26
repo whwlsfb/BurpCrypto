@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BurpCrypto">
+    <output-path>$PROJECT_DIR$/out/artifacts/BurpCrypto</output-path>
+    <root id="archive" name="BurpCrypto.jar">
+      <element id="module-output" name="BurpCrypto" />
+      <element id="library" level="project" name="lib" />
+    </root>
+  </artifact>
+</component>
