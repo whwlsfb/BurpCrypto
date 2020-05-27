@@ -10,7 +10,7 @@ public class BurpStateListener implements  IExtensionStateListener {
     @Override
     public void extensionUnloaded() {
         try {
-            this.parent.store.close();
+            this.parent.store.close();  // leveldb unload.
         } catch (IOException e) {
             e.printStackTrace();
         }

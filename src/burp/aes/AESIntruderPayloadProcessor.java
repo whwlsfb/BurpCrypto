@@ -1,21 +1,19 @@
-package burp;
+package burp.aes;
 
-public class AESIntruderPayloadProcessor implements IIntruderPayloadProcessor
+import burp.BurpExtender;
+import burp.IIntruderPayloadProcessor;
+
+public class AesIntruderPayloadProcessor implements IIntruderPayloadProcessor
 {
     private BurpExtender parent;
-    private int proc_type;
 
-    public AESIntruderPayloadProcessor(final BurpExtender newParent, final int type) {
+    public AesIntruderPayloadProcessor(final BurpExtender newParent) {
         this.parent = newParent;
-        this.proc_type = type;
     }
 
     @Override
     public String getProcessorName() {
-        if (this.proc_type == 0) {
-            return "AES Decrypt";
-        }
-        return "AES Encrypt";
+        return "BurpCrypto - AES Encrypt";
     }
 
     @Override
@@ -23,11 +21,7 @@ public class AESIntruderPayloadProcessor implements IIntruderPayloadProcessor
         try {
             final String payloadString = new String(currentPayload);
             String result = "";
-            if (this.proc_type == 0) {
-                //result = this.parent.decrypt(payloadString);
-            } else {
-                //result = this.parent.encrypt(payloadString);
-            }
+
             return result.getBytes();
         } catch (Exception e) {
             this.parent.callbacks.issueAlert(e.toString());

@@ -9,6 +9,10 @@ package burp;
  * and Burp Suite Professional, provided that this usage does not violate the
  * license terms for those products.
  */
+
+import javax.script.ScriptException;
+import java.io.FileNotFoundException;
+
 /**
  * All extensions must implement this interface.
  *
@@ -27,5 +31,5 @@ public interface IBurpExtender
      * @param callbacks An
      * <code>IBurpExtenderCallbacks</code> object.
      */
-    void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks);
+    void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks) throws ScriptException, NoSuchMethodException, FileNotFoundException;
 }

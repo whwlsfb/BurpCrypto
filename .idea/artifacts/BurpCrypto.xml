@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="BurpCrypto">
+  <artifact type="jar" build-on-make="true" name="BurpCrypto">
     <output-path>$PROJECT_DIR$/out/artifacts/BurpCrypto</output-path>
     <root id="archive" name="BurpCrypto.jar">
       <element id="module-output" name="BurpCrypto" />
