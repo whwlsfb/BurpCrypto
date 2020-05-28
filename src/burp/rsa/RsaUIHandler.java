@@ -67,15 +67,15 @@ public class RsaUIHandler {
         });
         rsaPublicKeyFormatSelector.setSelectedIndex(0);
 
-        final JLabel label3 = new JLabel("Modulus: ");
+        final JLabel label3 = new JLabel("Modulus(HEX): ");
         modulusText = new JTextField(200);
         modulusText.setMaximumSize(modulusText.getPreferredSize());
 
-        final JLabel label4 = new JLabel("Exponent: ");
+        final JLabel label4 = new JLabel("Exponent(HEX): ");
         exponentText = new JTextField(200);
         exponentText.setMaximumSize(exponentText.getPreferredSize());
 
-        final JLabel label5 = new JLabel("X509 Key: ");
+        final JLabel label5 = new JLabel("X509 Key(Base64): ");
         x509Text = new JTextField(200);
         x509Text.setMaximumSize(x509Text.getPreferredSize());
 
