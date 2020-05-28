@@ -10,9 +10,8 @@ public class OriginalPayloadHttpListener implements IHttpListener {
 
     @Override
     public void processHttpMessage(int toolFlag, boolean messageIsRequest, IHttpRequestResponse messageInfo) {
-        if (!messageIsRequest && parent.callbacks.TOOL_INTRUDER == toolFlag) {
-
-            messageInfo.setComment("test");
-        }
+//        if (!messageIsRequest && parent.callbacks.TOOL_INTRUDER == toolFlag) {
+//            messageInfo.setComment("test");
+//        }
     }
 }

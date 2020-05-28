@@ -1,7 +1,9 @@
 package burp.aes;
 
+import burp.utils.OutFormat;
+
 public class AesConfig {
-    public String Key;
-    public String IV;
     public AesAlgorithms Algorithms;
+    public byte[] Key, IV;
+    public OutFormat OutFormat;
 }

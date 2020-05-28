@@ -1,4 +1,4 @@
-package burp;
+package burp.utils;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

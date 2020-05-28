@@ -1,10 +1,6 @@
-package burp;
+package burp.utils;
 
-import org.iq80.leveldb.*;
-
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import burp.BurpExtender;
 
 import static org.iq80.leveldb.impl.Iq80DBFactory.*;
 
