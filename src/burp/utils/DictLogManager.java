@@ -11,20 +11,8 @@ public class DictLogManager {
         this.parent = newParent;
     }
 
-    public void Log(EncryptionType type, byte[] enc, byte[] origin) {
-        String typeStr = "";
-        switch (type) {
-            case AES:
-                typeStr = "aes";
-                break;
-            case RSA:
-                typeStr = "rsa";
-                break;
-            case EXECJS:
-                typeStr = "execjs";
-                break;
-        }
-        this.parent.store.put(Utils.byteMerger(bytes(typeStr + "_"), Utils.MD5(enc)), origin);
+    public void Log(byte[] enc, byte[] origin) {
+        this.parent.store.put(Utils.MD5(enc), origin);
     }
 
 

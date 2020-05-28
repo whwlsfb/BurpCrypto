@@ -2,7 +2,11 @@ package burp;
 
 import burp.aes.*;
 import burp.execjs.*;
+import burp.rsa.RsaConfig;
+import burp.rsa.RsaUIHandler;
 import burp.utils.BurpStateListener;
+import burp.utils.DictLogManager;
+import burp.utils.Utils;
 import org.iq80.leveldb.*;
 
 import static org.iq80.leveldb.impl.Iq80DBFactory.*;
@@ -10,6 +14,7 @@ import static org.iq80.leveldb.impl.Iq80DBFactory.*;
 import java.io.*;
 
 import java.awt.*;
+import java.math.BigInteger;
 import java.util.HashMap;
 import javax.script.ScriptException;
 import javax.swing.*;
@@ -21,15 +26,19 @@ public class BurpExtender implements IBurpExtender, ITab {
     public PrintWriter stdout;
     public PrintWriter stderr;
     public DB store;
+    public DictLogManager dict;
     public HashMap<String, IIntruderPayloadProcessor> IPProcessors = new HashMap<>();
 
+    public JTabbedPane mainPanel;
+
     public JPanel aesPanel;
-    public AesConfig AesConfig;
     public AesUIHandler AesUI;
 
-    public JSEngine JSEngine;
-    public JTabbedPane mainPanel;
+
     public JPanel rsaPanel;
+    public RsaUIHandler RsaUI;
+
+    public JSEngine JSEngine;
     public JPanel desPanel;
     public JPanel execJsPanel;
 
@@ -59,11 +68,11 @@ public class BurpExtender implements IBurpExtender, ITab {
         this.stderr = new PrintWriter(callbacks.getStderr(), true);
         callbacks.setExtensionName("BurpCrypto");
         callbacks.registerExtensionStateListener(new BurpStateListener(this));
-
         Options options = new Options();
         options.createIfMissing(true);
         try {
             this.store = factory.open(new File("BurpCrypto.ldb"), options);
+            this.dict = new DictLogManager(this);
             callbacks.issueAlert("LevelDb init success!");
         } catch (IOException e) {
             callbacks.issueAlert("LevelDb init failed! error message: " + e.getMessage());
@@ -75,14 +84,14 @@ public class BurpExtender implements IBurpExtender, ITab {
 
     private void InitUi() {
         this.AesUI = new AesUIHandler(this);
+        this.RsaUI = new RsaUIHandler(this);
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 BurpExtender bthis = BurpExtender.this;
                 bthis.mainPanel = new JTabbedPane();
                 bthis.aesPanel = AesUI.getPanel();
-
-                bthis.rsaPanel = new JPanel();
+                bthis.rsaPanel = RsaUI.getPanel();
                 bthis.desPanel = new JPanel();
                 bthis.execJsPanel = new JPanel();
                 bthis.mainPanel.addTab("AES", bthis.aesPanel);

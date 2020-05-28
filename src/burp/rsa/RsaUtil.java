@@ -16,7 +16,6 @@ import java.security.spec.RSAPublicKeySpec;
 import static burp.utils.Utils.base64;
 import static burp.utils.Utils.hex;
 
-// TODO: Implement 256-bit version like: http://securejava.wordpress.com/2012/10/25/aes-256/
 public class RsaUtil {
     private Cipher cipher;
     private RSAPublicKey publicKey;

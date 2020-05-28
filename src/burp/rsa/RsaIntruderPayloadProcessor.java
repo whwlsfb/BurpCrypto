@@ -1,30 +1,32 @@
-package burp.aes;
+package burp.rsa;
 
 import burp.BurpExtender;
 import burp.IIntruderPayloadProcessor;
+import burp.aes.AesConfig;
+import burp.aes.AesUtil;
 import burp.utils.EncryptionType;
 
-public class AesIntruderPayloadProcessor implements IIntruderPayloadProcessor {
+public class RsaIntruderPayloadProcessor implements IIntruderPayloadProcessor {
     private BurpExtender parent;
     private final String extName;
-    private final AesUtil AesUtil;
+    private final RsaUtil RsaUtil;
 
-    public AesIntruderPayloadProcessor(final BurpExtender newParent, String extName, AesConfig config) {
+    public RsaIntruderPayloadProcessor(final BurpExtender newParent, String extName, RsaConfig config) {
         this.parent = newParent;
         this.extName = extName;
-        AesUtil = new AesUtil();
-        AesUtil.setConfig(config);
+        RsaUtil = new RsaUtil();
+        RsaUtil.setConfig(config);
     }
 
     @Override
     public String getProcessorName() {
-        return "BurpCrypto - AES Encrypt - " + extName;
+        return "BurpCrypto - RSA Encrypt - " + extName;
     }
 
     @Override
     public byte[] processPayload(final byte[] currentPayload, final byte[] originalPayload, final byte[] baseValue) {
         try {
-            byte[] result = AesUtil.encrypt(currentPayload).getBytes("UTF-8");
+            byte[] result = RsaUtil.encrypt(currentPayload).getBytes("UTF-8");
             parent.dict.Log(result, originalPayload);
             return result;
         } catch (Exception e) {

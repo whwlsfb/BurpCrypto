@@ -24,7 +24,6 @@ import org.apache.commons.codec.binary.Hex;
 
 import static burp.utils.Utils.*;
 
-// TODO: Implement 256-bit version like: http://securejava.wordpress.com/2012/10/25/aes-256/
 public class AesUtil {
     private Cipher cipher;
     private AesAlgorithms algorithms;
