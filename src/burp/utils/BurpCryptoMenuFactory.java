@@ -7,11 +7,11 @@ import burp.IHttpRequestResponse;
 import javax.swing.*;
 import java.util.List;
 
-public class BurpCryptoMenu implements IContextMenuFactory {
+public class BurpCryptoMenuFactory implements IContextMenuFactory {
     @Override
     public List<JMenuItem> createMenuItems(IContextMenuInvocation invocation) {
         IHttpRequestResponse[] message = invocation.getSelectedMessages();
         return null;
-        
+
     }
 }

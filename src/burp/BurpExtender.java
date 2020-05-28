@@ -4,6 +4,7 @@ import burp.aes.*;
 import burp.execjs.*;
 import burp.rsa.RsaConfig;
 import burp.rsa.RsaUIHandler;
+import burp.utils.BurpCryptoMenuFactory;
 import burp.utils.BurpStateListener;
 import burp.utils.DictLogManager;
 import burp.utils.Utils;
@@ -68,6 +69,7 @@ public class BurpExtender implements IBurpExtender, ITab {
         this.stderr = new PrintWriter(callbacks.getStderr(), true);
         callbacks.setExtensionName("BurpCrypto");
         callbacks.registerExtensionStateListener(new BurpStateListener(this));
+        callbacks.registerContextMenuFactory(new BurpCryptoMenuFactory());
         Options options = new Options();
         options.createIfMissing(true);
         try {
