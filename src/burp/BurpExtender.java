@@ -39,7 +39,9 @@ public class BurpExtender implements IBurpExtender, ITab {
     public JPanel rsaPanel;
     public RsaUIHandler RsaUI;
 
-    public JSEngine JSEngine;
+    public JPanel jsPanel;
+    public JsUIHandler JsUI;
+
     public JPanel desPanel;
     public JPanel execJsPanel;
 
@@ -79,7 +81,6 @@ public class BurpExtender implements IBurpExtender, ITab {
         } catch (IOException e) {
             callbacks.issueAlert("LevelDb init failed! error message: " + e.getMessage());
         }
-        this.JSEngine = new JSEngine(this);
         stdout.println("BurpCrypto loaded successfully!");
         InitUi();
     }
@@ -87,6 +88,7 @@ public class BurpExtender implements IBurpExtender, ITab {
     private void InitUi() {
         this.AesUI = new AesUIHandler(this);
         this.RsaUI = new RsaUIHandler(this);
+        this.JsUI = new JsUIHandler(this);
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -95,7 +97,8 @@ public class BurpExtender implements IBurpExtender, ITab {
                 bthis.aesPanel = AesUI.getPanel();
                 bthis.rsaPanel = RsaUI.getPanel();
                 bthis.desPanel = new JPanel();
-                bthis.execJsPanel = new JPanel();
+                bthis.desPanel.add(new JLabel("Coming soon.."));
+                bthis.execJsPanel = JsUI.getPanel();
                 bthis.mainPanel.addTab("AES", bthis.aesPanel);
                 bthis.mainPanel.addTab("RSA", bthis.rsaPanel);
                 bthis.mainPanel.addTab("DES", bthis.desPanel);

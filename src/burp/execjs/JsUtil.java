@@ -5,12 +5,13 @@ import burp.BurpExtender;
 import javax.script.*;
 import java.io.Reader;
 
-public class JSEngine {
+public class JsUtil {
     public ScriptEngine engine;
-    public BurpExtender parent;
+    public String methodName;
 
-    public JSEngine(BurpExtender parent) {
-        this.parent = parent;
+    public void setConfig(JsConfig config) throws Exception {
+        this.loadJsCode(config.CryptoJsCode);
+        this.methodName = config.MethodName;
     }
 
     private void initEngine() {
@@ -23,14 +24,9 @@ public class JSEngine {
         engine.eval(jsCode);
     }
 
-    public void loadJsCode(Reader reader) throws ScriptException {
-        initEngine();
-        engine.eval(reader);
-    }
-
-    public String eval(String methodName, Object[] params) throws ScriptException, NoSuchMethodException {
+    public String eval(String param) throws ScriptException, NoSuchMethodException {
         Invocable invocable = (Invocable) engine;
-        return invocable.invokeFunction(methodName, params).toString();
+        return invocable.invokeFunction(methodName, param).toString();
     }
 
     @Override
