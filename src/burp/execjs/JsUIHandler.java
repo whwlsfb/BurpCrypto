@@ -47,6 +47,7 @@ public class JsUIHandler {
         final JLabel label3 = new JLabel("Js Code: ");
         jsCodeText = new JTextArea(5, 10);
         jsCodeText.setLineWrap(true);
+        final JScrollPane codePane = new JScrollPane(jsCodeText);
 
         applyBtn = new JButton("Add processor");
         applyBtn.setMaximumSize(applyBtn.getPreferredSize());
@@ -76,7 +77,7 @@ public class JsUIHandler {
         });
 
 
-        panel3.add(jsCodeText);
+        panel3.add(codePane);
         panel1.add(label2);
         panel1.add(methodText);
         panel2.add(applyBtn);
