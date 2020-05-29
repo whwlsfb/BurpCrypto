@@ -69,7 +69,7 @@ public class BurpExtender implements IBurpExtender, ITab {
         this.stderr = new PrintWriter(callbacks.getStderr(), true);
         callbacks.setExtensionName("BurpCrypto");
         callbacks.registerExtensionStateListener(new BurpStateListener(this));
-        callbacks.registerContextMenuFactory(new BurpCryptoMenuFactory());
+        callbacks.registerContextMenuFactory(new BurpCryptoMenuFactory(this));
         Options options = new Options();
         options.createIfMissing(true);
         try {
