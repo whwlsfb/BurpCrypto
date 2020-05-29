@@ -2,6 +2,16 @@
 
 Burpcrypto is a collection of burpsuite encryption plug-ins, supporting AES/RSA/DES(todo)/ExecJs(execute JS encryption code in burpsuite).
 
+# Usage
+
+- Add this jar to your burpsuite's Extensions.
+- Switch to BurpCrypto tab, select you need Cipher tab.
+- Set key or some value.
+- press "Add processor", and give a name for this processor.
+- Switch to Intruder->Payloads->Payload Processing.
+- press "Add", select "Invoke Burp extension", and select processor you just created.
+- press "Start attack", have fun!
+
 ## Key Example
 
 - Aes Key(UTF8String): abcdefgabcdefg12
