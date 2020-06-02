@@ -6,6 +6,7 @@ import burp.IContextMenuInvocation;
 import burp.IHttpRequestResponse;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,8 @@ public class BurpCryptoMenuFactory implements IContextMenuFactory {
                 if (selectedText != null && selectedText != "") {
                     String plainText = searchKey(selectedText);
                     if (plainText != null && plainText != "") {
-                        JOptionPane.showMessageDialog(menu1, "This message plaintext is: \r\n" + plainText);
+                        ShowCopiableMessage(plainText, "This message plaintext is: ");
+                        //JOptionPane.showMessageDialog(menu1, "This message plaintext is: \r\n" + plainText);
                         req.setComment(plainText);
                     } else {
                         JOptionPane.showMessageDialog(menu1, "Not found!");
@@ -39,6 +41,21 @@ public class BurpCryptoMenuFactory implements IContextMenuFactory {
             menus.add(menu1);
         }
         return menus;
+    }
+
+    public void ShowCopiableMessage(String message, String title) {
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JTextArea ta = new JTextArea(5, 20);
+                ta.setText(message);
+                ta.setWrapStyleWord(true);
+                ta.setLineWrap(true);
+                ta.setCaretPosition(0);
+                ta.setEditable(false);
+                JOptionPane.showMessageDialog(null, new JScrollPane(ta), title, JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
     }
 
     private String searchKey(String key) {
