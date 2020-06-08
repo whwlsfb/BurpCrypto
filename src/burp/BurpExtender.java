@@ -1,6 +1,7 @@
 package burp;
 
 import burp.aes.*;
+import burp.des.DesUIHandler;
 import burp.execjs.*;
 import burp.rsa.RsaConfig;
 import burp.rsa.RsaUIHandler;
@@ -9,6 +10,7 @@ import burp.utils.BurpStateListener;
 import burp.utils.DictLogManager;
 import burp.utils.Utils;
 import org.iq80.leveldb.*;
+import sun.security.krb5.internal.crypto.Des;
 
 import static org.iq80.leveldb.impl.Iq80DBFactory.*;
 
@@ -39,12 +41,12 @@ public class BurpExtender implements IBurpExtender, ITab {
     public JPanel rsaPanel;
     public RsaUIHandler RsaUI;
 
-    public JPanel jsPanel;
-    public JsUIHandler JsUI;
-
     public JPanel desPanel;
-    public JPanel execJsPanel;
+    public DesUIHandler DesUI;
 
+    public JPanel execJsPanel;
+    public JsUIHandler JsUI;
+    
     public boolean RegIPProcessor(String extName, IIntruderPayloadProcessor processor) {
         if (IPProcessors.containsKey(extName)) {
             JOptionPane.showMessageDialog(mainPanel, "This name already exist!");
@@ -89,6 +91,7 @@ public class BurpExtender implements IBurpExtender, ITab {
         this.AesUI = new AesUIHandler(this);
         this.RsaUI = new RsaUIHandler(this);
         this.JsUI = new JsUIHandler(this);
+        this.DesUI = new DesUIHandler(this);
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -96,8 +99,7 @@ public class BurpExtender implements IBurpExtender, ITab {
                 bthis.mainPanel = new JTabbedPane();
                 bthis.aesPanel = AesUI.getPanel();
                 bthis.rsaPanel = RsaUI.getPanel();
-                bthis.desPanel = new JPanel();
-                bthis.desPanel.add(new JLabel("Coming soon.."));
+                bthis.desPanel = DesUI.getPanel();
                 bthis.execJsPanel = JsUI.getPanel();
                 bthis.mainPanel.addTab("AES", bthis.aesPanel);
                 bthis.mainPanel.addTab("RSA", bthis.rsaPanel);

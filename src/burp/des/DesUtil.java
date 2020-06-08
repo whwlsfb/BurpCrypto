@@ -1,5 +1,8 @@
-package burp.aes;
+package burp.des;
 
+import burp.aes.AesAlgorithms;
+import burp.aes.AesConfig;
+import burp.utils.CipherInfo;
 import burp.utils.OutFormat;
 import burp.utils.Utils;
 
@@ -7,25 +10,28 @@ import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
-public class AesUtil {
+public class DesUtil {
     private Cipher cipher;
-    private AesAlgorithms algorithms;
     private byte[] IV;
     private SecretKey sKey;
     private OutFormat outFormat;
+    private CipherInfo cipherInfo;
 
-    public void setConfig(AesConfig config) {
+    public void setConfig(DesConfig config) {
         try {
-            this.algorithms = config.Algorithms;
-            this.cipher = Cipher.getInstance(algorithms.name().replace('_', '/'));
+            DesAlgorithms algorithms = config.Algorithms;
+            String algName = algorithms.name().replace('_', '/');
+            this.cipher = Cipher.getInstance(algName);
+            this.cipherInfo = new CipherInfo(algName);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             throw fail(e);
         }
-        sKey = new SecretKeySpec(config.Key, "AES");
+        sKey = new SecretKeySpec(config.Key, this.cipherInfo.Algorithm);
         IV = config.IV;
         outFormat = config.OutFormat;
     }
@@ -36,17 +42,13 @@ public class AesUtil {
     }
 
     public String decrypt(String cipherText) {
-        try {
-            byte[] decrypted = doFinal(Cipher.DECRYPT_MODE, sKey, IV, Utils.base64(cipherText));
-            return new String(decrypted, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw fail(e);
-        }
+        byte[] decrypted = doFinal(Cipher.DECRYPT_MODE, sKey, IV, Utils.base64(cipherText));
+        return new String(decrypted, StandardCharsets.UTF_8);
     }
 
     private byte[] doFinal(int encryptMode, SecretKey key, byte[] iv, byte[] bytes) {
         try {
-            if (algorithms.name().startsWith("AES_ECB_")) {
+            if (cipherInfo.Mode.equals("ECB")) {
                 cipher.init(encryptMode, key);
             } else {
                 cipher.init(encryptMode, key, new IvParameterSpec(iv));

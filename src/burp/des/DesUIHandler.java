@@ -1,10 +1,7 @@
-package burp.aes;
+package burp.des;
 
 import burp.BurpExtender;
-import burp.utils.KeyFormat;
-import burp.utils.OutFormat;
-import burp.utils.UIUtil;
-import burp.utils.Utils;
+import burp.utils.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -12,18 +9,18 @@ import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 
-public class AesUIHandler {
+public class DesUIHandler {
     private BurpExtender parent;
     private JPanel mainPanel;
-    private JComboBox<String> aesAlgSelector;
-    private JComboBox<String> aesKeyFormatSelector;
-    private JComboBox<String> aesIVFormatSelector;
-    private JComboBox<String> aesOutFormatSelector;
-    private JTextField aesKeyText;
-    private JTextField aesIVText;
+    private JComboBox<String> desAlgSelector;
+    private JComboBox<String> desKeyFormatSelector;
+    private JComboBox<String> desIVFormatSelector;
+    private JComboBox<String> desOutFormatSelector;
+    private JTextField desKeyText;
+    private JTextField desIVText;
     private JButton applyBtn, deleteBtn;
 
-    public AesUIHandler(BurpExtender parent) {
+    public DesUIHandler(BurpExtender parent) {
         this.parent = parent;
     }
 
@@ -37,7 +34,7 @@ public class AesUIHandler {
         mainPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         mainPanel.setLayout(new BoxLayout(mainPanel, 1));
 
-        final JLabel label1 = new JLabel("AES Setting");
+        final JLabel label1 = new JLabel("DES Setting");
         label1.setForeground(new Color(249, 130, 11));
         label1.setFont(new Font("Nimbus", 1, 16));
         label1.setAlignmentX(0.0f);
@@ -48,56 +45,58 @@ public class AesUIHandler {
         final JPanel panel4 = UIUtil.GetXJPanel();
         final JPanel panel5 = UIUtil.GetXJPanel();
 
-        final JLabel label2 = new JLabel("AES Alg: ");
-        aesAlgSelector = new JComboBox(GetAesAlgs());
-        aesAlgSelector.setMaximumSize(aesAlgSelector.getPreferredSize());
-        aesAlgSelector.addItemListener(e -> {
+        final JLabel label2 = new JLabel("DES Alg: ");
+        desAlgSelector = new JComboBox(GetDesAlgs());
+        desAlgSelector.setMaximumSize(desAlgSelector.getPreferredSize());
+        desAlgSelector.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 String item = (String) e.getItem();
-                panel3.setVisible(!item.startsWith("AES/ECB/"));
+                CipherInfo cipherInfo = new CipherInfo(item);
+                panel3.setVisible(!cipherInfo.Mode.equals("ECB"));
             }
         });
-        aesAlgSelector.setSelectedIndex(0);
+        desAlgSelector.setSelectedIndex(0);
 
-        final JLabel label3 = new JLabel("AES Key: ");
-        aesKeyFormatSelector = new JComboBox(GetKeyFormats());
-        aesKeyFormatSelector.setMaximumSize(aesKeyFormatSelector.getPreferredSize());
-        aesKeyFormatSelector.setSelectedIndex(0);
-        aesKeyText = new JTextField(200);
-        aesKeyText.setMaximumSize(aesKeyText.getPreferredSize());
+        final JLabel label3 = new JLabel("DES Key: ");
+        desKeyFormatSelector = new JComboBox(GetKeyFormats());
+        desKeyFormatSelector.setMaximumSize(desKeyFormatSelector.getPreferredSize());
+        desKeyFormatSelector.setSelectedIndex(0);
+        desKeyText = new JTextField(200);
+        desKeyText.setMaximumSize(desKeyText.getPreferredSize());
 
-        final JLabel label4 = new JLabel("AES IV: ");
-        aesIVFormatSelector = new JComboBox(GetKeyFormats());
-        aesIVFormatSelector.setMaximumSize(aesIVFormatSelector.getPreferredSize());
-        aesIVFormatSelector.setSelectedIndex(0);
-        aesIVText = new JTextField(200);
-        aesIVText.setMaximumSize(aesIVText.getPreferredSize());
+        final JLabel label4 = new JLabel("DES IV: ");
+        desIVFormatSelector = new JComboBox(GetKeyFormats());
+        desIVFormatSelector.setMaximumSize(desIVFormatSelector.getPreferredSize());
+        desIVFormatSelector.setSelectedIndex(0);
+        desIVText = new JTextField(200);
+        desIVText.setMaximumSize(desIVText.getPreferredSize());
 
         final JLabel label5 = new JLabel("Output Format: ");
-        aesOutFormatSelector = new JComboBox(Utils.GetOutFormats());
-        aesOutFormatSelector.setMaximumSize(aesOutFormatSelector.getPreferredSize());
-        aesOutFormatSelector.setSelectedIndex(0);
+        desOutFormatSelector = new JComboBox(Utils.GetOutFormats());
+        desOutFormatSelector.setMaximumSize(desOutFormatSelector.getPreferredSize());
+        desOutFormatSelector.setSelectedIndex(0);
 
         applyBtn = new JButton("Add processor");
         applyBtn.setMaximumSize(applyBtn.getPreferredSize());
         applyBtn.addActionListener(e -> {
-            AesAlgorithms alg = AesAlgorithms.valueOf(aesAlgSelector.getSelectedItem().toString().replace('/', '_'));
-            KeyFormat keyFormat = KeyFormat.valueOf(aesKeyFormatSelector.getSelectedItem().toString());
-            KeyFormat ivFormat = KeyFormat.valueOf(aesIVFormatSelector.getSelectedItem().toString());
-            OutFormat outFormat = OutFormat.valueOf(aesOutFormatSelector.getSelectedItem().toString());
-            AesConfig aesConfig = new AesConfig();
-            aesConfig.Algorithms = alg;
-            aesConfig.OutFormat = outFormat;
+            DesAlgorithms alg = DesAlgorithms.valueOf(desAlgSelector.getSelectedItem().toString().replace('/', '_'));
+            KeyFormat keyFormat = KeyFormat.valueOf(desKeyFormatSelector.getSelectedItem().toString());
+            KeyFormat ivFormat = KeyFormat.valueOf(desIVFormatSelector.getSelectedItem().toString());
+            OutFormat outFormat = OutFormat.valueOf(desOutFormatSelector.getSelectedItem().toString());
+            DesConfig desConfig = new DesConfig();
+            CipherInfo cipherInfo = new CipherInfo(desAlgSelector.getSelectedItem().toString());
+            desConfig.Algorithms = alg;
+            desConfig.OutFormat = outFormat;
             try {
-                aesConfig.Key = Utils.StringKeyToByteKey(aesKeyText.getText(), keyFormat);
+                desConfig.Key = Utils.StringKeyToByteKey(desKeyText.getText(), keyFormat);
             } catch (Exception ex) {
                 System.out.println(ex);
                 JOptionPane.showMessageDialog(mainPanel, "Key format error!");
                 return;
             }
-            if (!alg.name().startsWith("AES_ECB_"))
+            if (!cipherInfo.Mode.equals("ECB"))
                 try {
-                    aesConfig.IV = Utils.StringKeyToByteKey(aesIVText.getText(), ivFormat);
+                    desConfig.IV = Utils.StringKeyToByteKey(desIVText.getText(), ivFormat);
                 } catch (Exception ex) {
                     System.out.println(ex);
                     JOptionPane.showMessageDialog(mainPanel, "IV format error!");
@@ -108,7 +107,7 @@ public class AesUIHandler {
                 JOptionPane.showMessageDialog(mainPanel, "name empty!");
                 return;
             }
-            if (parent.RegIPProcessor(extName, new AesIntruderPayloadProcessor(parent, extName, aesConfig)))
+            if (parent.RegIPProcessor(extName, new DesIntruderPayloadProcessor(parent, extName, desConfig)))
                 JOptionPane.showMessageDialog(mainPanel, "Apply processor success!");
         });
 
@@ -130,15 +129,15 @@ public class AesUIHandler {
         label6.setAlignmentX(0.0f);
 
         panel1.add(label2);
-        panel1.add(aesAlgSelector);
+        panel1.add(desAlgSelector);
         panel2.add(label3);
-        panel2.add(aesKeyFormatSelector);
-        panel2.add(aesKeyText);
+        panel2.add(desKeyFormatSelector);
+        panel2.add(desKeyText);
         panel3.add(label4);
-        panel3.add(aesIVFormatSelector);
-        panel3.add(aesIVText);
+        panel3.add(desIVFormatSelector);
+        panel3.add(desIVText);
         panel4.add(label5);
-        panel4.add(aesOutFormatSelector);
+        panel4.add(desOutFormatSelector);
         panel5.add(applyBtn);
         panel5.add(deleteBtn);
 
@@ -153,10 +152,10 @@ public class AesUIHandler {
         return mainPanel;
     }
 
-    private String[] GetAesAlgs() {
+    private String[] GetDesAlgs() {
         ArrayList<String> algStrs = new ArrayList<String>();
-        AesAlgorithms[] algs = AesAlgorithms.values();
-        for (AesAlgorithms alg : algs) {
+        DesAlgorithms[] algs = DesAlgorithms.values();
+        for (DesAlgorithms alg : algs) {
             algStrs.add(alg.name().replace('_', '/'));
         }
         return algStrs.toArray(new String[algStrs.size()]);
