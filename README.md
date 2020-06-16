@@ -1,4 +1,6 @@
 # BurpCrypto
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fwhwlsfb%2FBurpCrypto.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fwhwlsfb%2FBurpCrypto?ref=badge_shield) [![Releases](https://img.shields.io/github/v/release/whwlsfb/BurpCrypto.svg?include_prereleases&style=square)](https://github.com/whwlsfb/BurpCrypto/releases)
+
 
 Burpcrypto is a collection of burpsuite encryption plug-ins, supporting AES/RSA/DES/ExecJs(execute JS encryption code in burpsuite).
 
@@ -30,3 +32,7 @@ AES Example:
 ExecJs Example (Here is the modified MD5 algorithm):
 
 ![](screenshot/execjs.gif)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fwhwlsfb%2FBurpCrypto.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fwhwlsfb%2FBurpCrypto?ref=badge_large)
