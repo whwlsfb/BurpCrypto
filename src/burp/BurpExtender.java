@@ -1,26 +1,25 @@
 package burp;
 
-import burp.aes.*;
+import burp.aes.AesUIHandler;
 import burp.des.DesUIHandler;
-import burp.execjs.*;
-import burp.rsa.RsaConfig;
+import burp.execjs.JsUIHandler;
 import burp.rsa.RsaUIHandler;
 import burp.utils.BurpCryptoMenuFactory;
 import burp.utils.BurpStateListener;
 import burp.utils.DictLogManager;
-import burp.utils.Utils;
-import org.iq80.leveldb.*;
-import sun.security.krb5.internal.crypto.Des;
+import org.iq80.leveldb.DB;
+import org.iq80.leveldb.Options;
 
-import static org.iq80.leveldb.impl.Iq80DBFactory.*;
-
-import java.io.*;
-
-import java.awt.*;
-import java.math.BigInteger;
-import java.util.HashMap;
 import javax.script.ScriptException;
 import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+
+import static org.iq80.leveldb.impl.Iq80DBFactory.factory;
 
 public class BurpExtender implements IBurpExtender, ITab {
 

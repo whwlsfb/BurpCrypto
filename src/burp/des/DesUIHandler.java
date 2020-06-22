@@ -103,10 +103,12 @@ public class DesUIHandler {
                     return;
                 }
             String extName = JOptionPane.showInputDialog("Please give this processor a special name:");
-            if (extName.length() == 0) {
-                JOptionPane.showMessageDialog(mainPanel, "name empty!");
-                return;
-            }
+            if (extName != null) {
+                if (extName.length() == 0) {
+                    JOptionPane.showMessageDialog(mainPanel, "name empty!");
+                    return;
+                }
+            } else return;
             if (parent.RegIPProcessor(extName, new DesIntruderPayloadProcessor(parent, extName, desConfig)))
                 JOptionPane.showMessageDialog(mainPanel, "Apply processor success!");
         });

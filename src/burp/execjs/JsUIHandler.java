@@ -68,10 +68,12 @@ public class JsUIHandler {
         deleteBtn.setMaximumSize(deleteBtn.getPreferredSize());
         deleteBtn.addActionListener(e -> {
             String extName = JOptionPane.showInputDialog("Please enter the special name you want to delete:");
-            if (extName.length() == 0) {
-                JOptionPane.showMessageDialog(mainPanel, "name empty!");
-                return;
-            }
+            if (extName != null) {
+                if (extName.length() == 0) {
+                    JOptionPane.showMessageDialog(mainPanel, "name empty!");
+                    return;
+                }
+            } else return;
             parent.RemoveIPProcessor(extName);
             JOptionPane.showMessageDialog(mainPanel, "Remove success!");
         });

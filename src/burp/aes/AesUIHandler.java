@@ -1,10 +1,7 @@
 package burp.aes;
 
 import burp.BurpExtender;
-import burp.utils.KeyFormat;
-import burp.utils.OutFormat;
-import burp.utils.UIUtil;
-import burp.utils.Utils;
+import burp.utils.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -54,7 +51,8 @@ public class AesUIHandler {
         aesAlgSelector.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 String item = (String) e.getItem();
-                panel3.setVisible(!item.startsWith("AES/ECB/"));
+                CipherInfo cipherInfo = new CipherInfo(item);
+                panel3.setVisible(!cipherInfo.Mode.equals("ECB"));
             }
         });
         aesAlgSelector.setSelectedIndex(0);
@@ -86,6 +84,7 @@ public class AesUIHandler {
             KeyFormat ivFormat = KeyFormat.valueOf(aesIVFormatSelector.getSelectedItem().toString());
             OutFormat outFormat = OutFormat.valueOf(aesOutFormatSelector.getSelectedItem().toString());
             AesConfig aesConfig = new AesConfig();
+            CipherInfo cipherInfo = new CipherInfo(aesAlgSelector.getSelectedItem().toString());
             aesConfig.Algorithms = alg;
             aesConfig.OutFormat = outFormat;
             try {
@@ -95,7 +94,7 @@ public class AesUIHandler {
                 JOptionPane.showMessageDialog(mainPanel, "Key format error!");
                 return;
             }
-            if (!alg.name().startsWith("AES_ECB_"))
+            if (!cipherInfo.Mode.equals("ECB"))
                 try {
                     aesConfig.IV = Utils.StringKeyToByteKey(aesIVText.getText(), ivFormat);
                 } catch (Exception ex) {
@@ -104,10 +103,12 @@ public class AesUIHandler {
                     return;
                 }
             String extName = JOptionPane.showInputDialog("Please give this processor a special name:");
-            if (extName.length() == 0) {
-                JOptionPane.showMessageDialog(mainPanel, "name empty!");
-                return;
-            }
+            if (extName != null) {
+                if (extName.length() == 0) {
+                    JOptionPane.showMessageDialog(mainPanel, "name empty!");
+                    return;
+                }
+            } else return;
             if (parent.RegIPProcessor(extName, new AesIntruderPayloadProcessor(parent, extName, aesConfig)))
                 JOptionPane.showMessageDialog(mainPanel, "Apply processor success!");
         });

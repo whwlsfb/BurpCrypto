@@ -1,15 +1,19 @@
 package burp.aes;
 
+import burp.utils.CipherInfo;
 import burp.utils.OutFormat;
 import burp.utils.Utils;
 
 import javax.crypto.*;
+import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import javax.swing.*;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 
 public class AesUtil {
     private Cipher cipher;
@@ -17,11 +21,14 @@ public class AesUtil {
     private byte[] IV;
     private SecretKey sKey;
     private OutFormat outFormat;
+    private CipherInfo cipherInfo;
 
     public void setConfig(AesConfig config) {
         try {
             this.algorithms = config.Algorithms;
-            this.cipher = Cipher.getInstance(algorithms.name().replace('_', '/'));
+            String algName = algorithms.name().replace('_', '/');
+            this.cipherInfo = new CipherInfo(algName);
+            this.cipher = Cipher.getInstance(algName);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             throw fail(e);
         }
@@ -46,11 +53,14 @@ public class AesUtil {
 
     private byte[] doFinal(int encryptMode, SecretKey key, byte[] iv, byte[] bytes) {
         try {
-            if (algorithms.name().startsWith("AES_ECB_")) {
+            if (cipherInfo.Mode.equals("ECB")) {
                 cipher.init(encryptMode, key);
+            } else if (cipherInfo.Mode.equals("GCM")) {
+                cipher.init(encryptMode, key, new GCMParameterSpec(128, iv));
             } else {
                 cipher.init(encryptMode, key, new IvParameterSpec(iv));
             }
+            JOptionPane.showMessageDialog(null, Utils.hex(cipher.getIV()));
             return cipher.doFinal(bytes);
         } catch (InvalidKeyException
                 | InvalidAlgorithmParameterException
