@@ -82,7 +82,11 @@ public class BurpExtender implements IBurpExtender, ITab {
         } catch (IOException e) {
             callbacks.issueAlert("LevelDb init failed! error message: " + e.getMessage());
         }
-        stdout.println("BurpCrypto loaded successfully!");
+
+        stdout.println("BurpCrypto loaded successfully!\r\n");
+        stdout.println("Anthor: Whwlsfb");
+        stdout.println("Email: whwlsfb@wanghw.cn");
+        stdout.println("Github: https://github.com/whwlsfb/BurpCrypto");
         InitUi();
     }
 
