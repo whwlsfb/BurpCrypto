@@ -5,7 +5,7 @@
 Burpcrypto is a collection of burpsuite encryption plug-ins, supporting AES/RSA/DES/ExecJs(execute JS encryption code in burpsuite).
 
 # Usage
-[中文使用说明](https://blog.wanghw.cn/tag/burpcrypto)
+[中文使用说明](https://blog.wanghw.cn/burpcrypto)
 - Add this jar to your burpsuite's Extensions.
 - Switch to BurpCrypto tab, select you need Cipher tab.
 - Set key or some value.
