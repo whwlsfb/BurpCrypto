@@ -18,6 +18,9 @@ public class DesUIHandler {
     private JComboBox<String> desOutFormatSelector;
     private JTextField desKeyText;
     private JTextField desIVText;
+    private JTextField desEncKey1Text;
+    private JTextField desEncKey2Text;
+    private JTextField desEncKey3Text;
     private JButton applyBtn, deleteBtn;
 
     public DesUIHandler(BurpExtender parent) {
@@ -44,6 +47,9 @@ public class DesUIHandler {
         final JPanel panel3 = UIUtil.GetXJPanel();
         final JPanel panel4 = UIUtil.GetXJPanel();
         final JPanel panel5 = UIUtil.GetXJPanel();
+        final JPanel panel6 = UIUtil.GetXJPanel();
+        final JPanel panel7 = UIUtil.GetXJPanel();
+        final JPanel panel8 = UIUtil.GetXJPanel();
 
         final JLabel label2 = new JLabel("DES Alg: ");
         desAlgSelector = new JComboBox(GetDesAlgs());
@@ -51,8 +57,22 @@ public class DesUIHandler {
         desAlgSelector.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 String item = (String) e.getItem();
-                CipherInfo cipherInfo = new CipherInfo(item);
-                panel3.setVisible(!cipherInfo.Mode.equals("ECB"));
+                if (item.equals("strEnc")) {
+                    panel2.setVisible(false);
+                    panel3.setVisible(false);
+                    panel4.setVisible(true);
+                    panel5.setVisible(true);
+                    panel6.setVisible(true);
+                    panel7.setVisible(false);
+                } else {
+                    CipherInfo cipherInfo = new CipherInfo(item);
+                    panel2.setVisible(true);
+                    panel3.setVisible(!cipherInfo.Mode.equals("ECB"));
+                    panel4.setVisible(false);
+                    panel5.setVisible(false);
+                    panel6.setVisible(false);
+                    panel7.setVisible(true);
+                }
             }
         });
         desAlgSelector.setSelectedIndex(0);
@@ -71,7 +91,19 @@ public class DesUIHandler {
         desIVText = new JTextField(200);
         desIVText.setMaximumSize(desIVText.getPreferredSize());
 
-        final JLabel label5 = new JLabel("Output Format: ");
+        final JLabel label5 = new JLabel("DES strEnc Key1: ");
+        desEncKey1Text = new JTextField(200);
+        desEncKey1Text.setMaximumSize(desEncKey1Text.getPreferredSize());
+
+        final JLabel label6 = new JLabel("DES strEnc Key2: ");
+        desEncKey2Text = new JTextField(200);
+        desEncKey2Text.setMaximumSize(desEncKey2Text.getPreferredSize());
+
+        final JLabel label7 = new JLabel("DES strEnc Key3: ");
+        desEncKey3Text = new JTextField(200);
+        desEncKey3Text.setMaximumSize(desEncKey3Text.getPreferredSize());
+
+        final JLabel label8 = new JLabel("Output Format: ");
         desOutFormatSelector = new JComboBox(Utils.GetOutFormats());
         desOutFormatSelector.setMaximumSize(desOutFormatSelector.getPreferredSize());
         desOutFormatSelector.setSelectedIndex(0);
@@ -84,24 +116,33 @@ public class DesUIHandler {
             KeyFormat ivFormat = KeyFormat.valueOf(desIVFormatSelector.getSelectedItem().toString());
             OutFormat outFormat = OutFormat.valueOf(desOutFormatSelector.getSelectedItem().toString());
             DesConfig desConfig = new DesConfig();
-            CipherInfo cipherInfo = new CipherInfo(desAlgSelector.getSelectedItem().toString());
             desConfig.Algorithms = alg;
             desConfig.OutFormat = outFormat;
-            try {
-                desConfig.Key = Utils.StringKeyToByteKey(desKeyText.getText(), keyFormat);
-            } catch (Exception ex) {
-                System.out.println(ex);
-                JOptionPane.showMessageDialog(mainPanel, "Key format error!");
-                return;
-            }
-            if (!cipherInfo.Mode.equals("ECB"))
+            if (alg == DesAlgorithms.strEnc) {
+                desConfig.Key1 = desEncKey1Text.getText();
+                if (desConfig.Key1 == null) desConfig.Key1 = "";
+                desConfig.Key2 = desEncKey2Text.getText();
+                if (desConfig.Key2 == null) desConfig.Key2 = "";
+                desConfig.Key3 = desEncKey3Text.getText();
+                if (desConfig.Key3 == null) desConfig.Key3 = "";
+            } else {
+                CipherInfo cipherInfo = new CipherInfo(desAlgSelector.getSelectedItem().toString());
                 try {
-                    desConfig.IV = Utils.StringKeyToByteKey(desIVText.getText(), ivFormat);
+                    desConfig.Key = Utils.StringKeyToByteKey(desKeyText.getText(), keyFormat);
                 } catch (Exception ex) {
                     System.out.println(ex);
-                    JOptionPane.showMessageDialog(mainPanel, "IV format error!");
+                    JOptionPane.showMessageDialog(mainPanel, "Key format error!");
                     return;
                 }
+                if (!cipherInfo.Mode.equals("ECB"))
+                    try {
+                        desConfig.IV = Utils.StringKeyToByteKey(desIVText.getText(), ivFormat);
+                    } catch (Exception ex) {
+                        System.out.println(ex);
+                        JOptionPane.showMessageDialog(mainPanel, "IV format error!");
+                        return;
+                    }
+            }
             String extName = JOptionPane.showInputDialog("Please give this processor a special name:");
             if (extName != null) {
                 if (extName.length() == 0) {
@@ -125,10 +166,10 @@ public class DesUIHandler {
             JOptionPane.showMessageDialog(mainPanel, "Remove success!");
         });
 
-        final JLabel label6 = new JLabel("Encrypt Test");
-        label6.setForeground(new Color(249, 130, 11));
-        label6.setFont(new Font("Nimbus", 1, 16));
-        label6.setAlignmentX(0.0f);
+        final JLabel label9 = new JLabel("Encrypt Test");
+        label9.setForeground(new Color(249, 130, 11));
+        label9.setFont(new Font("Nimbus", 1, 16));
+        label9.setAlignmentX(0.0f);
 
         panel1.add(label2);
         panel1.add(desAlgSelector);
@@ -139,9 +180,19 @@ public class DesUIHandler {
         panel3.add(desIVFormatSelector);
         panel3.add(desIVText);
         panel4.add(label5);
-        panel4.add(desOutFormatSelector);
-        panel5.add(applyBtn);
-        panel5.add(deleteBtn);
+        panel4.add(desEncKey1Text);
+        panel5.add(label6);
+        panel5.add(desEncKey2Text);
+        panel6.add(label7);
+        panel6.add(desEncKey3Text);
+        panel7.add(label8);
+        panel7.add(desOutFormatSelector);
+        panel8.add(applyBtn);
+        panel8.add(deleteBtn);
+
+        panel4.setVisible(false);
+        panel5.setVisible(false);
+        panel6.setVisible(false);
 
         mainPanel.add(label1);
         mainPanel.add(panel1);
@@ -149,8 +200,11 @@ public class DesUIHandler {
         mainPanel.add(panel3);
         mainPanel.add(panel4);
         mainPanel.add(panel5);
+        mainPanel.add(panel6);
+        mainPanel.add(panel7);
+        mainPanel.add(panel8);
         mainPanel.add(separator);
-        mainPanel.add(label6);
+        mainPanel.add(label9);
         return mainPanel;
     }
 

@@ -17,4 +17,5 @@ public enum DesAlgorithms {
     DESede_OFB_NoPadding,
     DESede_CFB_PKCS5Padding,
     DESede_CFB_NoPadding,
+    strEnc,
 }
