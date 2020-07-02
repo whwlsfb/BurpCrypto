@@ -60,7 +60,6 @@ public class AesUtil {
             } else {
                 cipher.init(encryptMode, key, new IvParameterSpec(iv));
             }
-            JOptionPane.showMessageDialog(null, Utils.hex(cipher.getIV()));
             return cipher.doFinal(bytes);
         } catch (InvalidKeyException
                 | InvalidAlgorithmParameterException
