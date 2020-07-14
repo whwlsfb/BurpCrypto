@@ -125,10 +125,7 @@ public class AesUIHandler {
             JOptionPane.showMessageDialog(mainPanel, "Remove success!");
         });
 
-        final JLabel label6 = new JLabel("Encrypt Test");
-        label6.setForeground(new Color(249, 130, 11));
-        label6.setFont(new Font("Nimbus", 1, 16));
-        label6.setAlignmentX(0.0f);
+
 
         panel1.add(label2);
         panel1.add(aesAlgSelector);
@@ -149,8 +146,6 @@ public class AesUIHandler {
         mainPanel.add(panel3);
         mainPanel.add(panel4);
         mainPanel.add(panel5);
-        mainPanel.add(separator);
-        mainPanel.add(label6);
         return mainPanel;
     }
 

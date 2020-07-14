@@ -166,10 +166,6 @@ public class DesUIHandler {
             JOptionPane.showMessageDialog(mainPanel, "Remove success!");
         });
 
-        final JLabel label9 = new JLabel("Encrypt Test");
-        label9.setForeground(new Color(249, 130, 11));
-        label9.setFont(new Font("Nimbus", 1, 16));
-        label9.setAlignmentX(0.0f);
 
         panel1.add(label2);
         panel1.add(desAlgSelector);
@@ -203,8 +199,6 @@ public class DesUIHandler {
         mainPanel.add(panel6);
         mainPanel.add(panel7);
         mainPanel.add(panel8);
-        mainPanel.add(separator);
-        mainPanel.add(label9);
         return mainPanel;
     }
 

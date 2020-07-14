@@ -1,14 +1,13 @@
 package burp.utils;
 
-import burp.BurpExtender;
-import burp.IContextMenuFactory;
-import burp.IContextMenuInvocation;
-import burp.IHttpRequestResponse;
+import burp.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BurpCryptoMenuFactory implements IContextMenuFactory {
 
@@ -31,7 +30,6 @@ public class BurpCryptoMenuFactory implements IContextMenuFactory {
                     String plainText = searchKey(selectedText);
                     if (plainText != null && plainText != "") {
                         ShowCopiableMessage(plainText, "This message plaintext is: ");
-                        //JOptionPane.showMessageDialog(menu1, "This message plaintext is: \r\n" + plainText);
                         req.setComment(plainText);
                     } else {
                         JOptionPane.showMessageDialog(menu1, "Not found!");
@@ -39,6 +37,29 @@ public class BurpCryptoMenuFactory implements IContextMenuFactory {
                 }
             });
             menus.add(menu1);
+        }
+        JMenu quickCrypto = new JMenu("Quick Crypto");
+        for (IIntruderPayloadProcessor entry : parent.IPProcessors.values()) {
+            JMenuItem menu1 = new JMenuItem(entry.getProcessorName());
+            menu1.addActionListener(e -> {
+                IHttpRequestResponse req = invocation.getSelectedMessages()[0];
+                byte[] request = req.getRequest();
+                int[] selectedIndexRange = invocation.getSelectionBounds();
+                byte[] selectedBytes = getSelectedBytes(request, selectedIndexRange);
+                if (selectedBytes != null && selectedBytes.length > 0) {
+                    byte[] encryptResult = entry.processPayload(selectedBytes, selectedBytes, selectedBytes);
+                    if (invocation.getToolFlag() == parent.callbacks.TOOL_INTRUDER || invocation.getToolFlag() == parent.callbacks.TOOL_REPEATER) {
+                        req.setRequest(Replace(request, selectedIndexRange, encryptResult));
+                    } else {
+                        ShowCopiableMessage(new String(encryptResult), "CipherText result: ");
+                    }
+                }
+            });
+            quickCrypto.add(menu1);
+        }
+        if (quickCrypto.getItemCount() > 0)
+        {
+            menus.add(quickCrypto);
         }
         return menus;
     }
@@ -68,11 +89,25 @@ public class BurpCryptoMenuFactory implements IContextMenuFactory {
 
     private String getSelectedText(byte[] request, int[] selectedIndexRange) {
         try {
-            byte[] selectedText = new byte[selectedIndexRange[1] - selectedIndexRange[0]];
-            System.arraycopy(request, selectedIndexRange[0], selectedText, 0, selectedText.length);
-            return new String(selectedText);
+            return new String(getSelectedBytes(request, selectedIndexRange));
         } catch (Exception ex) {
             return null;
         }
+    }
+    private byte[] getSelectedBytes(byte[] request, int[] selectedIndexRange) {
+        try {
+            byte[] selectedText = new byte[selectedIndexRange[1] - selectedIndexRange[0]];
+            System.arraycopy(request, selectedIndexRange[0], selectedText, 0, selectedText.length);
+            return selectedText;
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+    public static byte[] Replace(byte[] request, int[] selectedIndexRange, byte[] targetBytes){
+        byte[] result = new byte[request.length - (selectedIndexRange[1] - selectedIndexRange[0]) + targetBytes.length];
+        System.arraycopy(request, 0, result, 0, selectedIndexRange[0]);
+        System.arraycopy(targetBytes, 0, result, selectedIndexRange[0], targetBytes.length);
+        System.arraycopy(request, selectedIndexRange[1], result, selectedIndexRange[0]+targetBytes.length, request.length-selectedIndexRange[1]);
+        return result;
     }
 }
