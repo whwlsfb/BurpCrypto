@@ -33,6 +33,9 @@ ExecJs Example (Here is the modified MD5 algorithm):
 
 ![](screenshot/execjs.gif)
 
+Quick Crypto:
+
+![](screenshot/quick_crypto.gif)
 
 ## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fwhwlsfb%2FBurpCrypto.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fwhwlsfb%2FBurpCrypto?ref=badge_large)
