@@ -29,6 +29,7 @@ public class BurpExtender implements IBurpExtender, ITab {
     public PrintWriter stderr;
     public DB store;
     public DictLogManager dict;
+    public String version = "0.1.3";
     public HashMap<String, IIntruderPayloadProcessor> IPProcessors = new HashMap<>();
 
     public JTabbedPane mainPanel;
@@ -70,7 +71,7 @@ public class BurpExtender implements IBurpExtender, ITab {
         this.helpers = callbacks.getHelpers();
         this.stdout = new PrintWriter(callbacks.getStdout(), true);
         this.stderr = new PrintWriter(callbacks.getStderr(), true);
-        callbacks.setExtensionName("BurpCrypto");
+        callbacks.setExtensionName("BurpCrypto v" + version);
         callbacks.registerExtensionStateListener(new BurpStateListener(this));
         callbacks.registerContextMenuFactory(new BurpCryptoMenuFactory(this));
         Options options = new Options();

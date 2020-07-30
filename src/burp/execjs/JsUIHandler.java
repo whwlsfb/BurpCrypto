@@ -12,6 +12,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.math.BigInteger;
+import java.util.HashMap;
+import java.util.Map;
 
 public class JsUIHandler {
     private BurpExtender parent;
@@ -19,6 +21,7 @@ public class JsUIHandler {
     private JTextField methodText;
     private JTextArea jsCodeText;
     private JButton applyBtn, deleteBtn;
+    private HashMap<String, String> includes = new HashMap<>();
 
     public JsUIHandler(BurpExtender parent) {
         this.parent = parent;
@@ -48,12 +51,39 @@ public class JsUIHandler {
         jsCodeText = new JTextArea(5, 10);
         jsCodeText.setLineWrap(true);
         final JScrollPane codePane = new JScrollPane(jsCodeText);
+        JPopupMenu popupMenu = new JPopupMenu();
+        JMenu menu = new JMenu("Include Snippet");
+        for (Map.Entry<String, String> snippet : JsSnippets.Snippets.entrySet()) {
+            JCheckBoxMenuItem menuItem = new JCheckBoxMenuItem(snippet.getKey());
+            menuItem.addActionListener(e -> {
+                if (menuItem.getState()) {
+                    includes.put(snippet.getKey(), snippet.getValue());
+                    jsCodeText.append(JsSnippets.SnippetHelps.get(snippet.getKey()) + "\r\n\r\n");
+                } else {
+                    includes.remove(snippet.getKey());
+                    jsCodeText.setText(jsCodeText.getText().replace(JsSnippets.SnippetHelps.get(snippet.getKey()),""));
+                }
+            });
+            menu.add(menuItem);
+        }
+        JMenuItem append_simple_function = new JMenuItem("Append Simple Function");
+        append_simple_function.addActionListener(e -> {
+            jsCodeText.append(JsSnippets.EmptyFunction);
+            methodText.setText("calc");
+        });
+        popupMenu.add(menu);
+        popupMenu.add(append_simple_function);
+        jsCodeText.setComponentPopupMenu(popupMenu);
 
         applyBtn = new JButton("Add processor");
         applyBtn.setMaximumSize(applyBtn.getPreferredSize());
         applyBtn.addActionListener(e -> {
             JsConfig config = new JsConfig();
-            config.CryptoJsCode = jsCodeText.getText();
+            config.CryptoJsCode = "";
+            for (Map.Entry<String, String> snippet : includes.entrySet()) {
+                config.CryptoJsCode += snippet.getValue() + "\r\n";
+            }
+            config.CryptoJsCode += jsCodeText.getText();
             config.MethodName = methodText.getText();
             String extName = JOptionPane.showInputDialog("Please give this processor a special name:");
             if (extName.length() == 0) {
