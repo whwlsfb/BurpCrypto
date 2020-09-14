@@ -1,0 +1,175 @@
+animation ui_props
+animation-delay ui_props [ *time* ]
+animation-direction ui_props
+animation-duration ui_props [ *time* ]
+animation-fill-mode ui_props [ none forwards backwards both ]
+animation-iteration-count ui_props
+animation-name ui_props
+animation-play-state ui_props
+animation-timing-function ui_props
+azimuth aural_props
+backface-visibility ui_props
+background colback_props [ *color* ]
+background-attachment colback_props
+background-clip colback_props
+background-color colback_props [ *color* ]
+background-image colback_props
+background-origin colback_props [ border-box padding-box content-box ]
+background-position colback_props
+background-repeat colback_props [ repeat repeat-x repeat-y space round no-repeat ]
+background-size colback_props
+border boxmodel_props [ *length* thin medium thick *border-style* *color* ]
+border-bottom boxmodel_props [ *length* thin medium thick *border-style* *color* ]
+border-bottom-left-radius boxmodel_props
+border-bottom-right-radius boxmodel_props
+border-bottom-style boxmodel_props [ *border-style* ]
+border-collapse table_props
+border-color boxmodel_props [ *color* ]
+border-image boxmodel_props
+border-image-outset boxmodel_props
+border-image-repeat boxmodel_props [ stretch repeat round ]
+border-image-slice boxmodel_props
+border-image-source boxmodel_props
+border-image-width boxmodel_props
+border-left boxmodel_props [ *length* thin medium thick *border-style* *color* ]
+border-left-style boxmodel_props [ *border-style* ]
+border-radius boxmodel_props [ *percentage-or-length* / ]
+border-right boxmodel_props [ *length* thin medium thick *border-style* *color* ]
+border-right-style boxmodel_props [ *border-style* ]
+border-spacing table_props [ *length* ]
+border-style boxmodel_props [ *border-style* ]
+border-top boxmodel_props [ *length* thin medium thick *border-style* *color* ]
+border-top-left-radius boxmodel_props
+border-top-right-radius boxmodel_props
+border-top-style boxmodel_props [ *border-style* ]
+border-width boxmodel_props [ *length* thin medium thick ]
+bottom visual_props [ *percentage-or-length* auto ]
+box-decoration-break visual_props
+box-shadow visual_props
+break-after visual_props
+break-before visual_props
+break-inside visual_props
+caption-side table_props
+clear visual_props [ none left right both ]
+clip visual_props
+color colback_props [ *color* ]
+column-count visual_props
+column-fill visual_props
+column-gap visual_props
+column-rule visual_props
+column-rule-color visual_props [ *color* ]
+column-rule-style visual_props
+column-rule-width visual_props
+column-span visual_props
+column-width visual_props
+columns visual_props
+content content_props
+counter-increment content_props
+counter-reset content_props
+cue aural_props
+cue-after aural_props
+cue-before aural_props
+cursor ui_props
+direction visual_props
+display visual_props [ none inline block list-item inline-block inline-table table table-cell table-column table-column-group table-footer-group table-header-group table-row table-row-group flex inline-flex grid inline-grid run-in ]
+elevation aural_props
+empty-cells table_props
+float visual_props [ left right none ]
+font font_props
+font-family font_props
+font-size font_props
+font-size-adjust font_props
+font-stretch font_props
+font-style font_props [ normal italic oblique ]
+font-variant font_props
+font-weight font_props [ normal bold bolder lighter 100 200 300 400 500 600 700 800 900 ]
+height visual_props [ *percentage-or-length* auto ]
+left visual_props [ *percentage-or-length* auto ]
+letter-spacing text_props
+line-height visual_props
+list-style content_props
+list-style-image content_props
+list-style-position content_props
+list-style-type content_props [ disc circle square decimal decimal-leading-zero lower-roman upper-roman lower-greek lower-latin upper-latin armenian georgian lower-alpha upper-alpha none ]
+margin boxmodel_props [ *percentage-or-length* auto ]
+margin-bottom boxmodel_props [ *percentage-or-length* auto ]
+margin-left boxmodel_props [ *percentage-or-length* auto ]
+margin-right boxmodel_props [ *percentage-or-length* auto ]
+margin-top boxmodel_props [ *percentage-or-length* auto ]
+marker-offset content_props
+marks pagedmedia_props
+marquee-direction ui_props
+marquee-play-count ui_props
+marquee-speed ui_props
+marquee-style ui_props
+max-height visual_props [ *percentage-or-length* none max-content min-content fit-content fill-available ]
+max-width visual_props [ *percentage-or-length* none max-content min-content fit-content fill-available ]
+min-height visual_props [ *percentage-or-length* max-content min-content fit-content fill-available ]
+min-width visual_props [ *percentage-or-length* max-content min-content fit-content fill-available ]
+opacity ui_props
+orphans pagedmedia_props
+outline ui_props
+outline-color ui_props [ *color* invert ]
+outline-style ui_props
+outline-width ui_props
+overflow visual_props
+overflow-style visual_props
+overflow-x visual_props
+overflow-y visual_props
+padding boxmodel_props
+padding-bottom boxmodel_props
+padding-left boxmodel_props
+padding-right boxmodel_props
+padding-top boxmodel_props
+page pagedmedia_props
+page-break-after pagedmedia_props
+page-break-before pagedmedia_props
+page-break-inside pagedmedia_props
+pause aural_props
+pause-after aural_props
+pause-before aural_props
+perspective visual_props
+perspective-origin visual_props
+pitch aural_props
+pitch-range aural_props
+play-during aural_props
+position visual_props
+quotes content_props
+richness aural_props
+right visual_props [ *percentage-or-length* auto ]
+size pagedmedia_props
+speak aural_props
+speak-header table_props
+speak-numeral aural_props
+speak-punctuation aural_props
+speech-rate aural_props
+stress aural_props
+table-layout table_props [ auto fixed ]
+text-align text_props [ start end left right center justify match-parent start end ]
+text-align-last text_props [ auto start end left right center justify ]
+text-decoration text_props [ none underline overline line-through blink -moz-anchor-decoration ]
+text-decoration-color text_props [ *color* ]
+text-decoration-style text_props [ solid double dotted dashed wavy ]
+text-decoration-line text_props [ none underline overline line-through blink ]
+text-indent text_props [ *percentage-or-length* ]
+text-shadow text_props
+text-transform text_props
+top visual_props [ *percentage-or-length* auto ]
+transform visual_props
+transform-origin visual_props
+transform-style visual_props
+transition visual_props
+transition-delay visual_props
+transition-duration visual_props
+transition-property visual_props
+transition-timing-function visual_props
+unicode-bidi visual_props
+vertical-align visual_props [ baseline sub super text-top text-bottom middle top bottom *percentage-or-length* ]
+visibility visual_props [ visible hidden collapse ]
+voice-family aural_props
+volume aural_props
+white-space text_props
+widows pagedmedia_props
+width visual_props [ *percentage-or-length* border-box content-box available min-content max-content fit-content auto ]
+word-spacing text_props [ normal *length* ]
+z-index visual_props

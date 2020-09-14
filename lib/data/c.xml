@@ -1,0 +1,1672 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE api SYSTEM "CompletionXml.dtd">
+
+<!--
+   c.xml - API specification for the C Standard Library.
+           Used by RSyntaxTextArea to provide code completion.
+
+   Author:         Robert Futrell
+   Version:        0.1
+
+   This file was generated from: C:/dev/rsta/RSTALanguageSupport/data/c/c.txt
+   on date: 2012-04-29 00:07:38
+
+-->
+<api language="C">
+
+	<environment paramStartChar="(" paramEndChar=")" paramSeparator=", " terminal=";"/>
+
+	<keywords>
+
+
+<keyword name="_IOFBF" type="constant" definedIn="stdio.h">
+	<desc>Value for mode argument to setvbuf specifying full buffering.</desc>
+</keyword>
+<keyword name="_IOLBF" type="constant" definedIn="stdio.h">
+	<desc>Value for mode argument to setvbuf specifying line buffering.</desc>
+</keyword>
+<keyword name="_IONBF" type="constant" definedIn="stdio.h">
+	<desc>Value for mode argument to setvbuf specifying no buffering.</desc>
+</keyword>
+<keyword name="abort" type="function" returnType="void" definedIn="stdlib.h">
+	<desc><![CDATA[Terminates program abnormally, by calling <a href="raise">raise</a>(<a href="SIGABRT">SIGABRT</a>).]]></desc>
+</keyword>
+<keyword name="abs" type="function" returnType="int" definedIn="stdlib.h">
+	<params>
+		<param type="int" name="n">
+			<desc>The number to get the absolute value of.</desc>
+		</param>
+	</params>
+	<desc>Calculates the absolute value of an int. </desc>
+	<returnValDesc><![CDATA[The absolute value of <em>n</em>.]]></returnValDesc>
+</keyword>
+<keyword name="acos" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+	</params>
+	<desc>arc-cosine of x</desc>
+</keyword>
+<keyword name="asctime" type="function" returnType="char*" definedIn="time.h">
+	<params>
+		<param type="const struct tm*" name="tp"/>
+	</params>
+	<desc><![CDATA[Returns the given time as a string of the form:<br>
+Sun Jan 3 13:08:42 1988\n\0]]></desc>
+</keyword>
+<keyword name="asin" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+	</params>
+	<desc>arc-sine of x</desc>
+</keyword>
+<keyword name="assert" type="function" returnType="void" definedIn="assert.h">
+	<params>
+		<param type="int" name="expression"/>
+	</params>
+	<desc><![CDATA[Macro used for internal error detection. (Ignored if NDEBUG is defined where <assert.h> is included.) If expression equals zero, message printed on <a href="stderr">stderr</a> and abort called to terminate execution. Source filename and line number in message are from preprocessor macros __FILE__ and __LINE__.<br>
+]]></desc>
+</keyword>
+<keyword name="atan" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+	</params>
+	<desc>arc-tangent of x</desc>
+</keyword>
+<keyword name="atan2" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="y"/>
+		<param type="double" name="x"/>
+	</params>
+	<desc>arc-tangent of y/x</desc>
+</keyword>
+<keyword name="atexit" type="function" returnType="int" definedIn="stdlib.h">
+	<params>
+		<param type="void" name="(*fcm)(void)"/>
+	</params>
+	<desc>Registers fcn to be called when program terminates normally (or when main returns). Returns non-zero on failure.</desc>
+</keyword>
+<keyword name="atof" type="function" returnType="double" definedIn="stdlib.h">
+	<params>
+		<param type="const char*" name="s">
+			<desc>The float, as a string.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Equivalent to <a href="strtod">strtod</a>(s, (char**)<a href="NULL">NULL</a>) except that errno is not necessarily set on conversion error.]]></desc>
+</keyword>
+<keyword name="atoi" type="function" returnType="int" definedIn="stdlib.h">
+	<params>
+		<param type="const char*" name="s">
+			<desc>The int, as a string.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Equivalent to (int)<a href="strtol">strtol</a>(s, (char**)<a href="NULL">NULL</a>, 10) except that errno is not necessarily set on conversion error.]]></desc>
+</keyword>
+<keyword name="atol" type="function" returnType="long" definedIn="stdlib.h">
+	<params>
+		<param type="const char*" name="s">
+			<desc>The long, as a string.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Equivalent to <a href="strtol">strtol</a>(s, (char**)<a href="NULL">NULL</a>, 10) except that errno is not necessarily set on conversion error.]]></desc>
+</keyword>
+<keyword name="bsearch" type="function" returnType="void*" definedIn="stdlib.h">
+	<params>
+		<param type="const void*" name="key"/>
+		<param type="const void*" name="base"/>
+		<param type="size_t" name="n"/>
+		<param type="size_t" name="size"/>
+		<param type="int" name="(*cmp)(const void* keyval, const void* datum)"/>
+	</params>
+	<desc><![CDATA[Searches ordered array base (of n objects each of size size) for item matching key according to comparison function cmp. cmp must return negative value if first argument is less than second, zero if equal and positive if greater. Items of base are assumed to be in ascending order (according to cmp). Returns a pointer to an item matching key, or <a href="NULL">NULL</a> if none found.]]></desc>
+</keyword>
+<keyword name="BUFSIZ" type="constant" definedIn="stdio.h">
+	<desc>Size of buffer used by setbuf.</desc>
+</keyword>
+<keyword name="calloc" type="function" returnType="void*" definedIn="stdlib.h">
+	<params>
+		<param type="size_t" name="nobj"/>
+		<param type="size_t" name="size"/>
+	</params>
+	<desc><![CDATA[Returns pointer to zero-initialised newly-allocated space for an array of nobj objects each of size size, or <a href="NULL">NULL</a> on error.]]></desc>
+</keyword>
+<keyword name="ceil" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+	</params>
+	<desc>smallest integer not less than x</desc>
+</keyword>
+<keyword name="CHAR_BIT" type="constant" definedIn="limits.h">
+	<desc>number of bits in a char</desc>
+</keyword>
+<keyword name="CHAR_MAX" type="constant" definedIn="limits.h">
+	<desc>maximum value of type char</desc>
+</keyword>
+<keyword name="CHAR_MIN" type="constant" definedIn="limits.h">
+	<desc>minimum value of type char</desc>
+</keyword>
+<keyword name="clearerr" type="function" returnType="void" definedIn="stdio.h">
+	<params>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Clears end-of-file and error indicators for stream <em>stream</em>.]]></desc>
+</keyword>
+<keyword name="clock" type="function" returnType="clock_t" definedIn="time.h">
+	<params>
+		<param type="d"/>
+	</params>
+	<desc>Returns elapsed processor time used by program or -1 if not available.</desc>
+</keyword>
+<keyword name="clock_t" type="constant" definedIn="time.h">
+	<desc>An arithmetic type elapsed processor representing time.</desc>
+</keyword>
+<keyword name="CLOCKS_PER_SEC" type="constant" definedIn="time.h">
+	<desc>The number of clock_t units per second.</desc>
+</keyword>
+<keyword name="cos" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+	</params>
+	<desc>cosine of x</desc>
+</keyword>
+<keyword name="cosh" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+	</params>
+	<desc>hyperbolic cosine of x</desc>
+</keyword>
+<keyword name="ctime" type="function" returnType="char*" definedIn="time.h">
+	<params>
+		<param type="const time_t*" name="tp"/>
+	</params>
+	<desc><![CDATA[Returns string equivalent to calendar time tp converted to local time. Equivalent to:<br>
+<a href="asctime">asctime</a>(<a href="localtime">localtime</a>(tp))]]></desc>
+</keyword>
+<keyword name="DBL_DIG" type="constant" definedIn="float.h">
+	<desc>The precision (in decimal digits) of the type double.</desc>
+</keyword>
+<keyword name="DBL_EPSILON" type="constant" definedIn="float.h">
+	<desc>The smallest double x such that 1.0 + x != 1.0</desc>
+</keyword>
+<keyword name="DBL_MANT_DIG" type="constant" definedIn="float.h">
+	<desc>The number of digits of a double, base FLT_RADIX, in mantissa</desc>
+</keyword>
+<keyword name="DBL_MAX" type="constant" definedIn="float.h">
+	<desc>The maximum value of a double</desc>
+</keyword>
+<keyword name="DBL_MAX_EXP" type="constant" definedIn="float.h">
+	<desc>The largest positive integer exponent to which FLT_RADIX can be raised and remain representable</desc>
+</keyword>
+<keyword name="DBL_MIN" type="constant" definedIn="float.h">
+	<desc>The minimum normalized double value.</desc>
+</keyword>
+<keyword name="DBL_MIN_EXP" type="constant" definedIn="float.h">
+	<desc>The smallest negative integer exponent to which FLT_RADIX can be raised and remain representable</desc>
+</keyword>
+<keyword name="difftime" type="function" returnType="double" definedIn="time.h">
+	<params>
+		<param type="time_t" name="time2"/>
+		<param type="time_t" name="time1"/>
+	</params>
+	<desc>Returns the difference in seconds between time2 and time1.</desc>
+</keyword>
+<keyword name="div" type="function" returnType="div_t" definedIn="stdlib.h">
+	<params>
+		<param type="int" name="num"/>
+		<param type="int" name="denom"/>
+	</params>
+	<desc>Returns quotient and remainder of num/denom.</desc>
+</keyword>
+<keyword name="div_t" type="constant" definedIn="stdlib.h">
+	<desc><![CDATA[Return type of <a href="div">div</a>(). Structure having members:<br>
+
+int quot;<br>
+ quotient<br>
+int rem;<br>
+ remainder <br>
+]]></desc>
+</keyword>
+<keyword name="EDOM" type="constant" definedIn="errno.h">
+	<desc>code used for domain errors</desc>
+</keyword>
+<keyword name="EOF" type="constant" definedIn="stdio.h">
+	<desc>Value used to indicate end-of-stream or to report an error.</desc>
+</keyword>
+<keyword name="ERANGE" type="constant" definedIn="errno.h">
+	<desc><![CDATA[code used for range errors<br>
+]]></desc>
+</keyword>
+<keyword name="errno" type="constant" definedIn="errno.h">
+	<desc>object to which certain library functions assign specific positive values on error</desc>
+</keyword>
+<keyword name="exit" type="function" returnType="void" definedIn="stdlib.h">
+	<params>
+		<param type="int" name="status">
+			<desc>The return code to exit with.</desc>
+		</param>
+	</params>
+	<desc>Terminates program normally. Functions installed using atexit are called (in reverse order to that in which installed), open files are flushed, open streams are closed and control is returned to environment. status is returned to environment in implementation-dependent manner. Zero or EXIT_SUCCESS indicates successful termination and EXIT_FAILURE indicates unsuccessful termination. Implementations may define other values.</desc>
+</keyword>
+<keyword name="EXIT_FAILURE" type="constant" definedIn="stdlib.h">
+	<desc><![CDATA[Value for status argument to <a href="exit"exit</a> indicating failure.]]></desc>
+</keyword>
+<keyword name="EXIT_SUCCESS" type="constant" definedIn="stdlib.h">
+	<desc><![CDATA[Value for status argument to <a href="exit">exit</a> indicating success.]]></desc>
+</keyword>
+<keyword name="exp" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+	</params>
+	<desc>exponential of x</desc>
+</keyword>
+<keyword name="fabs" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+	</params>
+	<desc>absolute value of x</desc>
+</keyword>
+<keyword name="fclose" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="FILE*" name="stream">
+			<desc>A pointer to a file structure</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Closes stream <em>stream</em> (after flushing, if output stream). Returns <a href="EOF">EOF</a> on error, zero otherwise.]]></desc>
+	<returnValDesc><![CDATA[0 if the stream is successfully closed, or <a href="EOF">EOF</a> on error.]]></returnValDesc>
+</keyword>
+<keyword name="feof" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Determines whether the end of <em>stream</em> has been passed.  When the end of file<br>
+is passed, read operations return an end-of-file indicator until the stream is closed or<br>
+until <a href="rewind">rewind</a>, <a href="fsetpos">fsetpos</a>, <a href="fseek">fseek</a>,<br>
+or <a href="clearerr">clearerr</a> is called against it.]]></desc>
+	<returnValDesc>Nonzero if a read operation has attempted to read past the end of the file; 0 otherwise.</returnValDesc>
+</keyword>
+<keyword name="ferror" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Tests for a reading or writing error on the file associated with <em>stream</em>. If<br>
+an error has occurred, the error indicator for the stream remains set until the stream<br>
+is closed or rewound, or until <a href="clearerr">clearerr</a> is called against it.]]></desc>
+	<returnValDesc><![CDATA[0 if no error has occurred on <em>stream</em>, nonzero otherwise.]]></returnValDesc>
+</keyword>
+<keyword name="fflush" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="FILE*" name="stream">
+			<desc><![CDATA[Pointer to a file structure.  <b>fflush</b>(<a href="NULL">NULL</a>) flushes all output streams.]]></desc>
+		</param>
+	</params>
+	<desc>Flushes a stream. </desc>
+	<returnValDesc><![CDATA[0 on success or <a href="EOF">EOF</a> on error. Effect undefined for input stream. ]]></returnValDesc>
+</keyword>
+<keyword name="fgetc" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+	</params>
+	<desc>Reads a character from a stream. </desc>
+	<returnValDesc><![CDATA[The character read, as an <b>int</b> or <a href="EOF">EOF</a> on end-of-file or error.]]></returnValDesc>
+</keyword>
+<keyword name="fgetpos" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+		<param type="fpos_t*" name="ptr">
+			<desc>Position indicator storage.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Gets <em>stream</em>'s file position indicator.]]></desc>
+	<returnValDesc>0 on success, non-zero on error.</returnValDesc>
+</keyword>
+<keyword name="fgets" type="function" returnType="char*" definedIn="stdio.h">
+	<params>
+		<param type="char*" name="str">
+			<desc>The storage location for the string.</desc>
+		</param>
+		<param type="int" name="n">
+			<desc>The maximum number of characters to read.</desc>
+		</param>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Copies characters from (input) stream <em>stream</em> to <em>str</em>, stopping when n-1 characters copied, newline copied, end-of-file reached or error occurs. If no error, str is NUL-terminated.]]></desc>
+	<returnValDesc><![CDATA[<a href="NULL">NULL</a> on end-of-file or error, str otherwise.  Use <a href="feof">feof</a> or <a href="ferror">ferror</a> to determine whether an error occurred.]]></returnValDesc>
+</keyword>
+<keyword name="FILE" type="constant" definedIn="stdio.h">
+	<desc>Type of object holding information necessary to control a stream.</desc>
+</keyword>
+<keyword name="FILENAME_MAX" type="constant" definedIn="stdio.h">
+	<desc>Maximum length required for array of characters to hold a filename.</desc>
+</keyword>
+<keyword name="floor" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+	</params>
+	<desc>largest integer not greater than x</desc>
+</keyword>
+<keyword name="FLT_DIG" type="constant" definedIn="float.h">
+	<desc>The precision (in decimal digits) of the type float.</desc>
+</keyword>
+<keyword name="FLT_EPSILON" type="constant" definedIn="float.h">
+	<desc>The smallest float x such that 1.0 + x != 1.0</desc>
+</keyword>
+<keyword name="FLT_MANT_DIG" type="constant" definedIn="float.h">
+	<desc>The number of digits of a float, base FLT_RADIX, in mantissa</desc>
+</keyword>
+<keyword name="FLT_MAX" type="constant" definedIn="float.h">
+	<desc>The maximum value of a float</desc>
+</keyword>
+<keyword name="FLT_MAX_EXP" type="constant" definedIn="float.h">
+	<desc>The largest positive integer exponent to which FLT_RADIX can be raised and remain representable</desc>
+</keyword>
+<keyword name="FLT_MIN" type="constant" definedIn="float.h">
+	<desc>The minimum normalized float value.</desc>
+</keyword>
+<keyword name="FLT_MIN_EXP" type="constant" definedIn="float.h">
+	<desc>The smallest negative integer exponent to which FLT_RADIX can be raised and remain representable</desc>
+</keyword>
+<keyword name="FLT_RADIX" type="constant" definedIn="float.h">
+	<desc>radix of floating-point representations</desc>
+</keyword>
+<keyword name="FLT_ROUNDS" type="constant" definedIn="float.h">
+	<desc><![CDATA[floating-point rounding mode<br>
+]]></desc>
+</keyword>
+<keyword name="fmod" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+		<param type="double" name="y"/>
+	</params>
+	<desc>if y non-zero, floating-point remainder of x/y, with same sign as x; if y zero, result is implementation-defined</desc>
+</keyword>
+<keyword name="fopen" type="function" returnType="FILE*" definedIn="stdio.h">
+	<params>
+		<param type="const char*" name="filename">
+			<desc>The name of the file to open.</desc>
+		</param>
+		<param type="const char*" name="mode">
+			<desc>The type of access required.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Opens file named filename and returns a stream, or <a href="NULL">NULL</a> on failure. mode may be one of the following for text files:<br>
+<ul>
+ <li>"r"<br>
+  text reading</li>
+ <li>"w"<br>
+  text writing</li>
+ <li>"a"<br>
+  text append</li>
+ <li>"r+"<br>
+  text update (reading and writing)</li>
+ <li>"w+"<br>
+  text update, discarding previous content (if any)</li>
+ <li>"a+"<br>
+  text append, reading, and writing at end</li>
+</ul>
+<br>
+or one of those strings with b included (after the first character), for binary files.]]></desc>
+	<returnValDesc>A pointer to the open file.  A null pointer indicates an error.</returnValDesc>
+</keyword>
+<keyword name="FOPEN_MAX" type="constant" definedIn="stdio.h">
+	<desc>Maximum number of files which may be open simultaneously.</desc>
+</keyword>
+<keyword name="fpos_t" type="constant" definedIn="stdio.h">
+	<desc>Type for objects declared to store file position information.</desc>
+</keyword>
+<keyword name="fprintf" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="FILE*" name="stream">
+			<desc>A pointer to the file to write to.</desc>
+		</param>
+		<param type="const char*" name="format">
+			<desc>A format control string.</desc>
+		</param>
+		<param name="...">
+			<desc>Optional arguments.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Converts (according to format format) and writes output to stream <em>stream</em>. Number of characters written, or negative value on error, is returned. Conversion specifications consist of:<br>
+
+<ul>
+ <li>%</li>
+ <li>(optional) flag:<br>
+
+   -<br>
+    left adjust<br>
+   +<br>
+    always sign<br>
+   space<br>
+    space if no sign<br>
+   0<br>
+    zero pad<br>
+   #<br>
+    Alternate form: for conversion character o, first digit will be zero, for [xX], prefix 0x or 0X to non-zero value, for [eEfgG], always decimal point, for [gG] trailing zeros not removed.<br>
+ </li>
+ <li>(optional) minimum width: if specified as *, value taken from next argument (which must be int).</li>
+ <li>(optional) . (separating width from precision):</li>
+ <li>(optional) precision: for conversion character s, maximum characters to be printed from the string, for [eEf], digits after decimal point, for [gG], significant digits, for an integer, minimum number of digits to be printed. If specified as *, value taken from next argument (which must be int).</li>
+ <li>(optional) length modifier:<br>
+
+   h<br>
+    short or unsigned short<br>
+   l<br>
+    long or unsigned long<br>
+   L<br>
+    long double<br>
+ </li>
+ <li>conversion character:<br>
+
+   d,i<br>
+    int argument, printed in signed decimal notation<br>
+   o<br>
+    int argument, printed in unsigned octal notation<br>
+   x,X<br>
+    int argument, printed in unsigned hexadecimal notation<br>
+   u<br>
+    int argument, printed in unsigned decimal notation<br>
+   c<br>
+    int argument, printed as single character<br>
+   s<br>
+    char* argument<br>
+   f<br>
+    double argument, printed with format [-]mmm.ddd<br>
+   e,E<br>
+    double argument, printed with format [-]m.<a href="dddddd">dddddd</a>(e|E)(+|-)xx<br>
+   g,G<br>
+    double argument<br>
+   p<br>
+    void* argument, printed as pointer<br>
+   n<br>
+    int* argument : the number of characters written to this point is written into argument<br>
+   %<br>
+    no argument; prints %<br>
+ </li>
+</ul>
+]]></desc>
+	<returnValDesc>The number of bytes written, or a negative value if an error occurred.</returnValDesc>
+</keyword>
+<keyword name="fputc" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="int" name="c">
+			<desc>The character to be written.</desc>
+		</param>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+	</params>
+	<desc>Writes a character to a stream.</desc>
+	<returnValDesc><![CDATA[The character written, or <a href="EOF">EOF</a> on error.]]></returnValDesc>
+</keyword>
+<keyword name="fputs" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="const char*" name="s">
+			<desc>The string to write.</desc>
+		</param>
+		<param type="FILE*" name="stream">
+			<desc>A pointer to the file to write to.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Writes s to an output stream. Returns non-negative on success or <a href="EOF">EOF</a> on error.]]></desc>
+	<returnValDesc><![CDATA[Non-negative on success or <a href="EOF">EOF</a> on error.]]></returnValDesc>
+</keyword>
+<keyword name="fread" type="function" returnType="size_t" definedIn="stdio.h">
+	<params>
+		<param type="void*" name="ptr">
+			<desc>Storage location for data.</desc>
+		</param>
+		<param type="size_t" name="size">
+			<desc>Item size in bytes.</desc>
+		</param>
+		<param type="size_t" name="nobj">
+			<desc>Maximum number of items to read.</desc>
+		</param>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Reads (at most) nobj objects of size size from stream <em>stream</em> into ptr.]]></desc>
+	<returnValDesc><![CDATA[The number of items actually read.  Use <a href="feof">feof</a> or <a href="ferror">ferror</a> to distinguish a read error from an end-of-file condition.]]></returnValDesc>
+</keyword>
+<keyword name="free" type="function" returnType="void" definedIn="stdlib.h">
+	<params>
+		<param type="void*" name="p">
+			<desc>Pointer to the memory to free.</desc>
+		</param>
+	</params>
+	<desc>If p non-null, deallocates space to which it points.</desc>
+</keyword>
+<keyword name="freopen" type="function" returnType="FILE*" definedIn="stdio.h">
+	<params>
+		<param type="const char*" name="filename">
+			<desc>The new file to open.</desc>
+		</param>
+		<param type="const char*" name="mode">
+			<desc>The type of access permitted.</desc>
+		</param>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+	</params>
+	<desc>Closes file associated with stream, then opens file filename with specified mode and associates it with stream.</desc>
+	<returnValDesc><![CDATA[A pointer to the newly opened file, or <a href="NULL">NULL</a> if an error occurs.]]></returnValDesc>
+</keyword>
+<keyword name="frexp" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+		<param type="int*" name="exp"/>
+	</params>
+	<desc>if x non-zero, returns value, with absolute value in interval [1/2, 1), and assigns to *exp integer such that product of return value and 2 raised to the power *exp equals x; if x zero, both return value and *exp are zero</desc>
+</keyword>
+<keyword name="fscanf" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+		<param type="const char*" name="format">
+			<desc>Format control string.</desc>
+		</param>
+		<param name="...">
+			<desc>Optional arguments.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Performs formatted input conversion, reading from stream <em>stream</em> according to format format. The function returns when format is fully processed. Each of the arguments following format must be a pointer. Format string may contain:<br>
+
+ * blanks and tabs, which are ignored<br>
+ * ordinary characters, which are expected to match next non-white-space of input<br>
+ * conversion specifications, consisting of:<br>
+    o %<br>
+    o (optional) assignment suppression character "*"<br>
+    o (optional) maximum field width<br>
+    o (optional) target width indicator:<br>
+
+   h<br>
+    argument is pointer to short rather than int<br>
+   l<br>
+    argument is pointer to long rather than int, or double rather than float<br>
+   L<br>
+    argument is pointer to long double rather than float<br>
+
+    o conversion character:<br>
+
+   d<br>
+    decimal integer; int* parameter required<br>
+   i<br>
+    integer; int* parameter required; decimal, octal or hex<br>
+   o<br>
+    octal integer; int* parameter required<br>
+   u<br>
+    unsigned decimal integer; unsigned int* parameter required<br>
+   x<br>
+    hexadecimal integer; int* parameter required<br>
+   c<br>
+    characters; char* parameter required; white-space is not skipped, and NUL-termination is not performed<br>
+   s<br>
+    string of non-white-space; char* parameter required; string is NUL-terminated<br>
+   e,f,g<br>
+    floating-point number; float* parameter required<br>
+   p<br>
+    pointer value; void* parameter required<br>
+   n<br>
+    chars read so far; int* parameter required<br>
+   [...]<br>
+    longest non-empty string from specified set; char* parameter required; string is NUL-terminated<br>
+   [^...]<br>
+    longest non-empty string not from specified set; char* parameter required; string is NUL-terminated<br>
+   %<br>
+    literal %; no assignment <br>
+]]></desc>
+	<returnValDesc><![CDATA[The number of items converted and assigned, or <a href="EOF">EOF</a> if end-of-file or error occurs before any conversion. ]]></returnValDesc>
+</keyword>
+<keyword name="fseek" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+		<param type="long" name="offset">
+			<desc><![CDATA[Number of bytes from <em>origin</em>.]]></desc>
+		</param>
+		<param type="int" name="origin">
+			<desc>Initial position.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Sets file position for stream <em>stream</em> and clears end-of-file indicator. For a binary stream, file position is set to offset bytes from the position indicated by origin: beginning of file for SEEK_SET, current position for SEEK_CUR, or end of file for SEEK_END. Behaviour is similar for a text stream, but offset must be zero or, for SEEK_SET only, a value returned by ftell.]]></desc>
+	<returnValDesc>Zero on success, non-zero on error.</returnValDesc>
+</keyword>
+<keyword name="fsetpos" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+		<param type="const fpos_t*" name="ptr">
+			<desc>Position indicator storage.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Sets current position of stream <em>stream</em> to *ptr.]]></desc>
+	<returnValDesc>Zero on success, non-zero on error.</returnValDesc>
+</keyword>
+<keyword name="ftell" type="function" returnType="long" definedIn="stdio.h">
+	<params>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+	</params>
+	<desc>Gets the current position of a file pointer.</desc>
+	<returnValDesc><![CDATA[The current file position for stream <em>stream</em>, or -1 on error.]]></returnValDesc>
+</keyword>
+<keyword name="fwrite" type="function" returnType="size_t" definedIn="stdio.h">
+	<params>
+		<param type="const void*" name="ptr">
+			<desc>Pointer to data to be written.</desc>
+		</param>
+		<param type="size_t" name="size">
+			<desc>Item size in bytes.</desc>
+		</param>
+		<param type="size_t" name="nobj">
+			<desc>Maximum number of items to be written.</desc>
+		</param>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+	</params>
+	<desc>Writes data to a stream.</desc>
+	<returnValDesc><![CDATA[The number of objects written, which may be less than <em>nobj</em> if an error occurs.]]></returnValDesc>
+</keyword>
+<keyword name="getc" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Returns a character from a stream.  This is equivalent to <a href="fgetc">fgetc</a> except that it may be a macro.]]></desc>
+	<returnValDesc><![CDATA[The character read, or <a href="EOF">EOF</a> for a read error or end-of-file.  Use <a href="ferror">ferror</a> or <a href="feof">feof</a> to check for an error or end-of-file.]]></returnValDesc>
+</keyword>
+<keyword name="getchar" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="d"/>
+	</params>
+	<desc><![CDATA[Returns a character from <a href="stdin">stdin</a>.  This is equivalent to <a href="getc">getc</a>(<a href="stdin">stdin</a>).]]></desc>
+	<returnValDesc>The character read.</returnValDesc>
+</keyword>
+<keyword name="getenv" type="function" returnType="char*" definedIn="stdlib.h">
+	<params>
+		<param type="const char*" name="name">
+			<desc>The name of the environment variable.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Returns string associated with name name from implementation's environment, or <a href="NULL">NULL</a> if no such string exists.]]></desc>
+</keyword>
+<keyword name="gets" type="function" returnType="char*" definedIn="stdio.h">
+	<params>
+		<param type="char*" name="s">
+			<desc>Storage location for the input string.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Copies characters from <a href="stdin">stdin</a> into s until newline encountered, end-of-file reached, or error occurs. Does not copy newline. NUL-terminates s. <em>This function should not be used because of the potential for buffer overflow.</em>]]></desc>
+	<returnValDesc><![CDATA[<em>s</em>, or <a href="NULL">NULL</a> on end-of-file or error.  Use <a href="ferror">ferror</a> or <a href="feof">feof</a> to determine which one has occurred.]]></returnValDesc>
+</keyword>
+<keyword name="gmtime" type="function" returnType="struct tm*" definedIn="time.h">
+	<params>
+		<param type="const time_t*" name="tp"/>
+	</params>
+	<desc><![CDATA[Returns calendar time *tp converted to Coordinated Universal Time, or <a href="NULL">NULL</a> if not available.]]></desc>
+</keyword>
+<keyword name="HUGE_VAL" type="constant" definedIn="math.h">
+	<desc>magnitude returned (with correct sign) on overflow error</desc>
+</keyword>
+<keyword name="INT_MAX" type="constant" definedIn="limits.h">
+	<desc>maximum value of type int</desc>
+</keyword>
+<keyword name="INT_MIN" type="constant" definedIn="limits.h">
+	<desc>minimum value of type int</desc>
+</keyword>
+<keyword name="isalnum" type="function" returnType="int" definedIn="ctype.h">
+	<params>
+		<param type="int" name="c"/>
+	</params>
+	<desc><![CDATA[<a href="isalpha">isalpha</a>(c) or <a href="isdigit">isdigit</a>(c)]]></desc>
+</keyword>
+<keyword name="isalpha" type="function" returnType="int" definedIn="ctype.h">
+	<params>
+		<param type="int" name="c"/>
+	</params>
+	<desc><![CDATA[<a href="isupper">isupper</a>(c) or <a href="islower">islower</a>(c)]]></desc>
+</keyword>
+<keyword name="iscntrl" type="function" returnType="int" definedIn="ctype.h">
+	<params>
+		<param type="int" name="c"/>
+	</params>
+	<desc>is control character. In ASCII, control characters are 0x00 (NUL) to 0x1F (US), and 0x7F (DEL)</desc>
+</keyword>
+<keyword name="isdigit" type="function" returnType="int" definedIn="ctype.h">
+	<params>
+		<param type="int" name="c"/>
+	</params>
+	<desc>is decimal digit</desc>
+</keyword>
+<keyword name="isgraph" type="function" returnType="int" definedIn="ctype.h">
+	<params>
+		<param type="int" name="c"/>
+	</params>
+	<desc>is printing character other than space</desc>
+</keyword>
+<keyword name="islower" type="function" returnType="int" definedIn="ctype.h">
+	<params>
+		<param type="int" name="c"/>
+	</params>
+	<desc>is lower-case letter</desc>
+</keyword>
+<keyword name="isprint" type="function" returnType="int" definedIn="ctype.h">
+	<params>
+		<param type="int" name="c"/>
+	</params>
+	<desc>is printing character (including space). In ASCII, printing characters are 0x20 (' ') to 0x7E ('~')</desc>
+</keyword>
+<keyword name="ispunct" type="function" returnType="int" definedIn="ctype.h">
+	<params>
+		<param type="int" name="c"/>
+	</params>
+	<desc>is printing character other than space, letter, digit</desc>
+</keyword>
+<keyword name="isspace" type="function" returnType="int" definedIn="ctype.h">
+	<params>
+		<param type="int" name="c"/>
+	</params>
+	<desc>is space, formfeed, newline, carriage return, tab, vertical tab</desc>
+</keyword>
+<keyword name="isupper" type="function" returnType="int" definedIn="ctype.h">
+	<params>
+		<param type="int" name="c"/>
+	</params>
+	<desc>is upper-case letter</desc>
+</keyword>
+<keyword name="isxdigit" type="function" returnType="int" definedIn="ctype.h">
+	<params>
+		<param type="int" name="c"/>
+	</params>
+	<desc>is hexadecimal digit</desc>
+</keyword>
+<keyword name="jmp_buf" type="constant" definedIn="setjmp.h">
+	<desc>type of object holding context information</desc>
+</keyword>
+<keyword name="L_tmpnam" type="constant" definedIn="stdio.h">
+	<desc>Number of characters required for temporary filename generated by tmpnam.</desc>
+</keyword>
+<keyword name="labs" type="function" returnType="long" definedIn="stdlib.h">
+	<params>
+		<param type="long" name="n">
+			<desc>The long to get the absolute value of.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Returns absolute value of <em>n</em>.]]></desc>
+</keyword>
+<keyword name="LC_ALL" type="constant" definedIn="locale.h">
+	<desc>category argument for all categories</desc>
+</keyword>
+<keyword name="LC_COLLATE" type="constant" definedIn="locale.h">
+	<desc>category for information affecting collating functions</desc>
+</keyword>
+<keyword name="LC_CTYPE" type="constant" definedIn="locale.h">
+	<desc>category for information affecting character class tests functions</desc>
+</keyword>
+<keyword name="LC_MONETARY" type="constant" definedIn="locale.h">
+	<desc>category for monetary formatting information</desc>
+</keyword>
+<keyword name="LC_NUMERIC" type="constant" definedIn="locale.h">
+	<desc>category for numeric formatting information</desc>
+</keyword>
+<keyword name="LC_TIME" type="constant" definedIn="locale.h">
+	<desc>category for information affecting time conversions functions</desc>
+</keyword>
+<keyword name="LDBL_DIG" type="constant" definedIn="float.h">
+	<desc>The precision (in decimal digits) of the type long double.</desc>
+</keyword>
+<keyword name="LDBL_EPSILON" type="constant" definedIn="float.h">
+	<desc>The smallest long double x such that 1.0 + x != 1.0</desc>
+</keyword>
+<keyword name="LDBL_MANT_DIG" type="constant" definedIn="float.h">
+	<desc>The number of digits of a long double, base FLT_RADIX, in mantissa</desc>
+</keyword>
+<keyword name="LDBL_MAX" type="constant" definedIn="float.h">
+	<desc>The maximum value of a long double.</desc>
+</keyword>
+<keyword name="LDBL_MAX_EXP" type="constant" definedIn="float.h">
+	<desc>The largest positive integer exponent to which FLT_RADIX can be raised and remain representable</desc>
+</keyword>
+<keyword name="LDBL_MIN" type="constant" definedIn="float.h">
+	<desc>The minimum normalized long double value.</desc>
+</keyword>
+<keyword name="LDBL_MIN_EXP" type="constant" definedIn="float.h">
+	<desc><![CDATA[The smallest negative integer exponent to which FLT_RADIX can be raised and remain representable<br>
+]]></desc>
+</keyword>
+<keyword name="ldexp" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+		<param type="int" name="n"/>
+	</params>
+	<desc>x times 2 to the power n</desc>
+</keyword>
+<keyword name="ldiv" type="function" returnType="ldiv_t" definedIn="stdlib.h">
+	<params>
+		<param type="long" name="num"/>
+		<param type="long" name="denom"/>
+	</params>
+	<desc>Returns quotient and remainder of num/denom.</desc>
+</keyword>
+<keyword name="ldiv_t" type="constant" definedIn="stdlib.h">
+	<desc><![CDATA[Return type of <a href="ldiv">ldiv</a>(). Structure having members:<br>
+
+long quot;<br>
+ quotient<br>
+long rem;<br>
+ remainder <br>
+]]></desc>
+</keyword>
+<keyword name="localeconv" type="function" returnType="struct lconv*" definedIn="locale.h">
+	<params>
+		<param type="d"/>
+	</params>
+	<desc>returns pointer to formatting information for current locale</desc>
+</keyword>
+<keyword name="localtime" type="function" returnType="struct tm*" definedIn="time.h">
+	<params>
+		<param type="const time_t*" name="tp"/>
+	</params>
+	<desc>Returns calendar time *tp converted into local time.</desc>
+</keyword>
+<keyword name="log" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+	</params>
+	<desc>natural logarithm of x</desc>
+</keyword>
+<keyword name="log10" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+	</params>
+	<desc>base-10 logarithm of x</desc>
+</keyword>
+<keyword name="LONG_MAX" type="constant" definedIn="limits.h">
+	<desc>maximum value of type long</desc>
+</keyword>
+<keyword name="LONG_MIN" type="constant" definedIn="limits.h">
+	<desc>minimum value of type long</desc>
+</keyword>
+<keyword name="longjmp" type="function" returnType="void" definedIn="setjmp.h">
+	<params>
+		<param type="jmp_buf" name="env"/>
+		<param type="int" name="val"/>
+	</params>
+	<desc><![CDATA[Restores context saved by most recent call to setjmp with specified env. Execution resumes as a second return from setjmp, with returned value val if specified value non-zero, or 1 otherwise.<br>
+]]></desc>
+</keyword>
+<keyword name="malloc" type="function" returnType="void*" definedIn="stdlib.h">
+	<params>
+		<param type="size_t" name="size"/>
+	</params>
+	<desc><![CDATA[Returns pointer to uninitialised newly-allocated space for an object of size size, or <a href="NULL">NULL</a> on error.]]></desc>
+</keyword>
+<keyword name="memchr" type="function" returnType="void*" definedIn="string.h">
+	<params>
+		<param type="const void*" name="cs"/>
+		<param type="int" name="c"/>
+		<param type="size_t" name="n"/>
+	</params>
+	<desc><![CDATA[Returns pointer to first occurrence of c in first n characters of cs, or <a href="NULL">NULL</a> if not found.]]></desc>
+</keyword>
+<keyword name="memcmp" type="function" returnType="int" definedIn="string.h">
+	<params>
+		<param type="const void*" name="cs"/>
+		<param type="const void*" name="ct"/>
+		<param type="size_t" name="n"/>
+	</params>
+	<desc><![CDATA[Compares at most (the first) n characters of cs and ct, returning negative value if cs&lt;ct, zero if cs==ct, positive value if cs&gt;ct.]]></desc>
+</keyword>
+<keyword name="memcpy" type="function" returnType="void*" definedIn="string.h">
+	<params>
+		<param type="void*" name="s"/>
+		<param type="const void*" name="ct"/>
+		<param type="size_t" name="n"/>
+	</params>
+	<desc>Copies n characters from ct to s and returns s. s may be corrupted if objects overlap.</desc>
+</keyword>
+<keyword name="memmove" type="function" returnType="void*" definedIn="string.h">
+	<params>
+		<param type="void*" name="s"/>
+		<param type="const void*" name="ct"/>
+		<param type="size_t" name="n"/>
+	</params>
+	<desc>Copies n characters from ct to s and returns s. s will not be corrupted if objects overlap.</desc>
+</keyword>
+<keyword name="memset" type="function" returnType="void*" definedIn="string.h">
+	<params>
+		<param type="void*" name="s"/>
+		<param type="int" name="c"/>
+		<param type="size_t" name="n"/>
+	</params>
+	<desc><![CDATA[Replaces each of the first n characters of s by c and returns s.<br>
+]]></desc>
+</keyword>
+<keyword name="mktime" type="function" returnType="time_t" definedIn="time.h">
+	<params>
+		<param type="struct tm*" name="tp"/>
+	</params>
+	<desc>If necessary, adjusts fields of *tp to fall withing normal ranges. Returns the corresponding calendar time, or -1 if it cannot be represented.</desc>
+</keyword>
+<keyword name="modf" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+		<param type="double*" name="ip"/>
+	</params>
+	<desc>returns fractional part and assigns to *ip integral part of x, both with same sign as x</desc>
+</keyword>
+<keyword name="NULL" type="constant" definedIn="locale.h">
+	<desc><![CDATA[null pointer constant<br>
+]]></desc>
+</keyword>
+<keyword name="NULL" type="constant" definedIn="stddef.h">
+	<desc>Null pointer constant.</desc>
+</keyword>
+<keyword name="NULL" type="constant" definedIn="stdio.h">
+	<desc>Null pointer constant.</desc>
+</keyword>
+<keyword name="NULL" type="constant" definedIn="stdlib.h">
+	<desc>Null pointer constant.</desc>
+</keyword>
+<keyword name="NULL" type="constant" definedIn="string.h">
+	<desc>Null pointer constant.</desc>
+</keyword>
+<keyword name="NULL" type="constant" definedIn="time.h">
+	<desc>Null pointer constant.</desc>
+</keyword>
+<keyword name="offsetof" type="constant" definedIn="stddef.h">
+	<params>
+		<param type="e"/>
+		<param type="m"/>
+	</params>
+	<desc>Offset (in bytes) of member m from start of structure type stype.</desc>
+</keyword>
+<keyword name="perror" type="function" returnType="void" definedIn="stdio.h">
+	<params>
+		<param type="const char*" name="s"/>
+	</params>
+	<desc><![CDATA[Prints s (if non-null) and <a href="strerror">strerror</a>(errno) to standard error as would:<br>
+
+<tt><a href="fprintf">fprintf</a>(<a href="stderr">stderr</a>, "%s: %s\n", (s != <a href="NULL">NULL</a> ? s : ""), <a href="strerror">strerror</a>(errno))</tt>
+]]></desc>
+</keyword>
+<keyword name="pow" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+		<param type="double" name="y"/>
+	</params>
+	<desc>x raised to power y</desc>
+</keyword>
+<keyword name="printf" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="const char*" name="format">
+			<desc>Format control</desc>
+		</param>
+		<param name="...">
+			<desc>Optional arguments</desc>
+		</param>
+	</params>
+	<desc><![CDATA[<a href="printf">printf</a>(f, ...) is equivalent to <a href="fprintf">fprintf</a>(<a href="stdout">stdout</a>, f, ...)]]></desc>
+	<returnValDesc>The number of characters printed, or a negative value if an error occurs.</returnValDesc>
+</keyword>
+<keyword name="ptrdiff_t" type="constant" definedIn="stddef.h">
+	<desc>Type for objects declared to store result of subtracting pointers.</desc>
+</keyword>
+<keyword name="putc" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="int" name="c">
+			<desc>The character to be written.</desc>
+		</param>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+	</params>
+	<desc>Writes a character to a stream.  This is equivalent to fputc except that it may be a macro.</desc>
+	<returnValDesc><![CDATA[The character written, or <a href="EOF">EOF</a> on end-of-file or error.  Use <a href="ferror">ferror</a> or <a href="feof">feof</a> to determine which one has occurred.]]></returnValDesc>
+</keyword>
+<keyword name="putchar" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="int" name="c">
+			<desc>The character to be written.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Writes a character to <a href="stdout">stdout</a>.  This is equivalent to <a href="putc">putc</a>(c, <a href="stdout">stdout</a>).]]></desc>
+	<returnValDesc><![CDATA[The character written, or <a href="EOF">EOF</a> on end-of-file or error.  Use <a href="ferror">ferror</a> or <a href="feof">feof</a> to determine which one has occurred.]]></returnValDesc>
+</keyword>
+<keyword name="puts" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="const char*" name="s">
+			<desc>The string to write.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Writes s (excluding terminating NUL) and a newline to <a href="stdout">stdout</a>.]]></desc>
+	<returnValDesc><![CDATA[Non-negative on success or <a href="EOF">EOF</a> on error.]]></returnValDesc>
+</keyword>
+<keyword name="qsort" type="function" returnType="void" definedIn="stdlib.h">
+	<params>
+		<param type="void*" name="base"/>
+		<param type="size_t" name="n"/>
+		<param type="size_t" name="size"/>
+		<param type="int (*cmp)(const" name="void*"/>
+		<param type="const" name="void*)"/>
+	</params>
+	<desc>Arranges into ascending order array base (of n objects each of size size) according to comparison function cmp. cmp must return negative value if first argument is less than second, zero if equal and positive if greater.</desc>
+</keyword>
+<keyword name="raise" type="function" returnType="int" definedIn="signal.h">
+	<params>
+		<param type="int" name="sig"/>
+	</params>
+	<desc><![CDATA[Sends signal sig. Returns zero on success.<br>
+]]></desc>
+</keyword>
+<keyword name="rand" type="function" returnType="int" definedIn="stdlib.h">
+	<params>
+		<param type="d"/>
+	</params>
+	<desc>Returns pseudo-random number in range 0 to RAND_MAX.</desc>
+</keyword>
+<keyword name="RAND_MAX" type="constant" definedIn="stdlib.h">
+	<desc><![CDATA[Maximum value returned by <a href="rand">rand</a>().]]></desc>
+</keyword>
+<keyword name="realloc" type="function" returnType="void*" definedIn="stdlib.h">
+	<params>
+		<param type="void*" name="p"/>
+		<param type="size_t" name="size"/>
+	</params>
+	<desc><![CDATA[Returns pointer to newly-allocated space for an object of size size, initialised, to minimum of old and new sizes, to existing contents of p (if non-null), or <a href="NULL">NULL</a> on error. On success, old object deallocated, otherwise unchanged.]]></desc>
+</keyword>
+<keyword name="remove" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="const char*" name="filename"/>
+	</params>
+	<desc>Removes specified file. Returns non-zero on failure.</desc>
+</keyword>
+<keyword name="rename" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="const char*" name="oldname"/>
+		<param type="const char*" name="newname"/>
+	</params>
+	<desc>Changes name of file oldname to newname. Returns non-zero on failure.</desc>
+</keyword>
+<keyword name="rewind" type="function" returnType="void" definedIn="stdio.h">
+	<params>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Equivalent to <a href="fseek">fseek</a>(stream, 0L, SEEK_SET); <a href="clearerr">clearerr</a>(stream).]]></desc>
+</keyword>
+<keyword name="scanf" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="const char*" name="format"/>
+		<param name="..."/>
+	</params>
+	<desc><![CDATA[<a href="scanf">scanf</a>(f, ...) is equivalent to <a href="fscanf">fscanf</a>(<a href="stdin">stdin</a>, f, ...)]]></desc>
+</keyword>
+<keyword name="SCHAR_MAX" type="constant" definedIn="limits.h">
+	<desc>maximum value of type signed char</desc>
+</keyword>
+<keyword name="SCHAR_MIN" type="constant" definedIn="limits.h">
+	<desc>minimum value of type signed char</desc>
+</keyword>
+<keyword name="SEEK_CUR" type="constant" definedIn="stdio.h">
+	<desc>Value for origin argument to fseek specifying current file position.</desc>
+</keyword>
+<keyword name="SEEK_END" type="constant" definedIn="stdio.h">
+	<desc>Value for origin argument to fseek specifying end of file.</desc>
+</keyword>
+<keyword name="SEEK_SET" type="constant" definedIn="stdio.h">
+	<desc>Value for origin argument to fseek specifying beginning of file.</desc>
+</keyword>
+<keyword name="setbuf" type="function" returnType="void" definedIn="stdio.h">
+	<params>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+		<param type="char*" name="buf"/>
+	</params>
+	<desc><![CDATA[Controls buffering for stream <em>stream</em>. For null buf, turns off buffering, otherwise equivalent to (void)<a href="setvbuf">setvbuf</a>(stream, buf, _IOFBF, BUFSIZ).]]></desc>
+</keyword>
+<keyword name="setjmp" type="function" returnType="int" definedIn="setjmp.h">
+	<params>
+		<param type="jmp_buf" name="env"/>
+	</params>
+	<desc>Saves context information in env and returns zero. Subsequent call to longjmp with same env returns non-zero.</desc>
+</keyword>
+<keyword name="setlocale" type="function" returnType="char*" definedIn="locale.h">
+	<params>
+		<param type="int" name="category"/>
+		<param type="const char*" name="locale"/>
+	</params>
+	<desc>Sets components of locale according to specified category and locale. (Implementations are permitted to define values of category additional to those describe here.)</desc>
+	<returnValDesc><![CDATA[A string describing the new locale or <a href="NULL">NULL</a> on error. ]]></returnValDesc>
+</keyword>
+<keyword name="setvbuf" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+		<param type="char*" name="buf"/>
+		<param type="int" name="mode"/>
+		<param type="size_t" name="size"/>
+	</params>
+	<desc><![CDATA[Controls buffering for stream <em>stream</em>. mode is _IOFBF for full buffering, _IOLBF for line buffering, _IONBF for no buffering. Non-null buf specifies buffer of size size to be used; otherwise, a buffer is allocated. Returns non-zero on error. Call must be before any other operation on stream.]]></desc>
+</keyword>
+<keyword name="SHRT_MAX" type="constant" definedIn="limits.h">
+	<desc>maximum value of type short</desc>
+</keyword>
+<keyword name="SHRT_MIN" type="constant" definedIn="limits.h">
+	<desc>minimum value of type short</desc>
+</keyword>
+<keyword name="SIG_DFL" type="constant" definedIn="signal.h">
+	<desc>specifies default signal handling</desc>
+</keyword>
+<keyword name="SIG_ERR" type="constant" definedIn="signal.h">
+	<desc>signal return value indicating error</desc>
+</keyword>
+<keyword name="SIG_IGN" type="constant" definedIn="signal.h">
+	<desc>specifies that signal should be ignored</desc>
+</keyword>
+<keyword name="SIGABRT" type="constant" definedIn="signal.h">
+	<desc>abnormal termination</desc>
+</keyword>
+<keyword name="SIGFPE" type="constant" definedIn="signal.h">
+	<desc>arithmetic error</desc>
+</keyword>
+<keyword name="SIGILL" type="constant" definedIn="signal.h">
+	<desc>invalid execution</desc>
+</keyword>
+<keyword name="SIGINT" type="constant" definedIn="signal.h">
+	<desc>(asynchronous) interactive attention</desc>
+</keyword>
+<keyword name="SIGSEGV" type="constant" definedIn="signal.h">
+	<desc>illegal storage access</desc>
+</keyword>
+<keyword name="SIGTERM" type="constant" definedIn="signal.h">
+	<desc>(asynchronous) termination request</desc>
+</keyword>
+<keyword name="sin" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+	</params>
+	<desc>sine of x</desc>
+</keyword>
+<keyword name="sinh" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+	</params>
+	<desc>hyperbolic sine of x</desc>
+</keyword>
+<keyword name="size_t" type="constant" definedIn="stddef.h">
+	<desc><![CDATA[Type for objects declared to store result of sizeof operator.<br>
+]]></desc>
+</keyword>
+<keyword name="size_t" type="constant" definedIn="stdio.h">
+	<desc>Type for objects declared to store result of sizeof operator.</desc>
+</keyword>
+<keyword name="size_t" type="constant" definedIn="stdlib.h">
+	<desc>Type for objects declared to store result of sizeof operator.</desc>
+</keyword>
+<keyword name="size_t" type="constant" definedIn="string.h">
+	<desc>Type for objects declared to store result of sizeof operator.</desc>
+</keyword>
+<keyword name="sprintf" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="char*" name="s"/>
+		<param type="const char*" name="format"/>
+		<param name="..."/>
+	</params>
+	<desc>Like fprintf, but output written into string s, which must be large enough to hold the output, rather than to a stream. Output is NUL-terminated. Returns length (excluding the terminating NUL).</desc>
+</keyword>
+<keyword name="sqrt" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+	</params>
+	<desc>square root of x</desc>
+</keyword>
+<keyword name="srand" type="function" returnType="void" definedIn="stdlib.h">
+	<params>
+		<param type="unsigned int" name="seed"/>
+	</params>
+	<desc><![CDATA[Uses seed as seed for new sequence of pseudo-random numbers. Initial seed is 1.<br>
+]]></desc>
+</keyword>
+<keyword name="sscanf" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="char*" name="s"/>
+		<param type="const char*" name="format"/>
+		<param name="..."/>
+	</params>
+	<desc>Like fscanf, but input read from string s.</desc>
+</keyword>
+<keyword name="stderr" type="constant" definedIn="stdio.h">
+	<desc>File pointer for standard error stream. Automatically opened when program execution begins.</desc>
+</keyword>
+<keyword name="stdin" type="constant" definedIn="stdio.h">
+	<desc>File pointer for standard input stream. Automatically opened when program execution begins.</desc>
+</keyword>
+<keyword name="stdout" type="constant" definedIn="stdio.h">
+	<desc>File pointer for standard output stream. Automatically opened when program execution begins.</desc>
+</keyword>
+<keyword name="strcat" type="function" returnType="char*" definedIn="string.h">
+	<params>
+		<param type="char*" name="s"/>
+		<param type="const char*" name="ct"/>
+	</params>
+	<desc>Concatenate ct to s and return s.</desc>
+</keyword>
+<keyword name="strchr" type="function" returnType="char*" definedIn="string.h">
+	<params>
+		<param type="const char*" name="cs"/>
+		<param type="int" name="c"/>
+	</params>
+	<desc><![CDATA[Returns pointer to first occurrence of c in cs, or <a href="NULL">NULL</a> if not found.]]></desc>
+</keyword>
+<keyword name="strcmp" type="function" returnType="int" definedIn="string.h">
+	<params>
+		<param type="const char*" name="cs"/>
+		<param type="const char*" name="ct"/>
+	</params>
+	<desc><![CDATA[Compares cs with ct, returning negative value if cs&lt;ct, zero if cs==ct, positive value if cs&gt;ct.]]></desc>
+</keyword>
+<keyword name="strcoll" type="function" returnType="int" definedIn="string.h">
+	<params>
+		<param type="const char*" name="cs"/>
+		<param type="const char*" name="ct"/>
+	</params>
+	<desc><![CDATA[Compares cs with ct according to locale, returning negative value if cs&lt;ct, zero if cs==ct, positive value if cs&gt;ct.]]></desc>
+</keyword>
+<keyword name="strcpy" type="function" returnType="char*" definedIn="string.h">
+	<params>
+		<param type="char*" name="s"/>
+		<param type="const char*" name="ct"/>
+	</params>
+	<desc>Copies ct to s including terminating NUL and returns s.</desc>
+</keyword>
+<keyword name="strcspn" type="function" returnType="size_t" definedIn="string.h">
+	<params>
+		<param type="const char*" name="cs"/>
+		<param type="const char*" name="ct"/>
+	</params>
+	<desc>Returns length of prefix of cs which consists of characters which are not in ct.</desc>
+</keyword>
+<keyword name="strerror" type="function" returnType="char*" definedIn="string.h">
+	<params>
+		<param type="int" name="n"/>
+	</params>
+	<desc>Returns pointer to implementation-defined message string corresponding with error n.</desc>
+</keyword>
+<keyword name="strftime" type="function" returnType="size_t" definedIn="time.h">
+	<params>
+		<param type="char*" name="s"/>
+		<param type="size_t" name="smax"/>
+		<param type="const char*" name="fmt"/>
+		<param type="const struct tm*" name="tp"/>
+	</params>
+	<desc><![CDATA[Formats *tp into s according to fmt. Places no more than smax characters into s, and returns number of characters produced (excluding terminating NUL), or 0 if greater than smax. Formatting conversions (%c) are:<br>
+
+A<br>
+ name of weekday<br>
+a<br>
+ abbreviated name of weekday<br>
+B<br>
+ name of month<br>
+b<br>
+ abbreviated name of month<br>
+c<br>
+ local date and time representation<br>
+d<br>
+ day of month [01-31]<br>
+H<br>
+ hour (24-hour clock) [00-23]<br>
+I<br>
+ hour (12-hour clock) [01-12]<br>
+j<br>
+ day of year [001-366]<br>
+M<br>
+ minute [00-59]<br>
+m<br>
+ month [01-12]<br>
+p<br>
+ local equivalent of "AM" or "PM"<br>
+S<br>
+ second [00-61]<br>
+U<br>
+ week number of year (Sunday as 1st day of week) [00-53]<br>
+W<br>
+ week number of year (Monday as 1st day of week) [00-53]<br>
+w<br>
+ weekday (Sunday as 0) [0-6]<br>
+X<br>
+ local time representation<br>
+x<br>
+ local date representation<br>
+Y<br>
+ year with century<br>
+y<br>
+ year without century [00-99]<br>
+Z<br>
+ name (if any) of time zone<br>
+%<br>
+ % ]]></desc>
+</keyword>
+<keyword name="strlen" type="function" returnType="size_t" definedIn="string.h">
+	<params>
+		<param type="const char*" name="cs"/>
+	</params>
+	<desc>Returns length of cs.</desc>
+</keyword>
+<keyword name="strncat" type="function" returnType="char*" definedIn="string.h">
+	<params>
+		<param type="char*" name="s"/>
+		<param type="const char*" name="ct"/>
+		<param type="size_t" name="n"/>
+	</params>
+	<desc>Concatenate at most n characters of ct to s. NUL-terminates s and return it.</desc>
+</keyword>
+<keyword name="strncmp" type="function" returnType="int" definedIn="string.h">
+	<params>
+		<param type="const char*" name="cs"/>
+		<param type="const char*" name="ct"/>
+		<param type="size_t" name="n"/>
+	</params>
+	<desc><![CDATA[Compares at most (the first) n characters of cs and ct, returning negative value if cs&lt;ct, zero if cs==ct, positive value if cs&gt;ct.]]></desc>
+</keyword>
+<keyword name="strncpy" type="function" returnType="char*" definedIn="string.h">
+	<params>
+		<param type="char*" name="s"/>
+		<param type="const char*" name="ct"/>
+		<param type="size_t" name="n"/>
+	</params>
+	<desc>Copies at most n characters of ct to s. Pads with NUL characters if ct is of length less than n. Note that this may leave s without NUL-termination. Return s.</desc>
+</keyword>
+<keyword name="strpbrk" type="function" returnType="char*" definedIn="string.h">
+	<params>
+		<param type="const char*" name="cs"/>
+		<param type="const char*" name="ct"/>
+	</params>
+	<desc><![CDATA[Returns pointer to first occurrence in cs of any character of ct, or <a href="NULL">NULL</a> if none is found.]]></desc>
+</keyword>
+<keyword name="strrchr" type="function" returnType="char*" definedIn="string.h">
+	<params>
+		<param type="const char*" name="cs"/>
+		<param type="int" name="c"/>
+	</params>
+	<desc><![CDATA[Returns pointer to last occurrence of c in cs, or <a href="NULL">NULL</a> if not found.]]></desc>
+</keyword>
+<keyword name="strspn" type="function" returnType="size_t" definedIn="string.h">
+	<params>
+		<param type="const char*" name="cs"/>
+		<param type="const char*" name="ct"/>
+	</params>
+	<desc>Returns length of prefix of cs which consists of characters which are in ct.</desc>
+</keyword>
+<keyword name="strstr" type="function" returnType="char*" definedIn="string.h">
+	<params>
+		<param type="const char*" name="cs"/>
+		<param type="const char*" name="ct"/>
+	</params>
+	<desc><![CDATA[Returns pointer to first occurrence of ct within cs, or <a href="NULL">NULL</a> if none is found.]]></desc>
+</keyword>
+<keyword name="strtod" type="function" returnType="double" definedIn="stdlib.h">
+	<params>
+		<param type="const char*" name="s"/>
+		<param type="char**" name="endp"/>
+	</params>
+	<desc>Converts initial characters (ignoring leading white space) of s to type double. If endp non-null, stores pointer to unconverted suffix in *endp. On overflow, sets errno to ERANGE and returns HUGE_VAL with the appropriate sign; on underflow, sets errno to ERANGE and returns zero; otherwise returns converted value.</desc>
+</keyword>
+<keyword name="strtok" type="function" returnType="char*" definedIn="string.h">
+	<params>
+		<param type="char*" name="s"/>
+		<param type="const char*" name="t"/>
+	</params>
+	<desc><![CDATA[Searches s for next token delimited by any character from ct. Non-<a href="NULL">NULL</a> s indicates the first call of a sequence. If a token is found, it is NUL-terminated and returned, otherwise <a href="NULL">NULL</a> is returned. ct need not be identical for each call in a sequence.]]></desc>
+</keyword>
+<keyword name="strtol" type="function" returnType="long" definedIn="stdlib.h">
+	<params>
+		<param type="const char*" name="s"/>
+		<param type="char**" name="endp"/>
+		<param type="int" name="base"/>
+	</params>
+	<desc>Converts initial characters (ignoring leading white space) of s to type long. If endp non-nu ll, stores pointer to unconverted suffix in *endp. If base between 2 and 36, that base used for conversion; if zero, leading (after any sign) 0X or 0x implies hexadecimal, leading 0 (after any sign) implies octal, otherwise decimal assumed. Leading 0X or 0x permitted for base hexadecimal. On overflow, sets errno to ERANGE and returns LONG_MAX or LONG_MIN (as appropriate for sign); otherwise returns converted value.</desc>
+</keyword>
+<keyword name="strtoul" type="function" returnType="unsigned long" definedIn="stdlib.h">
+	<params>
+		<param type="const char*" name="s"/>
+		<param type="char**" name="endp"/>
+		<param type="int" name="base"/>
+	</params>
+	<desc>As for strtol except result is unsigned long and value on overflow is ULONG_MAX.</desc>
+</keyword>
+<keyword name="struct lconv" type="constant" definedIn="locale.h">
+	<desc><![CDATA[Describes formatting of monetary and other numeric values:<br>
+
+char* decimal_point;<br>
+ decimal point for non-monetary values<br>
+char* grouping;<br>
+ sizes of digit groups for non-monetary values<br>
+char* thousands_sep;<br>
+ separator for digit groups for non-monetary values (left of "decimal point")<br>
+char* currency_symbol;<br>
+ currency symbol<br>
+char* int_curr_symbol;<br>
+ international currency symbol<br>
+char* mon_decimal_point;<br>
+ decimal point for monetary values<br>
+char* mon_grouping;<br>
+ sizes of digit groups for monetary values<br>
+char* mon_thousands_sep;<br>
+ separator for digit groups for monetary values (left of "decimal point")<br>
+char* negative_sign;<br>
+ negative sign for monetary values<br>
+char* positive_sign;<br>
+ positive sign for monetary values<br>
+char frac_digits;<br>
+ number of digits to be displayed to right of "decimal point" for monetary values<br>
+char int_frac_digits;<br>
+ number of digits to be displayed to right of "decimal point" for international monetary values<br>
+char n_cs_precedes;<br>
+ whether currency symbol precedes (1) or follows (0) negative monetary values<br>
+char n_sep_by_space;<br>
+ whether currency symbol is (1) or is not (0) separated by space from negative monetary values<br>
+char n_sign_posn;<br>
+ format for negative monetary values:<br>
+
+ 0<br>
+  parentheses surround quantity and currency symbol<br>
+ 1<br>
+  sign precedes quantity and currency symbol<br>
+ 2<br>
+  sign follows quantity and currency symbol<br>
+ 3<br>
+  sign immediately precedes currency symbol<br>
+ 4<br>
+  sign immediately follows currency symbol <br>
+
+char p_cs_precedes;<br>
+ whether currency symbol precedes (1) or follows (0) positive monetary values<br>
+char p_sep_by_space;<br>
+ whether currency symbol is (1) or is not (0) separated by space from non-negative monetary values<br>
+char p_sign_posn;<br>
+ format for non-negative monetary values, with values as for n_sign_posn<br>
+
+Implementations may change field order and include additional fields. Standard C Library functions use only decimal_point.]]></desc>
+</keyword>
+<keyword name="struct tm" type="constant" definedIn="time.h">
+	<desc><![CDATA[Represents the components of calendar time:<br>
+
+int tm_sec;<br>
+ seconds after the minute<br>
+int tm_min;<br>
+ minutes after the hour<br>
+int tm_hour;<br>
+ hours since midnight<br>
+int tm_mday;<br>
+ day of the month<br>
+int tm_mon;<br>
+ months since January<br>
+int tm_year;<br>
+ years since 1900<br>
+int tm_wday;<br>
+ days since Sunday<br>
+int tm_yday;<br>
+ days since January 1<br>
+int tm_isdst;<br>
+ Daylight Saving Time flag : is positive if DST is in effect, zero if not in effect, negative if information not known.<br>
+
+Implementations may change field order and include additional fields.]]></desc>
+</keyword>
+<keyword name="strxfrm" type="function" returnType="size_t" definedIn="string.h">
+	<params>
+		<param type="char*" name="s"/>
+		<param type="const char*" name="ct"/>
+		<param type="size_t" name="n"/>
+	</params>
+	<desc>Stores in s no more than n characters (including terminating NUL) of a string produced from ct according to a locale-specific transformation. Returns length of entire transformed string.</desc>
+</keyword>
+<keyword name="system" type="function" returnType="int" definedIn="stdlib.h">
+	<params>
+		<param type="const char*" name="s"/>
+	</params>
+	<desc><![CDATA[If s is not <a href="NULL">NULL</a>, passes s to environment for execution, and returns status reported by command processor; if s is <a href="NULL">NULL</a>, non-zero returned if environment has a command processor.]]></desc>
+</keyword>
+<keyword name="tan" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+	</params>
+	<desc>tangent of x</desc>
+</keyword>
+<keyword name="tanh" type="function" returnType="double" definedIn="math.h">
+	<params>
+		<param type="double" name="x"/>
+	</params>
+	<desc><![CDATA[hyperbolic tangent of x<br>
+]]></desc>
+</keyword>
+<keyword name="time" type="function" returnType="time_t" definedIn="time.h">
+	<params>
+		<param type="time_t*" name="tp"/>
+	</params>
+	<desc><![CDATA[Returns current calendar time or -1 if not available. If tp is non-<a href="NULL">NULL</a>, return value is also assigned to *tp.]]></desc>
+</keyword>
+<keyword name="time_t" type="constant" definedIn="time.h">
+	<desc>An arithmetic type representing calendar time.</desc>
+</keyword>
+<keyword name="time_t" type="constant" definedIn="time.h">
+	<desc>An arithmetic type representing calendar time.</desc>
+</keyword>
+<keyword name="TMP_MAX" type="constant" definedIn="stdio.h">
+	<desc>Minimum number of unique filenames generated by calls to tmpnam.</desc>
+</keyword>
+<keyword name="tmpfile" type="function" returnType="FILE*" definedIn="stdio.h">
+	<desc><![CDATA[Creates temporary file (mode "wb+") which will be removed when closed or on normal program termination. Returns stream or <a href="NULL">NULL</a> on failure.]]></desc>
+</keyword>
+<keyword name="tmpnam" type="function" returnType="char*" definedIn="stdio.h">
+	<params>
+		<param type="char" name="s[L_tmpnam]"/>
+	</params>
+	<desc>Assigns to s (if s non-null) and returns unique name for a temporary file. Unique name is returned for each of the first TMP_MAX invocations.</desc>
+</keyword>
+<keyword name="tolower" type="function" returnType="int" definedIn="ctype.h">
+	<params>
+		<param type="int" name="c"/>
+	</params>
+	<desc>return lower-case equivalent</desc>
+</keyword>
+<keyword name="toupper" type="function" returnType="int" definedIn="ctype.h">
+	<params>
+		<param type="int" name="c"/>
+	</params>
+	<desc><![CDATA[return upper-case equivalent<br>
+]]></desc>
+</keyword>
+<keyword name="UCHAR_MAX" type="constant" definedIn="limits.h">
+	<desc>maximum value of type unsigned char</desc>
+</keyword>
+<keyword name="UINT_MAX" type="constant" definedIn="limits.h">
+	<desc>maximum value of type unsigned int</desc>
+</keyword>
+<keyword name="ULONG_MAX" type="constant" definedIn="limits.h">
+	<desc><![CDATA[maximum value of type unsigned long<br>
+]]></desc>
+</keyword>
+<keyword name="ungetc" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="int" name="c"/>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+	</params>
+	<desc><![CDATA[Pushes c (which must not be EOF), onto (input) stream <em>stream</em> such that it will be returned by the next read. Only one character of pushback is guaranteed (for each stream). Returns c, or <a href="EOF">EOF</a> on error.]]></desc>
+</keyword>
+<keyword name="USHRT_MAX" type="constant" definedIn="limits.h">
+	<desc>maximum value of type unsigned short</desc>
+</keyword>
+<keyword name="va_arg" type="function" returnType="type" definedIn="stdarg.h">
+	<params>
+		<param type="va_list" name="ap"/>
+		<param type="e"/>
+	</params>
+	<desc>Yields value of the type (type) and value of the next unnamed argument.</desc>
+</keyword>
+<keyword name="va_end" type="function" returnType="void" definedIn="stdarg.h">
+	<params>
+		<param type="va_list" name="ap"/>
+	</params>
+	<desc><![CDATA[Termination macro which must be called once after argument processing and before exit from function.<br>
+]]></desc>
+</keyword>
+<keyword name="va_list" type="constant" definedIn="stdarg.h">
+	<desc>type of object holding context information</desc>
+</keyword>
+<keyword name="va_start" type="function" returnType="void" definedIn="stdarg.h">
+	<params>
+		<param type="va_list" name="ap"/>
+		<param type="g"/>
+	</params>
+	<desc>Initialisation macro which must be called once before any unnamed argument is accessed. Stores context information in ap. lastarg is the last named parameter of the function.</desc>
+</keyword>
+<keyword name="vfprintf" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="FILE*" name="stream">
+			<desc>Pointer to a file structure.</desc>
+		</param>
+		<param type="const char*" name="format"/>
+		<param type="va_list" name="arg"/>
+	</params>
+	<desc>Equivalent to fprintf with variable argument list replaced by arg, which must have been initialised by the va_start macro (and may have been used in calls to va_arg).</desc>
+</keyword>
+<keyword name="vprintf" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="const char*" name="format"/>
+		<param type="va_list" name="arg"/>
+	</params>
+	<desc>Equivalent to printf with variable argument list replaced by arg, which must have been initialised by the va_start macro (and may have been used in calls to va_arg).</desc>
+</keyword>
+<keyword name="vsprintf" type="function" returnType="int" definedIn="stdio.h">
+	<params>
+		<param type="char*" name="s"/>
+		<param type="const char*" name="format"/>
+		<param type="va_list" name="arg"/>
+	</params>
+	<desc>Equivalent to sprintf with variable argument list replaced by arg, which must have been initialised by the va_start macro (and may have been used in calls to va_arg).</desc>
+</keyword>
+	</keywords>
+
+</api>

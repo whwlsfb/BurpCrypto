@@ -4,6 +4,7 @@
     <root id="archive" name="BurpCrypto.jar">
       <element id="module-output" name="BurpCrypto" />
       <element id="library" level="project" name="lib" />
+      <element id="dir-copy" path="$PROJECT_DIR$/jars" />
     </root>
   </artifact>
 </component>

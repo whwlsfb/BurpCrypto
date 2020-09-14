@@ -1,0 +1,1124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE api SYSTEM "CompletionXml.dtd">
+
+<!--
+   less.xml - Builtin functions of Less.
+           Used by RSyntaxTextArea to provide code completion.
+
+   Author:         Robert Futrell
+   Version:        0.1
+   
+   This file was generated from: D:\dev\rsta\RSTALanguageSupport\data\less/less_builtin_functions.txt
+   on date: 2015-08-22 22:31:47
+
+-->
+<api language="Less">
+
+	<environment paramStartChar="(" paramEndChar=")" paramSeparator=", " terminal=";"/>
+
+	<keywords>
+
+
+<keyword definedIn="v1.7.0" name='replace' type='function'>
+	<desc>Replaces a text within a string.</desc>
+	<params>
+		<param name="string">
+			<desc>The string to search and replace in.</desc>
+		</param>
+		<param name="pattern">
+			<desc>A string or regular expression pattern to search for.</desc>
+		</param>
+		<param name="replacement">
+			<desc>The string to replace the matched pattern with.</desc>
+		</param>
+		<param name="flags">
+			<desc>(Optional) regular expression flags.</desc>
+		</param>
+	</params>
+	<returnValDesc>a string with the replaced values.</returnValDesc>
+</keyword>
+
+<keyword definedIn="v2.2.0" name='image-height' type='function'>
+	<desc>Gets the image height from a file.</desc>
+	<params>
+		<param name="string">
+			<desc>the file to get the dimensions for.</desc>
+		</param>
+	</params>
+	<returnValDesc>dimension</returnValDesc>
+</keyword>
+
+<keyword definedIn="v2.2.0" name='image-size' type='function'>
+	<desc>Gets the image dimensions from a file.</desc>
+	<params>
+		<param name="string">
+			<desc>the file to get the dimensions for.</desc>
+		</param>
+	</params>
+	<returnValDesc>dimension</returnValDesc>
+</keyword>
+
+<keyword definedIn="v2.2.0" name='image-width' type='function'>
+	<desc>Gets the image width from a file.</desc>
+	<params>
+		<param name="string">
+			<desc>the file to get the dimensions for.</desc>
+		</param>
+	</params>
+	<returnValDesc>dimension</returnValDesc>
+</keyword>
+
+<keyword name='%' type='function'>
+	<desc><![CDATA[The function %(string, arguments ...) formats a string.<br>
+   The first argument is string with placeholders. All placeholders start with percentage symbol % followed by letter s,S,d,D,a, or A. Remaining arguments contain expressions to replace placeholders. If you need to print the percentage symbol, escape it by another percentage %%.<br>
+   Use uppercase placeholders if you need to escape special characters into their utf-8 escape codes. The function escapes all special characters except ()'~!. Space is encoded as %20. Lowercase placeholders leave special characters as they are.<br>
+   <br>
+   Placeholders:<br>
+   <ul>
+      <li>d, D, a, A - can be replaced by any kind of argument (color, number, escaped value, expression, ...). If you use them in combination with string, the whole string will be used - including its quotes. However, the quotes are placed into the string as they are, they are not escaped by "/" nor anything similar.<br>
+      <li>s, S - can be replaced by any expression. If you use it with string, only the string value is used - quotes are omitted.<br>
+   </ul>]]></desc>
+	<params>
+		<param name="string">
+			<desc>format string with placeholders,</desc>
+		</param>
+		<param name="anything">
+			<desc>values to replace placeholders.</desc>
+		</param>
+	</params>
+	<returnValDesc>formatted string.</returnValDesc>
+</keyword>
+
+<keyword name='abs' type='function'>
+	<desc>Calculates absolute value of a number. Keeps units as they are.</desc>
+	<params>
+		<param name="number">
+			<desc>a floating point number.</desc>
+		</param>
+	</params>
+	<returnValDesc>number</returnValDesc>
+</keyword>
+
+<keyword name='acos' type='function'>
+	<desc><![CDATA[Calculates arccosine (inverse of cosine) function.  Returns number in radians e.g. a number between 0 and &pi;.]]></desc>
+	<params>
+		<param name="number">
+			<desc>a floating point number from [-1, 1] interval.</desc>
+		</param>
+	</params>
+	<returnValDesc>number</returnValDesc>
+</keyword>
+
+<keyword name='alpha' type='function'>
+	<desc>Extracts the alpha channel of a color object.</desc>
+	<params>
+		<param name="color">
+			<desc>a color object.</desc>
+		</param>
+	</params>
+	<returnValDesc>float 0-1</returnValDesc>
+</keyword>
+
+<keyword name='argb' type='function'>
+	<desc><![CDATA[Creates a hex representation of a color in #AARRGGBB format (NOT #RRGGBBAA!).<br>
+   This format is used in Internet Explorer, and .NET and Android development.]]></desc>
+	<params>
+		<param name="color">
+			<desc>The (rgba) color to convert to argb)</desc>
+		</param>
+	</params>
+	<returnValDesc>string</returnValDesc>
+</keyword>
+
+<keyword name='asin' type='function'>
+	<desc><![CDATA[Calculates arcsine (inverse of sine) function.  Returns number in radians e.g. a number between -&pi;/2 and &pi;/2.]]></desc>
+	<params>
+		<param name="number">
+			<desc>floating point number from [-1, 1] interval.</desc>
+		</param>
+	</params>
+	<returnValDesc>number</returnValDesc>
+</keyword>
+
+<keyword name='atan' type='function'>
+	<desc><![CDATA[Calculates arctangent (inverse of tangent) function. Returns number in radians e.g. a number between -&pi;/2 and &pi;/2.]]></desc>
+	<params>
+		<param name="number">
+			<desc>a floating point number.</desc>
+		</param>
+	</params>
+	<returnValDesc>number</returnValDesc>
+</keyword>
+
+<keyword name='average' type='function'>
+	<desc>Compute the average of two colors on a per-channel (RGB) basis.</desc>
+	<params>
+		<param name="color1">
+			<desc>A color object.</desc>
+		</param>
+		<param name="color2">
+			<desc>A color object.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='blue' type='function'>
+	<desc>Extracts the blue channel of a color object.</desc>
+	<params>
+		<param name="color">
+			<desc>a color object.</desc>
+		</param>
+	</params>
+	<returnValDesc>float 0-255</returnValDesc>
+</keyword>
+
+<keyword name='ceil' type='function'>
+	<desc>Rounds up to the next highest integer.</desc>
+	<params>
+		<param name="number">
+			<desc>a floating point number.</desc>
+		</param>
+	</params>
+	<returnValDesc>integer</returnValDesc>
+</keyword>
+
+<keyword name='color' type='function'>
+	<desc>Parses a color, so a string representing a color becomes a color.</desc>
+	<params>
+		<param name="string">
+			<desc>a string of the specified color.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='contrast' type='function'>
+	<desc><![CDATA[Choose which of two colors provides the greatest contrast with another.<br>
+   This is useful for ensuring that a color is readable against a background, which is also useful for accessibility compliance. This function works the same way as the contrast function in Compass for SASS. In accordance with WCAG 2.0, colors are compared using their gamma-corrected luma value, not their lightness.<br>
+   The light and dark parameters can be supplied in either order - the function will calculate their luma values and assign light and dark automatically, which means you can't use this function to select the least contrasting color by reversing the order.]]></desc>
+	<params>
+		<param name="color">
+			<desc>A color object to compare against.</desc>
+		</param>
+		<param name="dark">
+			<desc>optional - A designated dark color (defaults to black).</desc>
+		</param>
+		<param name="light">
+			<desc>optional - A designated light color (defaults to white).</desc>
+		</param>
+		<param name="threshold">
+			<desc>optional - A percentage 0-100% specifying where the transition from "dark" to "light" is (defaults to 43%, matching SASS). This is used to bias the contrast one way or another, for example to allow you to decide whether a 50% grey background should result in black or white text. You would generally set this lower for 'lighter' palettes, higher for 'darker' ones.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='convert' type='function'>
+	<desc><![CDATA[Convert a number from one unit into another.<br>
+   The first argument contains a number with units and second argument contains units. If the units are compatible, the number is converted. If they are not compatible, the first argument is returned unmodified.<br>
+   See unit for changing the unit without conversion.<br>
+   Compatible unit groups:<br>
+   <ul>
+      <li>lengths: m, cm, mm, in, pt and pc,<br>
+      <li>time: s and ms,<br>
+      <li>angle: rad, deg, grad and turn.<br>
+   </ul>]]></desc>
+	<params>
+		<param name="number">
+			<desc>a floating point number with units.</desc>
+		</param>
+		<param name="units">
+			<desc>an identifier, string or escaped value.</desc>
+		</param>
+	</params>
+	<returnValDesc>number</returnValDesc>
+</keyword>
+
+<keyword name='cos' type='function'>
+	<desc>Calculates cosine function.  Assumes radians on numbers without units.</desc>
+	<params>
+		<param name="number">
+			<desc>a floating point number.</desc>
+		</param>
+	</params>
+	<returnValDesc>number</returnValDesc>
+</keyword>
+
+<keyword name='darken' type='function'>
+	<desc>Decrease the lightness of a color in the HSL color space by an absolute amount.</desc>
+	<params>
+		<param name="color">
+			<desc>A color object.</desc>
+		</param>
+		<param name="amount">
+			<desc>A percentage 0-100%.</desc>
+		</param>
+		<param name="method">
+			<desc>Optional, set to relative for the adjustment to be relative to the current value.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='darken' type='function'>
+	<desc>Decrease the lightness of a color in the HSL color space by an absolute amount.</desc>
+	<params>
+		<param name="color">
+			<desc>A color object.</desc>
+		</param>
+		<param name="amount">
+			<desc>A percentage 0-100%.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='data-uri' type='function'>
+	<desc>Inlines a resource and falls back to url() if the ieCompat option is on and the resource is too large, or if you use the function in the browser. If the MIME type is not given then node uses the mime package to determine the correct mime type.</desc>
+	<params>
+		<param name="mimetype">
+			<desc>(Optional) A MIME type string.</desc>
+		</param>
+		<param name="url">
+			<desc>The URL of the file to inline.</desc>
+		</param>
+	</params>
+</keyword>
+
+<keyword name='default' type='function'>
+	<desc>Available only inside guard conditions and returns true only if no other mixin matches, false otherwise.</desc>
+	<params>
+		<param name="dimension">
+			<desc>A number, with or without a dimension.</desc>
+		</param>
+		<param name="unit">
+			<desc>(Optional) the unit to change to, or if omitted it will remove the unit.</desc>
+		</param>
+	</params>
+</keyword>
+
+<keyword name='desaturate' type='function'>
+	<desc>Decrease the saturation of a color in the HSL color space by an absolute amount.</desc>
+	<params>
+		<param name="color">
+			<desc>A color object.</desc>
+		</param>
+		<param name="amount">
+			<desc>A percentage 0-100%.</desc>
+		</param>
+		<param name="method">
+			<desc>Optional, set to relative for the adjustment to be relative to the current value.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='desaturate' type='function'>
+	<desc>Decrease the saturation of a color in the HSL color space by an absolute amount.</desc>
+	<params>
+		<param name="color">
+			<desc>A color object.</desc>
+		</param>
+		<param name="amount">
+			<desc>A percentage 0-100%.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='difference' type='function'>
+	<desc>Subtracts the second color from the first color on a channel-by-channel basis. Negative values are inverted. Subtracting black results in no change; subtracting white results in color inversion.</desc>
+	<params>
+		<param name="color1">
+			<desc>A color object to act as the minuend.</desc>
+		</param>
+		<param name="color2">
+			<desc>A color object to act as the subtrahend.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='e' type='function'>
+	<desc><![CDATA[CSS escaping, replaced with ~"value" syntax.<br>
+   It expects string as a parameter and return its content as is, but without quotes. It can be used to output CSS value which is either not valid CSS syntax, or uses proprietary syntax which Less doesn't recognize.]]></desc>
+	<params>
+		<param name="string">
+			<desc>a string to escape.</desc>
+		</param>
+	</params>
+	<returnValDesc>string: the escaped string, without quotes.</returnValDesc>
+</keyword>
+
+<keyword name='escape' type='function'>
+	<desc><![CDATA[Applies URL-encoding to special characters found in the input string.<br>
+   These characters are not encoded: ,, /, ?, @, &, +, ', ~, ! and $.<br>
+   Most common encoded characters are: \<space\>, #, ^, (, ), {, }, |, :, >, <, ;, ], [ and =.]]></desc>
+	<params>
+		<param name="string">
+			<desc>a string to escape.</desc>
+		</param>
+	</params>
+	<returnValDesc>escaped string content without quotes.</returnValDesc>
+</keyword>
+
+<keyword name='exclusion' type='function'>
+	<desc>A similar effect to difference with lower contrast.</desc>
+	<params>
+		<param name="color1">
+			<desc>A color object to act as the minuend.</desc>
+		</param>
+		<param name="color2">
+			<desc>A color object to act as the subtrahend.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='extract' type='function'>
+	<desc>Returns the value at a specified position in a list.</desc>
+	<params>
+		<param name="list">
+			<desc>a comma or space separated list of values. index - an integer that specifies a position of a list element to return. Returns: a value at the specified position in a list.</desc>
+		</param>
+	</params>
+</keyword>
+
+<keyword name='fade' type='function'>
+	<desc>Set the absolute transparency of a color. Can be applied to colors whether they already have an opacity value or not.</desc>
+	<params>
+		<param name="color">
+			<desc>A color object.</desc>
+		</param>
+		<param name="amount">
+			<desc>A percentage 0-100%.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='fadein' type='function'>
+	<desc><![CDATA[Decrease the transparency (or increase the opacity) of a color, making it more opaque.<br>
+   Has no effect on opaque colors. To fade in the other direction use fadeout.]]></desc>
+	<params>
+		<param name="color">
+			<desc>A color object.</desc>
+		</param>
+		<param name="amount">
+			<desc>A percentage 0-100%.</desc>
+		</param>
+		<param name="method">
+			<desc>Optional, set to relative for the adjustment to be relative to the current value.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='fadein' type='function'>
+	<desc><![CDATA[Decrease the transparency (or increase the opacity) of a color, making it more opaque.<br>
+   Has no effect on opaque colors. To fade in the other direction use fadeout.]]></desc>
+	<params>
+		<param name="color">
+			<desc>A color object.</desc>
+		</param>
+		<param name="amount">
+			<desc>A percentage 0-100%.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='fadeout' type='function'>
+	<desc>Increase the transparency (or decrease the opacity) of a color, making it less opaque. To fade in the other direction use fadein.</desc>
+	<params>
+		<param name="color">
+			<desc>A color object.</desc>
+		</param>
+		<param name="amount">
+			<desc>A percentage 0-100%.</desc>
+		</param>
+		<param name="method">
+			<desc>Optional, set to relative for the adjustment to be relative to the current value.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='fadeout' type='function'>
+	<desc>Increase the transparency (or decrease the opacity) of a color, making it less opaque. To fade in the other direction use fadein.</desc>
+	<params>
+		<param name="color">
+			<desc>A color object.</desc>
+		</param>
+		<param name="amount">
+			<desc>A percentage 0-100%.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='floor' type='function'>
+	<desc>Rounds down to the next lowest integer.</desc>
+	<params>
+		<param name="number">
+			<desc>a floating point number.</desc>
+		</param>
+	</params>
+	<returnValDesc>integer</returnValDesc>
+</keyword>
+
+<keyword name='get-unit' type='function'>
+	<desc>Returns units of a number.  If the argument contains a number with units, the function returns its units. The argument without units results in an empty return value.</desc>
+	<params>
+		<param name="number">
+			<desc>a number with or without units.</desc>
+		</param>
+	</params>
+</keyword>
+
+<keyword name='green' type='function'>
+	<desc>Extracts the green channel of a color object.</desc>
+	<params>
+		<param name="color">
+			<desc>a color object.</desc>
+		</param>
+	</params>
+	<returnValDesc>float 0-255</returnValDesc>
+</keyword>
+
+<keyword name='greyscale' type='function'>
+	<desc><![CDATA[Remove all saturation from a color in the HSL color space; the same as calling desaturate(@color, 100%).<br>
+   Because the saturation is not affected by hue, the resulting color mapping may be somewhat dull or muddy; luma may provide a better result as it extracts perceptual rather than linear brightness, for example greyscale('#0000ff') will return the same value as greyscale('#00ff00'), though they appear quite different in brightness to the human eye.]]></desc>
+	<params>
+		<param name="color">
+			<desc>A color object.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='hardlight' type='function'>
+	<desc>The same as overlay but with the color roles reversed.</desc>
+	<params>
+		<param name="color1">
+			<desc>A color object to overlay.</desc>
+		</param>
+		<param name="color2">
+			<desc>A base color object. Also the determinant color to make the result lighter or darker.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='hsl' type='function'>
+	<desc>Creates an opaque color object from hue, saturation and lightness (HSL) values.</desc>
+	<params>
+		<param name="hue">
+			<desc>An integer 0-360 representing degrees.</desc>
+		</param>
+		<param name="saturation">
+			<desc>A percentage 0-100% or number 0-1.</desc>
+		</param>
+		<param name="lightness">
+			<desc>A percentage 0-100% or number 0-1.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='hsla' type='function'>
+	<desc>Creates a transparent color object from hue, saturation, lightness and alpha (HSLA) values.</desc>
+	<params>
+		<param name="hue">
+			<desc>An integer 0-360 representing degrees.</desc>
+		</param>
+		<param name="saturation">
+			<desc>A percentage 0-100% or number 0-1.</desc>
+		</param>
+		<param name="lightness">
+			<desc>A percentage 0-100% or number 0-1.</desc>
+		</param>
+		<param name="alpha">
+			<desc>A percentage 0-100% or number 0-1.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='hsv' type='function'>
+	<desc><![CDATA[Creates an opaque color object from hue, saturation and value (HSV) values.<br>
+   Note that this is a color space available in Photoshop, and is not the same as hsl.]]></desc>
+	<params>
+		<param name="hue">
+			<desc>An integer 0-360 representing degrees.</desc>
+		</param>
+		<param name="saturation">
+			<desc>A percentage 0-100% or number 0-1.</desc>
+		</param>
+		<param name="value">
+			<desc>A percentage 0-100% or number 0-1.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='hsva' type='function'>
+	<desc><![CDATA[Creates a transparent color object from hue, saturation, value and alpha (HSVA) values.<br>
+   Note that this is not the same as hsla, and is a color space available in Photoshop.]]></desc>
+	<params>
+		<param name="hue">
+			<desc>An integer 0-360 representing degrees.</desc>
+		</param>
+		<param name="saturation">
+			<desc>A percentage 0-100% or number 0-1.</desc>
+		</param>
+		<param name="value">
+			<desc>A percentage 0-100% or number 0-1.</desc>
+		</param>
+		<param name="alpha">
+			<desc>A percentage 0-100% or number 0-1.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='hsvhue' type='function'>
+	<desc>Extracts the hue channel of a color object in the HSV color space.</desc>
+	<params>
+		<param name="color">
+			<desc>a color object.</desc>
+		</param>
+	</params>
+	<returnValDesc>integer 0-360</returnValDesc>
+</keyword>
+
+<keyword name='hsvsaturation' type='function'>
+	<desc>Extracts the saturation channel of a color object in the HSV color space.</desc>
+	<params>
+		<param name="color">
+			<desc>a color object.</desc>
+		</param>
+	</params>
+	<returnValDesc>percentage 0-100</returnValDesc>
+</keyword>
+
+<keyword name='hsvvalue' type='function'>
+	<desc>Extracts the value channel of a color object in the HSV color space.</desc>
+	<params>
+		<param name="color">
+			<desc>a color object.</desc>
+		</param>
+	</params>
+	<returnValDesc>percentage 0-100</returnValDesc>
+</keyword>
+
+<keyword name='hue' type='function'>
+	<desc>Extracts the hue channel of a color object in the HSL color space.</desc>
+	<params>
+		<param name="color">
+			<desc>a color object.</desc>
+		</param>
+	</params>
+	<returnValDesc>integer 0-360</returnValDesc>
+</keyword>
+
+<keyword name='iscolor' type='function'>
+	<desc>Returns true if a value is a color, false otherwise.</desc>
+	<params>
+		<param name="value">
+			<desc>a value or variable being evaluated.</desc>
+		</param>
+	</params>
+	<returnValDesc>true if value is a color, false otherwise.</returnValDesc>
+</keyword>
+
+<keyword name='isem' type='function'>
+	<desc>Returns true if a value is an em value, false otherwise.</desc>
+	<params>
+		<param name="value">
+			<desc>a value or variable being evaluated.</desc>
+		</param>
+	</params>
+	<returnValDesc>true if value is an em value, false otherwise.</returnValDesc>
+</keyword>
+
+<keyword name='iskeyword' type='function'>
+	<desc>Returns true if a value is a keyword, false otherwise.</desc>
+	<params>
+		<param name="value">
+			<desc>a value or variable being evaluated.</desc>
+		</param>
+	</params>
+	<returnValDesc>true if value is a keyword, false otherwise.</returnValDesc>
+</keyword>
+
+<keyword name='isnumber' type='function'>
+	<desc>Returns true if a value is a number, false otherwise.</desc>
+	<params>
+		<param name="value">
+			<desc>a value or variable being evaluated.</desc>
+		</param>
+	</params>
+	<returnValDesc>true if value is a number, false otherwise.</returnValDesc>
+</keyword>
+
+<keyword name='ispercentage' type='function'>
+	<desc>Returns true if a value is a percentage value, false otherwise.</desc>
+	<params>
+		<param name="value">
+			<desc>a value or variable being evaluated.</desc>
+		</param>
+	</params>
+	<returnValDesc>true if value is a percentage value, false otherwise.</returnValDesc>
+</keyword>
+
+<keyword name='ispixel' type='function'>
+	<desc>Returns true if a value is a number in pixels, false otherwise.</desc>
+	<params>
+		<param name="value">
+			<desc>a value or variable being evaluated.</desc>
+		</param>
+	</params>
+	<returnValDesc>true if value is a pixel, false otherwise.</returnValDesc>
+</keyword>
+
+<keyword name='isruleset' type='function'>
+	<desc>Returns true if a value is a ruleset, false otherwise.</desc>
+	<params>
+		<param name="value">
+			<desc>a variable being evaluated.</desc>
+		</param>
+	</params>
+	<returnValDesc>true if value is a ruleset, false otherwise.</returnValDesc>
+</keyword>
+
+<keyword name='isstring' type='function'>
+	<desc>Returns true if a value is a string, false otherwise.</desc>
+	<params>
+		<param name="value">
+			<desc>a value or variable being evaluated.</desc>
+		</param>
+	</params>
+	<returnValDesc>true if value is a string, false otherwise.</returnValDesc>
+</keyword>
+
+<keyword name='isunit' type='function'>
+	<desc>Returns true if a value is a number in specified units, false otherwise.</desc>
+	<params>
+		<param name="value">
+			<desc>a value or variable being evaluated.</desc>
+		</param>
+		<param name="unit">
+			<desc>a unit identifier (optionally quoted) to test for.</desc>
+		</param>
+	</params>
+	<returnValDesc>true if value is a number in specified units, false otherwise.</returnValDesc>
+</keyword>
+
+<keyword name='isurl' type='function'>
+	<desc>Returns true if a value is a url, false otherwise.</desc>
+	<params>
+		<param name="value">
+			<desc>a value or variable being evaluated.</desc>
+		</param>
+	</params>
+	<returnValDesc>true if value is a url, false otherwise.</returnValDesc>
+</keyword>
+
+<keyword name='length' type='function'>
+	<desc>Returns the number of elements in a value list.</desc>
+	<params>
+		<param name="list">
+			<desc>a comma or space separated list of values.</desc>
+		</param>
+	</params>
+	<returnValDesc>an integer number of elements in a list</returnValDesc>
+</keyword>
+
+<keyword name='lighten' type='function'>
+	<desc>Increase the lightness of a color in the HSL color space by an absolute amount.</desc>
+	<params>
+		<param name="color">
+			<desc>A color object.</desc>
+		</param>
+		<param name="amount">
+			<desc>A percentage 0-100%.</desc>
+		</param>
+		<param name="method">
+			<desc>Optional, set to relative for the adjustment to be relative to the current value.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='lighten' type='function'>
+	<desc>Increase the lightness of a color in the HSL color space by an absolute amount.</desc>
+	<params>
+		<param name="color">
+			<desc>A color object.</desc>
+		</param>
+		<param name="amount">
+			<desc>A percentage 0-100%.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='lightness' type='function'>
+	<desc>Extracts the lightness channel of a color object in the HSL color space.</desc>
+	<params>
+		<param name="color">
+			<desc>a color object.</desc>
+		</param>
+	</params>
+	<returnValDesc>percentage 0-100</returnValDesc>
+</keyword>
+
+<keyword name='luma' type='function'>
+	<desc><![CDATA[Calculates the luma (perceptual brightness) of a color object.<br>
+   Uses SMPTE C / Rec. 709 coefficients, as recommended in WCAG 2.0. This calculation is also used in the contrast function.<br>
+   Before v1.7.0 the luma was calculated without gamma correction, use the luminance function to calculate these "old" values.]]></desc>
+	<params>
+		<param name="color">
+			<desc>a color object.</desc>
+		</param>
+	</params>
+	<returnValDesc>percentage 0-100%</returnValDesc>
+</keyword>
+
+<keyword name='luminance' type='function'>
+	<desc>Calculates the value of the luma without gamma correction (this function was named luma before v1.7.0)</desc>
+	<params>
+		<param name="color">
+			<desc>a color object.</desc>
+		</param>
+	</params>
+	<returnValDesc>percentage 0-100%</returnValDesc>
+</keyword>
+
+<keyword name='max' type='function'>
+	<desc>Returns the highest of one or more values.</desc>
+	<params>
+		<param name="value1, ..., valueN">
+			<desc>one or more values to compare.</desc>
+		</param>
+	</params>
+	<returnValDesc>the highest value.</returnValDesc>
+</keyword>
+
+<keyword name='min' type='function'>
+	<desc>Returns the lowest of one or more values.</desc>
+	<params>
+		<param name="value1, ..., valueN">
+			<desc>one or more values to compare.</desc>
+		</param>
+	</params>
+	<returnValDesc>the lowest value.</returnValDesc>
+</keyword>
+
+<keyword name='mix' type='function'>
+	<desc>Mix two colors together in variable proportion. Opacity is included in the calculations.</desc>
+	<params>
+		<param name="color1">
+			<desc>A color object.</desc>
+		</param>
+		<param name="color2">
+			<desc>A color object.</desc>
+		</param>
+		<param name="weight">
+			<desc>Optional, a percentage balance point between the two colors, defaults to 50%.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='mod' type='function'>
+	<desc>Returns the value of the first argument modulus second argument. Returned value has the same dimension as the first parameter, the dimension of the second parameter is ignored. The function is able to handle also negative and floating point numbers.</desc>
+	<params>
+		<param name="number">
+			<desc>a floating point number.</desc>
+		</param>
+		<param name="number">
+			<desc>a floating point number.</desc>
+		</param>
+	</params>
+	<returnValDesc>number</returnValDesc>
+</keyword>
+
+<keyword name='multiply' type='function'>
+	<desc>Multiply two colors. Corresponding RGB channels from each of the two colors are multiplied together then divided by 255. The result is a darker color.</desc>
+	<params>
+		<param name="color1">
+			<desc>A color object.</desc>
+		</param>
+		<param name="color2">
+			<desc>A color object.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='negation' type='function'>
+	<desc><![CDATA[Do the opposite effect to difference.<br>
+   The result is a brighter color. Note: The opposite effect doesn't mean the inverted effect as resulting from an addition operation.]]></desc>
+	<params>
+		<param name="color1">
+			<desc>A color object to act as the minuend.</desc>
+		</param>
+		<param name="color2">
+			<desc>A color object to act as the subtrahend.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='negation' type='function'>
+	<desc><![CDATA[Do the opposite effect to difference.<br>
+   The result is a brighter color. Note: The opposite effect doesn't mean the inverted effect as resulting from an addition operation.]]></desc>
+	<params>
+		<param name="color1">
+			<desc>A color object to act as the minuend.</desc>
+		</param>
+		<param name="color2">
+			<desc>A color object to act as the subtrahend.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='overlay' type='function'>
+	<desc>Combines the effects of both multiply and screen. Conditionally make light channels lighter and dark channels darker. Note: The results of the conditions are determined by the first color parameter.</desc>
+	<params>
+		<param name="color1">
+			<desc>A base color object. Also the determinant color to make the result lighter or darker.</desc>
+		</param>
+		<param name="color2">
+			<desc>A color object to overlay.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='percentage' type='function'>
+	<desc>Converts a floating point number into a percentage string.</desc>
+	<params>
+		<param name="number">
+			<desc>a floating point number.</desc>
+		</param>
+	</params>
+	<returnValDesc>string</returnValDesc>
+</keyword>
+
+<keyword name='pi' type='function'>
+	<desc><![CDATA[Returns &#960; (pi);]]></desc>
+	<params>
+	</params>
+	<returnValDesc>number</returnValDesc>
+</keyword>
+
+<keyword name='pow' type='function'>
+	<desc><![CDATA[Returns the value of the first argument raised to the power of the second argument.<br>
+   Returned value has the same dimension as the first parameter and the dimension of the second parameter is ignored.]]></desc>
+	<params>
+		<param name="base">
+			<desc>a floating point number.</desc>
+		</param>
+		<param name="exponent">
+			<desc>a floating point number.</desc>
+		</param>
+	</params>
+	<returnValDesc>number</returnValDesc>
+</keyword>
+
+<keyword name='red' type='function'>
+	<desc>Extracts the red channel of a color object.</desc>
+	<params>
+		<param name="color">
+			<desc>a color object.</desc>
+		</param>
+	</params>
+	<returnValDesc>float 0-255</returnValDesc>
+</keyword>
+
+<keyword name='rgb' type='function'>
+	<desc><![CDATA[Creates an opaque color object from decimal red, green and blue (RGB) values.<br>
+   Literal color values in standard HTML/CSS formats may also be used to define colors, for example #ff0000.]]></desc>
+	<params>
+		<param name="red">
+			<desc>An integer 0-255 or percentage 0-100%.</desc>
+		</param>
+		<param name="green">
+			<desc>An integer 0-255 or percentage 0-100%.</desc>
+		</param>
+		<param name="blue">
+			<desc>An integer 0-255 or percentage 0-100%.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='rgba' type='function'>
+	<desc>Creates a transparent color object from decimal red, green, blue and alpha (RGBA) values.</desc>
+	<params>
+		<param name="red">
+			<desc>An integer 0-255 or percentage 0-100%.</desc>
+		</param>
+		<param name="green">
+			<desc>An integer 0-255 or percentage 0-100%.</desc>
+		</param>
+		<param name="blue">
+			<desc>An integer 0-255 or percentage 0-100%.</desc>
+		</param>
+		<param name="alpha">
+			<desc>A number 0-1 or percentage 0-100%.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='round' type='function'>
+	<desc>Applies rounding.</desc>
+	<params>
+		<param name="number">
+			<desc>A floating point number.</desc>
+		</param>
+		<param name="decimalPlaces">
+			<desc>Optional: The number of decimal places to round to. Defaults to 0.</desc>
+		</param>
+	</params>
+	<returnValDesc>number</returnValDesc>
+</keyword>
+
+<keyword name='saturate' type='function'>
+	<desc>Increase the saturation of a color in the HSL color space by an absolute amount.</desc>
+	<params>
+		<param name="color">
+			<desc>A color object.</desc>
+		</param>
+		<param name="amount">
+			<desc>A percentage 0-100%.</desc>
+		</param>
+		<param name="method">
+			<desc>Optional, set to relative for the adjustment to be relative to the current value.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='saturate' type='function'>
+	<desc>Increase the saturation of a color in the HSL color space by an absolute amount.</desc>
+	<params>
+		<param name="color">
+			<desc>A color object.</desc>
+		</param>
+		<param name="amount">
+			<desc>A percentage 0-100%.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='saturation' type='function'>
+	<desc>Extracts the saturation channel of a color object in the HSL color space.</desc>
+	<params>
+		<param name="color">
+			<desc>a color object.</desc>
+		</param>
+	</params>
+	<returnValDesc>percentage 0-100</returnValDesc>
+</keyword>
+
+<keyword name='screen' type='function'>
+	<desc>Do the opposite of multiply. The result is a brighter color.</desc>
+	<params>
+		<param name="color1">
+			<desc>A color object.</desc>
+		</param>
+		<param name="color2">
+			<desc>A color object.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='sin' type='function'>
+	<desc>Calculates sine function.  Assumes radians on numbers without units.</desc>
+	<params>
+		<param name="number">
+			<desc>a floating point number.</desc>
+		</param>
+	</params>
+	<returnValDesc>number</returnValDesc>
+</keyword>
+
+<keyword name='softlight' type='function'>
+	<desc>Similar to overlay but avoids pure black resulting in pure black, and pure white resulting in pure white.</desc>
+	<params>
+		<param name="color1">
+			<desc>A color object to soft light another.</desc>
+		</param>
+		<param name="color2">
+			<desc>A color object to be soft lighten.</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='spin' type='function'>
+	<desc><![CDATA[Rotate the hue angle of a color in either direction.<br>
+   While the angle range is 0-360, it applies a mod 360 operation, so you can pass in much larger (or negative) values and they will wrap around e.g. angles of 360 and 720 will produce the same result. Note that colors are passed through an RGB conversion, which doesn't retain hue value for greys (because hue has no meaning when there is no saturation), so make sure you apply functions in a way that preserves hue, for example don't do this:<br>
+   <pre>@c: saturate(spin(#aaaaaa, 10), 10%);</pre>
+   Do this instead:<br>
+   <pre>@c: spin(saturate(#aaaaaa, 10%), 10);</pre>
+   Colors are always returned as RGB values, so applying spin to a grey value will do nothing.]]></desc>
+	<params>
+		<param name="color">
+			<desc>A color object.</desc>
+		</param>
+		<param name="angle">
+			<desc>A number of degrees to rotate (+ or -).</desc>
+		</param>
+	</params>
+	<returnValDesc>color</returnValDesc>
+</keyword>
+
+<keyword name='sqrt' type='function'>
+	<desc>Calculates square root of a number. Keeps units as they are.</desc>
+	<params>
+		<param name="number">
+			<desc>floating point number.</desc>
+		</param>
+	</params>
+	<returnValDesc>number</returnValDesc>
+</keyword>
+
+<keyword name='svg-gradient' type='function'>
+	<desc><![CDATA[Generates multi-stop svg gradients.<br>
+   Svg-gradient function generates multi-stop svg gradients. It must have at least three parameters. First parameter specifies gradient type and direction and remaining parameters list colors and their positions. The position of first and last specified color are optional, remaining colors must have positions specified.<br>
+   The direction must be one of to bottom, to right, to bottom right, to top right, ellipse or ellipse at center. The direction can be specified as both escaped value ~'to bottom' and space separated list of words to bottom.<br>
+   The direction must be followed by two or more color stops. They can be supplied either inside a list or you can specify each color stops in separate argument.]]></desc>
+	<params>
+		<param name="direction">
+			<desc>escaped value or list of identifiers</desc>
+		</param>
+		<param name="color-percentage-pair">
+			<desc>One or more of the first color and its relative position (position is optional)</desc>
+		</param>
+	</params>
+	<returnValDesc>url with "URI-Encoded" svg gradient.</returnValDesc>
+</keyword>
+
+<keyword name='tan' type='function'>
+	<desc>Calculates tangent function. Assumes radians on numbers without units.</desc>
+	<params>
+		<param name="number">
+			<desc>a floating point number.</desc>
+		</param>
+	</params>
+	<returnValDesc>number</returnValDesc>
+</keyword>
+
+	</keywords>
+
+</api>
