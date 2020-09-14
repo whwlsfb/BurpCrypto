@@ -14,10 +14,13 @@ public class ExecJSIntruderPayloadProcessor implements IIntruderPayloadProcessor
         this.parent = newParent;
         this.extName = extName;
         this.JsUtil = new JsUtil();
+        this.JsUtil.parent = parent;
         try {
             this.JsUtil.setConfig(config);
         } catch (Exception e) {
             this.parent.callbacks.issueAlert(e.toString());
+            this.parent.stdout.println();
+            e.printStackTrace(this.parent.stdout);
         }
     }
 
@@ -33,7 +36,9 @@ public class ExecJSIntruderPayloadProcessor implements IIntruderPayloadProcessor
             parent.dict.Log(result, originalPayload);
             return result;
         } catch (Exception e) {
-            this.parent.callbacks.issueAlert(e.toString());
+            this.parent.callbacks.issueAlert(e.getMessage());
+            this.parent.stdout.println();
+            e.printStackTrace(this.parent.stdout);
             return null;
         }
     }
