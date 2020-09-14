@@ -7,9 +7,9 @@ public class JsSnippets {
        put("Base64",
                "\r\n/* \n" +
                    " * Base64 example:\n" +
-                   " * base64.encode('admin');\n" +
+                   " * base64encode('admin');\n" +
                    " * > YWRtaW4=\n" +
-                   " * base64.decode('YWRtaW4=');\n" +
+                   " * base64decode('YWRtaW4=');\n" +
                    " * > admin\n" +
                    " */");
         put("MD5",
@@ -22,110 +22,93 @@ public class JsSnippets {
                     " */");
     }};
     public static HashMap<String, String> Snippets = new HashMap<String, String>() {{
-            put("Base64","function __b64() {  \n" +
-                    "\n" +
-                    "    // private property\n" +
-                    "    _keyStr = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=\";  \n" +
-                    "\n" +
-                    "    // public method for encoding\n" +
-                    "    this.encode = function (input) {  \n" +
-                    "        var output = \"\";  \n" +
-                    "        var chr1, chr2, chr3, enc1, enc2, enc3, enc4;  \n" +
-                    "        var i = 0;  \n" +
-                    "        input = _utf8_encode(input);  \n" +
-                    "        while (i < input.length) {  \n" +
-                    "            chr1 = input.charCodeAt(i++);  \n" +
-                    "            chr2 = input.charCodeAt(i++);  \n" +
-                    "            chr3 = input.charCodeAt(i++);  \n" +
-                    "            enc1 = chr1 >> 2;  \n" +
-                    "            enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);  \n" +
-                    "            enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);  \n" +
-                    "            enc4 = chr3 & 63;  \n" +
-                    "            if (isNaN(chr2)) {  \n" +
-                    "                enc3 = enc4 = 64;  \n" +
-                    "            } else if (isNaN(chr3)) {  \n" +
-                    "                enc4 = 64;  \n" +
-                    "            }  \n" +
-                    "            output = output +  \n" +
-                    "            _keyStr.charAt(enc1) + _keyStr.charAt(enc2) +  \n" +
-                    "            _keyStr.charAt(enc3) + _keyStr.charAt(enc4);  \n" +
-                    "        }  \n" +
-                    "        return output;  \n" +
-                    "    }  \n" +
-                    "\n" +
-                    "    // public method for decoding\n" +
-                    "    this.decode = function (input) {  \n" +
-                    "        var output = \"\";  \n" +
-                    "        var chr1, chr2, chr3;  \n" +
-                    "        var enc1, enc2, enc3, enc4;  \n" +
-                    "        var i = 0;  \n" +
-                    "        input = input.replace(/[^A-Za-z0-9\\+\\/\\=]/g, \"\");  \n" +
-                    "        while (i < input.length) {  \n" +
-                    "            enc1 = _keyStr.indexOf(input.charAt(i++));  \n" +
-                    "            enc2 = _keyStr.indexOf(input.charAt(i++));  \n" +
-                    "            enc3 = _keyStr.indexOf(input.charAt(i++));  \n" +
-                    "            enc4 = _keyStr.indexOf(input.charAt(i++));  \n" +
-                    "            chr1 = (enc1 << 2) | (enc2 >> 4);  \n" +
-                    "            chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);  \n" +
-                    "            chr3 = ((enc3 & 3) << 6) | enc4;  \n" +
-                    "            output = output + String.fromCharCode(chr1);  \n" +
-                    "            if (enc3 != 64) {  \n" +
-                    "                output = output + String.fromCharCode(chr2);  \n" +
-                    "            }  \n" +
-                    "            if (enc4 != 64) {  \n" +
-                    "                output = output + String.fromCharCode(chr3);  \n" +
-                    "            }  \n" +
-                    "        }  \n" +
-                    "        output = _utf8_decode(output);  \n" +
-                    "        return output;  \n" +
-                    "    }  \n" +
-                    "\n" +
-                    "    // private method for UTF-8 encoding\n" +
-                    "    _utf8_encode = function (string) {  \n" +
-                    "        string = string.replace(/\\r\\n/g,\"\\n\");  \n" +
-                    "        var utftext = \"\";  \n" +
-                    "        for (var n = 0; n < string.length; n++) {  \n" +
-                    "            var c = string.charCodeAt(n);  \n" +
-                    "            if (c < 128) {  \n" +
-                    "                utftext += String.fromCharCode(c);  \n" +
-                    "            } else if((c > 127) && (c < 2048)) {  \n" +
-                    "                utftext += String.fromCharCode((c >> 6) | 192);  \n" +
-                    "                utftext += String.fromCharCode((c & 63) | 128);  \n" +
-                    "            } else {  \n" +
-                    "                utftext += String.fromCharCode((c >> 12) | 224);  \n" +
-                    "                utftext += String.fromCharCode(((c >> 6) & 63) | 128);  \n" +
-                    "                utftext += String.fromCharCode((c & 63) | 128);  \n" +
-                    "            }  \n" +
-                    "\n" +
-                    "        }  \n" +
-                    "        return utftext;  \n" +
-                    "    }  \n" +
-                    "\n" +
-                    "    // private method for UTF-8 decoding\n" +
-                    "    _utf8_decode = function (utftext) {  \n" +
-                    "        var string = \"\";  \n" +
-                    "        var i = 0;  \n" +
-                    "        var c = c1 = c2 = 0;  \n" +
-                    "        while ( i < utftext.length ) {  \n" +
-                    "            c = utftext.charCodeAt(i);  \n" +
-                    "            if (c < 128) {  \n" +
-                    "                string += String.fromCharCode(c);  \n" +
-                    "                i++;  \n" +
-                    "            } else if((c > 191) && (c < 224)) {  \n" +
-                    "                c2 = utftext.charCodeAt(i+1);  \n" +
-                    "                string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));  \n" +
-                    "                i += 2;  \n" +
-                    "            } else {  \n" +
-                    "                c2 = utftext.charCodeAt(i+1);  \n" +
-                    "                c3 = utftext.charCodeAt(i+2);  \n" +
-                    "                string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));  \n" +
-                    "                i += 3;  \n" +
-                    "            }  \n" +
-                    "        }  \n" +
-                    "        return string;  \n" +
-                    "    }  \n" +
+            put("Base64","__b64 = {};\n" +
+                    "(function(b, c) {\n" +
+                    "    var a = function() {\n" +
+                    "        var g = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\";\n" +
+                    "        function d(r) {\n" +
+                    "            if (/([^\\u0000-\\u00ff])/.test(r)) {\n" +
+                    "                throw new Error(\"INVALID_CHARACTER_ERR\");\n" +
+                    "            }\n" +
+                    "            var q = 0, t, o, p, l = [];\n" +
+                    "            while (q < r.length) {\n" +
+                    "                o = r.charCodeAt(q);\n" +
+                    "                p = q % 3;\n" +
+                    "                switch (p) {\n" +
+                    "                case 0:\n" +
+                    "                    l.push(g.charAt(o >> 2));\n" +
+                    "                    break;\n" +
+                    "                case 1:\n" +
+                    "                    l.push(g.charAt((t & 3) << 4 | (o >> 4)));\n" +
+                    "                    break;\n" +
+                    "                case 2:\n" +
+                    "                    l.push(g.charAt((t & 15) << 2 | (o >> 6)));\n" +
+                    "                    l.push(g.charAt(o & 63));\n" +
+                    "                    break;\n" +
+                    "                }\n" +
+                    "                t = o;\n" +
+                    "                q++;\n" +
+                    "            }\n" +
+                    "            if (p == 0) {\n" +
+                    "                l.push(g.charAt((t & 3) << 4));\n" +
+                    "                l.push(\"==\");\n" +
+                    "            } else {\n" +
+                    "                if (p == 1) {\n" +
+                    "                    l.push(g.charAt((t & 15) << 2));\n" +
+                    "                    l.push(\"=\");\n" +
+                    "                }\n" +
+                    "            }\n" +
+                    "            return l.join(\"\");\n" +
+                    "        }\n" +
+                    "        function f(q) {\n" +
+                    "            q = q.replace(/\\s|=/g, \"\");\n" +
+                    "            var t, r, p, o = 0, l = [];\n" +
+                    "            while (o < q.length) {\n" +
+                    "                t = g.indexOf(q.charAt(o));\n" +
+                    "                p = o % 4;\n" +
+                    "                switch (p) {\n" +
+                    "                case 0:\n" +
+                    "                    break;\n" +
+                    "                case 1:\n" +
+                    "                    l.push(String.fromCharCode(r << 2 | t >> 4));\n" +
+                    "                    break;\n" +
+                    "                case 2:\n" +
+                    "                    l.push(String.fromCharCode((r & 15) << 4 | t >> 2));\n" +
+                    "                    break;\n" +
+                    "                case 3:\n" +
+                    "                    l.push(String.fromCharCode((r & 3) << 6 | t));\n" +
+                    "                    break;\n" +
+                    "                }\n" +
+                    "                r = t;\n" +
+                    "                o++;\n" +
+                    "            }\n" +
+                    "            return l.join(\"\");\n" +
+                    "        }\n" +
+                    "        var e = {\n" +
+                    "            btoa: d,\n" +
+                    "            atob: f,\n" +
+                    "            encode: d,\n" +
+                    "            decode: f\n" +
+                    "        };\n" +
+                    "        return e;\n" +
+                    "    }();\n" +
+                    "    if (!b.Base64_3) {\n" +
+                    "        b.Base64_3 = a;\n" +
+                    "    }\n" +
+                    "    if (!b.btoa) {\n" +
+                    "        b.btoa = a.btoa;\n" +
+                    "    }\n" +
+                    "    if (!b.atob) {\n" +
+                    "        b.atob = a.atob;\n" +
+                    "    }\n" +
                     "}\n" +
-                    "var base64 = new __b64();");
+                    ")(__b64);\n" +
+                    "function base64encode(a) {\n" +
+                    "    return __b64.btoa(a);\n" +
+                    "}\n" +
+                    "function base64decode(a) {\n" +
+                    "    return __b64.atob(a);\n" +
+                    "}");
             put("MD5","var hexcase = 0;\n" +
                     "var b64pad = \"\";\n" +
                     "var chrsz = 8;\n" +
