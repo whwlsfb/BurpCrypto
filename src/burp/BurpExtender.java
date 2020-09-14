@@ -29,7 +29,7 @@ public class BurpExtender implements IBurpExtender, ITab {
     public PrintWriter stderr;
     public DB store;
     public DictLogManager dict;
-    public String version = "0.1.3";
+    public String version = "0.1.4";
     public HashMap<String, IIntruderPayloadProcessor> IPProcessors = new HashMap<>();
 
     public JTabbedPane mainPanel;
