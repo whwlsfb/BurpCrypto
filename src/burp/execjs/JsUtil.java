@@ -10,13 +10,14 @@ import org.mozilla.javascript.ScriptableObject;
 import java.io.Reader;
 
 public class JsUtil {
-    public Context engine;
+    Context engine;
     Scriptable scope;
     public String methodName;
     public BurpExtender parent;
+    String jsCode = "";
 
     public void setConfig(JsConfig config) throws Exception {
-        this.loadJsCode(config.CryptoJsCode);
+        jsCode = config.CryptoJsCode;
         this.methodName = config.MethodName;
     }
 
@@ -43,12 +44,12 @@ public class JsUtil {
     }
 
     public String eval(String param) throws Exception {
+        this.loadJsCode(jsCode);
         return callFunction(methodName, new Object[]{param}).toString();
     }
 
     @Override
     protected void finalize() throws Throwable {
-        Context.exit();
         super.finalize();
     }
 }
