@@ -22,11 +22,17 @@ public class AesUtil {
     private SecretKey sKey;
     private OutFormat outFormat;
     private CipherInfo cipherInfo;
+    private boolean zeroPaddingMode = false;
 
     public void setConfig(AesConfig config) {
         try {
             this.algorithms = config.Algorithms;
-            String algName = algorithms.name().replace('_', '/');
+            String algorithmsName = algorithms.name();
+            if (algorithmsName.contains("ZeroPadding")) {
+                zeroPaddingMode = true;
+                algorithmsName = algorithmsName.replace("ZeroPadding", "NoPadding");
+            }
+            String algName = algorithmsName.replace('_', '/');
             this.cipherInfo = new CipherInfo(algName);
             this.cipher = Cipher.getInstance(algName);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
@@ -38,7 +44,17 @@ public class AesUtil {
     }
 
     public String encrypt(byte[] plaintext) {
-        byte[] encrypted = doFinal(Cipher.ENCRYPT_MODE, sKey, IV, plaintext);
+        byte[] dataBytes;
+        if (zeroPaddingMode) {
+            int blockSize = cipher.getBlockSize();
+            int length = plaintext.length;
+            if (length % blockSize != 0) {
+                length = length + (blockSize - (length % blockSize));
+            }
+            dataBytes = new byte[length];
+            System.arraycopy(plaintext, 0, dataBytes, 0, plaintext.length);
+        } else dataBytes = plaintext;
+        byte[] encrypted = doFinal(Cipher.ENCRYPT_MODE, sKey, IV, dataBytes);
         return outFormat == OutFormat.Base64 ? Utils.base64(encrypted) : Utils.hex(encrypted);
     }
 
