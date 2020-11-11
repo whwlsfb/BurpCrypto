@@ -10,6 +10,8 @@ import org.fife.ui.rtextarea.RTextScrollPane;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.lang.management.ManagementFactory;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -141,8 +143,15 @@ public class JsUIHandler {
 
     private boolean canUseCodeEditor() {
         try {
+            String encoder = "UTF-8";
+            byte[] pidKey = "burp-pid".getBytes(encoder);
+            String pid = ManagementFactory.getRuntimeMXBean().getName().split("@")[0];
+            boolean isReload = false;
+            String oldPid = new String(parent.store.get(pidKey), Charset.forName(encoder));
+            isReload = oldPid.equals(pid);
+            parent.store.put(pidKey, pid.getBytes(encoder));
             String[] version = parent.callbacks.getBurpVersion();
-            return (Integer.parseInt(version[1]) >= 2020 && Integer.parseInt(version[2]) >= 4);  // RSyntaxTextArea code editor only support in BurpSuite 2020.4 or higher.
+            return (Integer.parseInt(version[1]) >= 2020 && Integer.parseInt(version[2]) >= 4 && !isReload);  // RSyntaxTextArea code editor only support in BurpSuite 2020.4 or higher.
         } catch (Exception ex) {
             return false;
         }

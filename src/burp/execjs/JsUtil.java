@@ -11,7 +11,6 @@ import java.io.Reader;
 
 public class JsUtil {
     Context engine;
-    Scriptable scope;
     public String methodName;
     public BurpExtender parent;
     String jsCode = "";
@@ -21,21 +20,23 @@ public class JsUtil {
         this.methodName = config.MethodName;
     }
 
-    private void initEngine() {
+    private Scriptable initEngine() {
         engine = Context.enter();
-        scope = engine.initStandardObjects();
+        return engine.initStandardObjects();
     }
 
-    public void loadJsCode(String jsCode) {
+    public Scriptable loadJsCode(String jsCode) {
         try {
-            initEngine();
+            Scriptable scope = initEngine();
             engine.evaluateString(scope, jsCode, JsUtil.class.getSimpleName(), 1, null);
+            return scope;
         } catch (Exception ex) {
             this.parent.stderr.write(ex.getMessage());
+            return null;
         }
     }
 
-    public Object callFunction(String functionName, Object[] functionParams) throws Exception {
+    public Object callFunction(Scriptable scope, String functionName, Object[] functionParams) throws Exception {
         Function function = (Function) scope.get(functionName, scope);
         if (function == null) {
             throw new Exception("function " + functionName + " not found.");
@@ -44,8 +45,10 @@ public class JsUtil {
     }
 
     public String eval(String param) throws Exception {
-        this.loadJsCode(jsCode);
-        return callFunction(methodName, new Object[]{param}).toString();
+        Scriptable scope = this.loadJsCode(jsCode);
+        String result = callFunction(scope, methodName, new Object[]{param}).toString();
+        Context.exit();
+        return result;
     }
 
     @Override
