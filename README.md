@@ -6,7 +6,8 @@ Burpcrypto is a collection of burpsuite encryption plug-ins, supporting AES/RSA/
 
 # Usage
 [中文使用说明](https://blog.wanghw.cn/burpcrypto)
-- Add this jar to your burpsuite's Extensions.
+- Download the precompiled jar package from [Releases](https://github.com/whwlsfb/BurpCrypto/releases).
+- Add this jar package to your burpsuite's Extensions.
 - Switch to BurpCrypto tab, select you need Cipher tab.
 - Set key or some value.
 - press "Add processor", and give a name for this processor.
