@@ -20,10 +20,12 @@ public class BurpCryptoMenuFactory implements IContextMenuFactory {
     @Override
     public List<JMenuItem> createMenuItems(IContextMenuInvocation invocation) {
         ArrayList<JMenuItem> menus = new ArrayList<>();
-        if (invocation.getToolFlag() == parent.callbacks.TOOL_INTRUDER) {
-            JMenuItem menu1 = new JMenuItem("Get PlainText");
-            menu1.addActionListener(e -> {
-                IHttpRequestResponse req = invocation.getSelectedMessages()[0];
+        //if (invocation.getToolFlag() == parent.callbacks.TOOL_INTRUDER) {
+        JMenuItem menu1 = new JMenuItem("Get PlainText");
+        menu1.addActionListener(e -> {
+            IHttpRequestResponse[] resps = invocation.getSelectedMessages();
+            if (resps.length > 0) {
+                IHttpRequestResponse req = resps[0];
                 byte[] request = req.getRequest();
                 String selectedText = getSelectedText(request, invocation.getSelectionBounds());
                 if (selectedText != null && selectedText != "") {
@@ -35,13 +37,14 @@ public class BurpCryptoMenuFactory implements IContextMenuFactory {
                         JOptionPane.showMessageDialog(menu1, "Not found!");
                     }
                 }
-            });
-            menus.add(menu1);
-        }
+            }
+        });
+        menus.add(menu1);
+        //}
         JMenu quickCrypto = new JMenu("Quick Crypto");
         for (IIntruderPayloadProcessor entry : parent.IPProcessors.values()) {
-            JMenuItem menu1 = new JMenuItem(entry.getProcessorName());
-            menu1.addActionListener(e -> {
+            JMenuItem _menu = new JMenuItem(entry.getProcessorName());
+            _menu.addActionListener(e -> {
                 IHttpRequestResponse req = invocation.getSelectedMessages()[0];
                 byte[] request = req.getRequest();
                 int[] selectedIndexRange = invocation.getSelectionBounds();
@@ -55,10 +58,9 @@ public class BurpCryptoMenuFactory implements IContextMenuFactory {
                     }
                 }
             });
-            quickCrypto.add(menu1);
+            quickCrypto.add(_menu);
         }
-        if (quickCrypto.getItemCount() > 0)
-        {
+        if (quickCrypto.getItemCount() > 0) {
             menus.add(quickCrypto);
         }
         return menus;
@@ -94,6 +96,7 @@ public class BurpCryptoMenuFactory implements IContextMenuFactory {
             return null;
         }
     }
+
     private byte[] getSelectedBytes(byte[] request, int[] selectedIndexRange) {
         try {
             byte[] selectedText = new byte[selectedIndexRange[1] - selectedIndexRange[0]];
@@ -103,11 +106,12 @@ public class BurpCryptoMenuFactory implements IContextMenuFactory {
             return null;
         }
     }
-    public static byte[] Replace(byte[] request, int[] selectedIndexRange, byte[] targetBytes){
+
+    public static byte[] Replace(byte[] request, int[] selectedIndexRange, byte[] targetBytes) {
         byte[] result = new byte[request.length - (selectedIndexRange[1] - selectedIndexRange[0]) + targetBytes.length];
         System.arraycopy(request, 0, result, 0, selectedIndexRange[0]);
         System.arraycopy(targetBytes, 0, result, selectedIndexRange[0], targetBytes.length);
-        System.arraycopy(request, selectedIndexRange[1], result, selectedIndexRange[0]+targetBytes.length, request.length-selectedIndexRange[1]);
+        System.arraycopy(request, selectedIndexRange[1], result, selectedIndexRange[0] + targetBytes.length, request.length - selectedIndexRange[1]);
         return result;
     }
 }
