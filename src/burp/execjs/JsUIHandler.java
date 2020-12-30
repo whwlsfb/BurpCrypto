@@ -95,7 +95,7 @@ public class JsUIHandler {
         applyBtn.setMaximumSize(applyBtn.getPreferredSize());
         applyBtn.addActionListener(e -> {
             JsConfig config = new JsConfig();
-            config.CryptoJsCode = "";
+            config.CryptoJsCode = "window=this;navigator={};";
             for (Map.Entry<String, String> snippet : includes.entrySet()) {
                 config.CryptoJsCode += snippet.getValue() + "\r\n";
             }

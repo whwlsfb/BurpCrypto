@@ -5,16 +5,16 @@ import java.util.HashMap;
 public class JsSnippets {
     public static HashMap<String, String> SnippetHelps = new HashMap<String,String>() {{
        put("Base64",
-               "\r\n/* \n" +
-                   " * Base64 example:\n" +
+               "\r\n/* Base64 module included.\n" +
+                   " * Example:\n" +
                    " * base64encode('admin');\n" +
                    " * > YWRtaW4=\n" +
                    " * base64decode('YWRtaW4=');\n" +
                    " * > admin\n" +
                    " */");
         put("MD5",
-                "\r\n/* \n" +
-                    " * MD5 example:\n" +
+                "\r\n/* MD5 module included.\n" +
+                    " * Example:\n" +
                     " * md5('123456');\n" +
                     " * > e10adc3949ba59abbe56e057f20f883e\n"+
                     " */");
