@@ -151,7 +151,8 @@ public class JsUIHandler {
             isReload = oldPid.equals(pid);
             parent.store.put(pidKey, pid.getBytes(encoder));
             String[] version = parent.callbacks.getBurpVersion();
-            return (Double.parseDouble(version[1]) >= 2020 && Double.parseDouble(version[2]) >= 4 && !isReload);  // RSyntaxTextArea code editor only support in BurpSuite 2020.4 or higher.
+            return (((Double.parseDouble(version[1]) > 2020) ||
+                    (Double.parseDouble(version[1]) == 2020 && Double.parseDouble(version[2]) >= 4)) && !isReload);  // RSyntaxTextArea code editor only support in BurpSuite 2020.4 or higher.
         } catch (Exception ex) {
             return false;
         }
