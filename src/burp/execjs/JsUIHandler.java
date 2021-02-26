@@ -145,10 +145,13 @@ public class JsUIHandler {
         try {
             String encoder = "UTF-8";
             byte[] pidKey = "burp-pid".getBytes(encoder);
+            byte[] lastPid = parent.store.get(pidKey);
             String pid = ManagementFactory.getRuntimeMXBean().getName().split("@")[0];
             boolean isReload = false;
-            String oldPid = new String(parent.store.get(pidKey), Charset.forName(encoder));
-            isReload = oldPid.equals(pid);
+            if (lastPid != null) {
+                String oldPid = new String(parent.store.get(pidKey), Charset.forName(encoder));
+                isReload = oldPid.equals(pid);
+            }
             parent.store.put(pidKey, pid.getBytes(encoder));
             String[] version = parent.callbacks.getBurpVersion();
             return (((Double.parseDouble(version[1]) > 2020) ||
