@@ -8,6 +8,7 @@ import burp.utils.Utils;
 
 import javax.crypto.*;
 import javax.crypto.spec.DESKeySpec;
+import javax.crypto.spec.DESedeKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
@@ -16,6 +17,7 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 
 public class DesUtil {
     private Cipher cipher;
@@ -40,9 +42,7 @@ public class DesUtil {
         }
         if (algorithms != DesAlgorithms.strEnc) {
             try {
-                DESKeySpec desKey = new DESKeySpec(config.Key);
-                SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
-                sKey = keyFactory.generateSecret(desKey);
+                sKey = new SecretKeySpec(this.config.Key, this.cipherInfo.Algorithm);
             } catch (Exception ex) {
                 throw fail(ex);
             }

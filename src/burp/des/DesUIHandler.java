@@ -143,6 +143,13 @@ public class DesUIHandler {
                         return;
                     }
             }
+            try {
+                new DesIntruderPayloadProcessor(parent, "Test", desConfig);
+            } catch(Exception ex) {
+                System.out.println(ex);
+                JOptionPane.showMessageDialog(mainPanel, "key spec error!");
+                return;
+            }
             String extName = JOptionPane.showInputDialog("Please give this processor a special name:");
             if (extName != null) {
                 if (extName.length() == 0) {
