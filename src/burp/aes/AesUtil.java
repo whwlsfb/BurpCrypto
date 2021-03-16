@@ -46,13 +46,7 @@ public class AesUtil {
     public String encrypt(byte[] plaintext) {
         byte[] dataBytes;
         if (zeroPaddingMode) {
-            int blockSize = cipher.getBlockSize();
-            int length = plaintext.length;
-            if (length % blockSize != 0) {
-                length = length + (blockSize - (length % blockSize));
-            }
-            dataBytes = new byte[length];
-            System.arraycopy(plaintext, 0, dataBytes, 0, plaintext.length);
+            dataBytes = Utils.ZeroPadding(plaintext, cipher.getBlockSize());
         } else dataBytes = plaintext;
         byte[] encrypted = doFinal(Cipher.ENCRYPT_MODE, sKey, IV, dataBytes);
         return outFormat == OutFormat.Base64 ? Utils.base64(encrypted) : Utils.hex(encrypted);

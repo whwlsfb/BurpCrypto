@@ -92,6 +92,16 @@ public class Utils {
         return strs.toArray(new String[strs.size()]);
     }
 
+    public static byte[] ZeroPadding(byte[] data, int blockSize) {
+        int length = data.length;
+        if (length % blockSize != 0) {
+            length = length + (blockSize - (length % blockSize));
+        }
+        byte[] dataBytes = new byte[length];
+        System.arraycopy(data, 0, dataBytes, 0, data.length);
+        return dataBytes;
+    }
+
     public static String[] GetPublicKeyFormats() {
         ArrayList<String> strs = new ArrayList<String>();
         PublicKeyFormat[] items = PublicKeyFormat.values();

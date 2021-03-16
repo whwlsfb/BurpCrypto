@@ -27,13 +27,19 @@ public class DesUtil {
     private OutFormat outFormat;
     private CipherInfo cipherInfo;
     private DesJs strEncAlg;
+    private boolean zeroPaddingMode;
 
     public void setConfig(DesConfig config) {
         this.config = config;
         DesAlgorithms algorithms = config.Algorithms;
-        String algName = algorithms.name().replace('_', '/');
         try {
             if (algorithms != DesAlgorithms.strEnc) {
+                String algorithmsName = algorithms.name();
+                if (algorithmsName.contains("ZeroPadding")) {
+                    zeroPaddingMode = true;
+                    algorithmsName = algorithmsName.replace("ZeroPadding", "NoPadding");
+                }
+                String algName = algorithmsName.replace('_', '/');
                 this.cipher = Cipher.getInstance(algName);
                 this.cipherInfo = new CipherInfo(algName);
             } else strEncAlg = new DesJs();
@@ -53,7 +59,11 @@ public class DesUtil {
 
     public String encrypt(byte[] plaintext) {
         if (config.Algorithms != DesAlgorithms.strEnc) {
-            byte[] encrypted = doFinal(Cipher.ENCRYPT_MODE, sKey, IV, plaintext);
+            byte[] dataBytes;
+            if (zeroPaddingMode) {
+                dataBytes = Utils.ZeroPadding(plaintext, cipher.getBlockSize());
+            } else dataBytes = plaintext;
+            byte[] encrypted = doFinal(Cipher.ENCRYPT_MODE, sKey, IV, dataBytes);
             return outFormat == OutFormat.Base64 ? Utils.base64(encrypted) : Utils.hex(encrypted);
         } else {
             return strEncAlg.strEnc(new String(plaintext), config.Key1, config.Key2, config.Key3);

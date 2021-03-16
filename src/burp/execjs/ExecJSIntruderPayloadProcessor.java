@@ -19,8 +19,8 @@ public class ExecJSIntruderPayloadProcessor implements IIntruderPayloadProcessor
             this.JsUtil.setConfig(config);
         } catch (Exception e) {
             this.parent.callbacks.issueAlert(e.toString());
-            this.parent.stdout.println();
-            e.printStackTrace(this.parent.stdout);
+            this.parent.stderr.println();
+            e.printStackTrace(this.parent.stderr);
         }
     }
 
@@ -37,8 +37,8 @@ public class ExecJSIntruderPayloadProcessor implements IIntruderPayloadProcessor
             return result;
         } catch (Exception e) {
             this.parent.callbacks.issueAlert(e.getMessage());
-            this.parent.stdout.println();
-            e.printStackTrace(this.parent.stdout);
+            this.parent.stderr.println();
+            e.printStackTrace(this.parent.stderr);
             return null;
         }
     }

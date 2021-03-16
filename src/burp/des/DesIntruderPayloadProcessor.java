@@ -32,6 +32,8 @@ public class DesIntruderPayloadProcessor implements IIntruderPayloadProcessor {
             return result;
         } catch (Exception e) {
             this.parent.callbacks.issueAlert(e.toString());
+            this.parent.stderr.println();
+            e.printStackTrace(this.parent.stderr);
             return null;
         }
     }
