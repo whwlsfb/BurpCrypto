@@ -46,7 +46,7 @@ public class BurpExtender implements IBurpExtender, ITab {
 
     public JPanel execJsPanel;
     public JsUIHandler JsUI;
-    
+
     public boolean RegIPProcessor(String extName, IIntruderPayloadProcessor processor) {
         if (IPProcessors.containsKey(extName)) {
             JOptionPane.showMessageDialog(mainPanel, "This name already exist!");
@@ -66,7 +66,7 @@ public class BurpExtender implements IBurpExtender, ITab {
     }
 
     @Override
-    public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks)  {
+    public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks) {
         this.callbacks = callbacks;
         this.helpers = callbacks.getHelpers();
         this.stdout = new PrintWriter(callbacks.getStdout(), true);
@@ -96,24 +96,20 @@ public class BurpExtender implements IBurpExtender, ITab {
         this.RsaUI = new RsaUIHandler(this);
         this.JsUI = new JsUIHandler(this);
         this.DesUI = new DesUIHandler(this);
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                BurpExtender bthis = BurpExtender.this;
-                bthis.mainPanel = new JTabbedPane();
-                bthis.aesPanel = AesUI.getPanel();
-                bthis.rsaPanel = RsaUI.getPanel();
-                bthis.desPanel = DesUI.getPanel();
-                bthis.execJsPanel = JsUI.getPanel();
-                bthis.mainPanel.addTab("AES", bthis.aesPanel);
-                bthis.mainPanel.addTab("RSA", bthis.rsaPanel);
-                bthis.mainPanel.addTab("DES", bthis.desPanel);
-                bthis.mainPanel.addTab("Exec Js", bthis.execJsPanel);
-                bthis.callbacks.addSuiteTab(bthis);
-            }
+        SwingUtilities.invokeLater(() -> {
+            BurpExtender bthis = BurpExtender.this;
+            bthis.mainPanel = new JTabbedPane();
+            bthis.aesPanel = AesUI.getPanel();
+            bthis.mainPanel.addTab("AES", bthis.aesPanel);
+            bthis.rsaPanel = RsaUI.getPanel();
+            bthis.mainPanel.addTab("RSA", bthis.rsaPanel);
+            bthis.desPanel = DesUI.getPanel();
+            bthis.mainPanel.addTab("DES", bthis.desPanel);
+            bthis.execJsPanel = JsUI.getPanel();
+            bthis.mainPanel.addTab("Exec Js", bthis.execJsPanel);
+            bthis.callbacks.addSuiteTab(bthis);
         });
     }
-
 
     @Override
     public String getTabCaption() {
