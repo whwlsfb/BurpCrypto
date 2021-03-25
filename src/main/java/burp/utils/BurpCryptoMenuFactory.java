@@ -51,10 +51,14 @@ public class BurpCryptoMenuFactory implements IContextMenuFactory {
                 byte[] selectedBytes = getSelectedBytes(request, selectedIndexRange);
                 if (selectedBytes != null && selectedBytes.length > 0) {
                     byte[] encryptResult = entry.processPayload(selectedBytes, selectedBytes, selectedBytes);
-                    if (invocation.getToolFlag() == parent.callbacks.TOOL_INTRUDER || invocation.getToolFlag() == parent.callbacks.TOOL_REPEATER) {
-                        req.setRequest(Replace(request, selectedIndexRange, encryptResult));
+                    if (encryptResult != null) {
+                        if (invocation.getToolFlag() == parent.callbacks.TOOL_INTRUDER || invocation.getToolFlag() == parent.callbacks.TOOL_REPEATER) {
+                            req.setRequest(Replace(request, selectedIndexRange, encryptResult));
+                        } else {
+                            ShowCopiableMessage(new String(encryptResult), "CipherText result: ");
+                        }
                     } else {
-                        ShowCopiableMessage(new String(encryptResult), "CipherText result: ");
+                        JOptionPane.showMessageDialog(_menu, "has error!");
                     }
                 }
             });

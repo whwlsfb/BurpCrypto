@@ -8,12 +8,12 @@ import java.nio.charset.StandardCharsets;
 public class ExecJSIntruderPayloadProcessor implements IIntruderPayloadProcessor {
     private BurpExtender parent;
     private final String extName;
-    private final JsUtil JsUtil;
+    private final JsUtil2 JsUtil;
 
     public ExecJSIntruderPayloadProcessor(final BurpExtender newParent, String extName, JsConfig config) {
         this.parent = newParent;
         this.extName = extName;
-        this.JsUtil = new JsUtil();
+        this.JsUtil = new JsUtil2();
         this.JsUtil.parent = parent;
         try {
             this.JsUtil.setConfig(config);
