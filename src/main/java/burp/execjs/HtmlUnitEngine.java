@@ -8,7 +8,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 import java.io.IOException;
 
-public class JsUtil2 {
+public class HtmlUnitEngine implements IJsEngine {
     WebClient webClient;
     public String methodName;
     public BurpExtender parent;
@@ -17,6 +17,11 @@ public class JsUtil2 {
     public void setConfig(JsConfig config) throws Exception {
         jsCode = config.CryptoJsCode;
         this.methodName = config.MethodName;
+    }
+
+    @Override
+    public void setParent(BurpExtender parent) {
+        this.parent = parent;
     }
 
     private HtmlPage initEngine() throws IOException {

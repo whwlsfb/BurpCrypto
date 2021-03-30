@@ -1,6 +1,7 @@
 package burp.execjs;
 
 import burp.BurpExtender;
+import burp.utils.KeyFormat;
 import burp.utils.UIUtil;
 import org.fife.rsta.ac.LanguageSupportFactory;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
@@ -12,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.lang.management.ManagementFactory;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +22,7 @@ public class JsUIHandler {
     private JPanel mainPanel;
     private JTextField methodText;
     private JTextArea jsCodeText;
+    private JComboBox<String> jsEngineSelector;
     private JButton applyBtn, deleteBtn;
     private HashMap<String, String> includes = new HashMap<>();
 
@@ -45,6 +48,11 @@ public class JsUIHandler {
         final JLabel label2 = new JLabel("Js Method Name: ");
         methodText = new JTextField(200);
         methodText.setMaximumSize(methodText.getPreferredSize());
+
+        final JLabel label4 = new JLabel("Js Engine: ");
+        jsEngineSelector = new JComboBox(GetJsEngines());
+        jsEngineSelector.setMaximumSize(jsEngineSelector.getPreferredSize());
+        jsEngineSelector.setSelectedIndex(0);
 
         boolean canUseCodeEditor = canUseCodeEditor();
         final JLabel label3 = new JLabel("Js Code: ");
@@ -128,6 +136,8 @@ public class JsUIHandler {
         panel3.add(codePane);
         panel1.add(label2);
         panel1.add(methodText);
+        panel1.add(label4);
+        panel1.add(jsEngineSelector);
         panel2.add(applyBtn);
         panel2.add(deleteBtn);
 
@@ -159,5 +169,14 @@ public class JsUIHandler {
         } catch (Exception ex) {
             return false;
         }
+    }
+
+    private String[] GetJsEngines() {
+        ArrayList<String> strs = new ArrayList<String>();
+        JsEngines[] items = JsEngines.values();
+        for (JsEngines item : items) {
+            strs.add(item.name());
+        }
+        return strs.toArray(new String[strs.size()]);
     }
 }

@@ -10,7 +10,7 @@ import org.mozilla.javascript.ScriptableObject;
 
 import java.io.Reader;
 
-public class JsUtil {
+public class RhinoEngine implements IJsEngine {
     Context engine;
     public String methodName;
     public BurpExtender parent;
@@ -21,6 +21,11 @@ public class JsUtil {
         this.methodName = config.MethodName;
     }
 
+    @Override
+    public void setParent(BurpExtender parent) {
+        this.parent = parent;
+    }
+
     private Scriptable initEngine() {
         engine = Context.enter();
         return engine.initStandardObjects();
@@ -29,7 +34,7 @@ public class JsUtil {
     public Scriptable loadJsCode(String jsCode) {
         try {
             Scriptable scope = initEngine();
-            engine.evaluateString(scope, jsCode, JsUtil.class.getSimpleName(), 1, null);
+            engine.evaluateString(scope, jsCode, RhinoEngine.class.getSimpleName(), 1, null);
             return scope;
         } catch (Exception ex) {
             this.parent.stderr.write(ex.getMessage());
@@ -52,8 +57,4 @@ public class JsUtil {
         return result;
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-    }
 }
