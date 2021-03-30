@@ -102,7 +102,9 @@ public class JsUIHandler {
         applyBtn = new JButton("Add processor");
         applyBtn.setMaximumSize(applyBtn.getPreferredSize());
         applyBtn.addActionListener(e -> {
+            JsEngines jsEngine = JsEngines.valueOf(jsEngineSelector.getSelectedItem().toString());
             JsConfig config = new JsConfig();
+            config.JsEngine = jsEngine;
             config.CryptoJsCode = "window=this;navigator={};";
             for (Map.Entry<String, String> snippet : includes.entrySet()) {
                 config.CryptoJsCode += snippet.getValue() + "\r\n";
