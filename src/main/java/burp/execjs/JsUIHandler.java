@@ -105,7 +105,7 @@ public class JsUIHandler {
             JsEngines jsEngine = JsEngines.valueOf(jsEngineSelector.getSelectedItem().toString());
             JsConfig config = new JsConfig();
             config.JsEngine = jsEngine;
-            config.CryptoJsCode = "window=this;navigator={};";
+            config.CryptoJsCode = "";
             for (Map.Entry<String, String> snippet : includes.entrySet()) {
                 config.CryptoJsCode += snippet.getValue() + "\r\n";
             }

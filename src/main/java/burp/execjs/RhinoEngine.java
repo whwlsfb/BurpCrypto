@@ -14,10 +14,10 @@ public class RhinoEngine implements IJsEngine {
     Context engine;
     public String methodName;
     public BurpExtender parent;
-    String jsCode = "";
+    String jsCode = "window=this;navigator={};";
 
     public void setConfig(JsConfig config) throws Exception {
-        jsCode = config.CryptoJsCode;
+        jsCode += config.CryptoJsCode;
         this.methodName = config.MethodName;
     }
 

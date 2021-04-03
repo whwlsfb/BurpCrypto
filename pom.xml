@@ -36,12 +36,6 @@
             </plugin>
         </plugins>
     </build>
-    <repositories>
-        <repository>
-            <id>talanlabs</id>
-            <url>https://nexus.talanlabs.com</url>
-        </repository>
-    </repositories>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/net.portswigger.burp.extender/burp-extender-api -->
         <dependency>
@@ -66,11 +60,10 @@
             <artifactId>commons-codec</artifactId>
             <version>1.10</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.fife/RSTALanguageSupport -->
         <dependency>
-            <groupId>org.fife</groupId>
-            <artifactId>RSTALanguageSupport</artifactId>
-            <version>2.5.1</version>
+            <groupId>com.fifesoft</groupId>
+            <artifactId>languagesupport</artifactId>
+            <version>3.1.1</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.fifesoft/autocomplete -->
         <dependency>
