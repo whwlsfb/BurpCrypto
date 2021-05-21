@@ -1,6 +1,8 @@
-package burp.execjs;
+package burp.execjs.engine;
 
 import burp.BurpExtender;
+import burp.execjs.IJsEngine;
+import burp.execjs.JsConfig;
 
 import javax.script.Invocable;
 import javax.script.ScriptEngine;

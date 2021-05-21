@@ -1,14 +1,12 @@
-package burp.execjs;
+package burp.execjs.engine;
 
 import burp.BurpExtender;
 
+import burp.execjs.IJsEngine;
+import burp.execjs.JsConfig;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.Scriptable;
-import org.mozilla.javascript.ScriptableObject;
-
-
-import java.io.Reader;
 
 public class RhinoEngine implements IJsEngine {
     Context engine;

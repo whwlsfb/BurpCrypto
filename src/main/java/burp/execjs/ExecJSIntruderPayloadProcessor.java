@@ -2,6 +2,9 @@ package burp.execjs;
 
 import burp.BurpExtender;
 import burp.IIntruderPayloadProcessor;
+import burp.execjs.engine.HtmlUnitEngine;
+import burp.execjs.engine.JreBuiltInEngine;
+import burp.execjs.engine.RhinoEngine;
 
 import java.nio.charset.StandardCharsets;
 

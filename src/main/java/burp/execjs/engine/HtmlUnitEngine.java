@@ -1,6 +1,9 @@
-package burp.execjs;
+package burp.execjs.engine;
 
 import burp.BurpExtender;
+import burp.execjs.CustomAjaxController;
+import burp.execjs.IJsEngine;
+import burp.execjs.JsConfig;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.ScriptResult;
 import com.gargoylesoftware.htmlunit.WebClient;
