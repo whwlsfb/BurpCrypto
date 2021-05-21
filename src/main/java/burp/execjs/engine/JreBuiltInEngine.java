@@ -33,6 +33,7 @@ public class JreBuiltInEngine implements IJsEngine {
     public void loadJsCode(String jsCode) {
         try {
             initEngine();
+            engine.eval("window=this;navigator={};");
             engine.eval(jsCode);
         } catch (Exception ex) {
             this.parent.stderr.write(ex.getMessage());
