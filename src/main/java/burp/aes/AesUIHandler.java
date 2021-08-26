@@ -58,14 +58,14 @@ public class AesUIHandler {
         aesAlgSelector.setSelectedIndex(0);
 
         final JLabel label3 = new JLabel("AES Key: ");
-        aesKeyFormatSelector = new JComboBox(GetKeyFormats());
+        aesKeyFormatSelector = new JComboBox(Utils.GetKeyFormats());
         aesKeyFormatSelector.setMaximumSize(aesKeyFormatSelector.getPreferredSize());
         aesKeyFormatSelector.setSelectedIndex(0);
         aesKeyText = new JTextField(200);
         aesKeyText.setMaximumSize(aesKeyText.getPreferredSize());
 
         final JLabel label4 = new JLabel("AES IV: ");
-        aesIVFormatSelector = new JComboBox(GetKeyFormats());
+        aesIVFormatSelector = new JComboBox(Utils.GetKeyFormats());
         aesIVFormatSelector.setMaximumSize(aesIVFormatSelector.getPreferredSize());
         aesIVFormatSelector.setSelectedIndex(0);
         aesIVText = new JTextField(200);
@@ -158,12 +158,4 @@ public class AesUIHandler {
         return algStrs.toArray(new String[algStrs.size()]);
     }
 
-    private String[] GetKeyFormats() {
-        ArrayList<String> strs = new ArrayList<String>();
-        KeyFormat[] items = KeyFormat.values();
-        for (KeyFormat item : items) {
-            strs.add(item.name());
-        }
-        return strs.toArray(new String[strs.size()]);
-    }
 }

@@ -109,4 +109,13 @@ public class Utils {
         }
         return strs.toArray(new String[strs.size()]);
     }
+
+    public static String[] GetKeyFormats() {
+        ArrayList<String> strs = new ArrayList<String>();
+        KeyFormat[] items = KeyFormat.values();
+        for (KeyFormat item : items) {
+            strs.add(item.name());
+        }
+        return strs.toArray(new String[strs.size()]);
+    }
 }

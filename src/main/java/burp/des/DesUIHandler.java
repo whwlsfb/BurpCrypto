@@ -78,14 +78,14 @@ public class DesUIHandler {
         desAlgSelector.setSelectedIndex(0);
 
         final JLabel label3 = new JLabel("DES Key: ");
-        desKeyFormatSelector = new JComboBox(GetKeyFormats());
+        desKeyFormatSelector = new JComboBox(Utils.GetKeyFormats());
         desKeyFormatSelector.setMaximumSize(desKeyFormatSelector.getPreferredSize());
         desKeyFormatSelector.setSelectedIndex(0);
         desKeyText = new JTextField(200);
         desKeyText.setMaximumSize(desKeyText.getPreferredSize());
 
         final JLabel label4 = new JLabel("DES IV: ");
-        desIVFormatSelector = new JComboBox(GetKeyFormats());
+        desIVFormatSelector = new JComboBox(Utils.GetKeyFormats());
         desIVFormatSelector.setMaximumSize(desIVFormatSelector.getPreferredSize());
         desIVFormatSelector.setSelectedIndex(0);
         desIVText = new JTextField(200);
@@ -216,14 +216,5 @@ public class DesUIHandler {
             algStrs.add(alg.name().replace('_', '/'));
         }
         return algStrs.toArray(new String[algStrs.size()]);
-    }
-
-    private String[] GetKeyFormats() {
-        ArrayList<String> strs = new ArrayList<String>();
-        KeyFormat[] items = KeyFormat.values();
-        for (KeyFormat item : items) {
-            strs.add(item.name());
-        }
-        return strs.toArray(new String[strs.size()]);
     }
 }
