@@ -112,6 +112,6 @@ public class JsSnippets {
     public static String EmptyFunction =
             "\r\n" +
             "function calc(pass) {\n" +
-            "    return pass;\n" +
+            "     return pass;\n" +
             "}\r\n";
 }

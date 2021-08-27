@@ -60,7 +60,13 @@ public class JsUIHandler {
         jsEngineSelector.setSelectedIndex(0);
 
         final JLabel label3 = new JLabel("Js Code: ");
-        useSyntaxEditor = new JCheckBox("Use Syntax highlight Editor(Experiment)", true);
+        useSyntaxEditor = new JCheckBox("Use Syntax highlight Editor(Experiment)");
+        if (canUseCodeEditor()) {
+            useSyntaxEditor.setSelected(true);
+        } else {
+            useSyntaxEditor.setEnabled(false);
+            useSyntaxEditor.setText("Use Syntax highlight Editor(Experiment, only support in BurpSuite 2020.4 or higher.)");
+        }
         useSyntaxEditor.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 this.initEditor(true);
@@ -68,7 +74,7 @@ public class JsUIHandler {
                 this.initEditor(false);
             }
         });
-        this.initEditor(true);
+        this.initEditor(useSyntaxEditor.isSelected());
 
         applyBtn = new JButton("Add processor");
         applyBtn.setMaximumSize(applyBtn.getPreferredSize());
@@ -172,19 +178,9 @@ public class JsUIHandler {
     }
     private boolean canUseCodeEditor() {
         try {
-            String encoder = "UTF-8";
-            byte[] pidKey = "burp-pid".getBytes(encoder);
-            byte[] lastPid = parent.store.get(pidKey);
-            String pid = ManagementFactory.getRuntimeMXBean().getName().split("@")[0];
-            boolean isReload = true;
-            if (lastPid != null) {
-                String oldPid = new String(parent.store.get(pidKey), Charset.forName(encoder));
-                isReload = !oldPid.equals(pid);
-            }
-            parent.store.put(pidKey, pid.getBytes(encoder));
             String[] version = parent.callbacks.getBurpVersion();
             return (((Double.parseDouble(version[1]) > 2020) ||
-                    (Double.parseDouble(version[1]) == 2020 && Double.parseDouble(version[2]) >= 4)) && isReload);  // RSyntaxTextArea code editor only support in BurpSuite 2020.4 or higher.
+                    (Double.parseDouble(version[1]) == 2020 && Double.parseDouble(version[2]) >= 4)));  // RSyntaxTextArea code editor only support in BurpSuite 2020.4 or higher.
         } catch (Exception ex) {
             return false;
         }
