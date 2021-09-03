@@ -1,6 +1,7 @@
 # BurpCrypto
 [![Releases](https://img.shields.io/github/v/release/whwlsfb/BurpCrypto.svg?include_prereleases&style=square)](https://github.com/whwlsfb/BurpCrypto/releases)
 [![Downloads](https://img.shields.io/github/downloads/whwlsfb/BurpCrypto/total?label=Release%20Download)](https://github.com/whwlsfb/BurpCrypto/releases/latest)
+
 Burpcrypto is a collection of burpsuite encryption plug-ins, supporting AES/RSA/DES/ExecJs(execute JS encryption code in burpsuite).
 
 # Build
