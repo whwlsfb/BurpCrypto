@@ -3,6 +3,10 @@ package burp.utils;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpMethod;
+import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.http.client.methods.HttpGet;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
@@ -15,6 +19,21 @@ import java.util.ArrayList;
 
 public class Utils {
     private static MessageDigest md;
+
+    public static byte[] HTTPGet(String uri) {
+        HttpClient client = new HttpClient();
+        byte[] resp = null;
+        client.getHttpConnectionManager().getParams().setConnectionTimeout(3000);
+        try {
+            GetMethod request = new GetMethod(uri);
+            client.executeMethod(request);
+            resp = request.getResponseBody();
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            return resp;
+        }
+    }
 
     public static byte[] byteMerger(byte[] bt1, byte[] bt2) {
         byte[] bt3 = new byte[bt1.length + bt2.length];

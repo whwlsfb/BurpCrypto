@@ -26,7 +26,7 @@ public class JsUIHandler {
     private JTextArea jsCodeText;
     private JScrollPane codePane;
     private JComboBox<String> jsEngineSelector;
-    private JButton applyBtn, deleteBtn;
+    private JButton applyBtn, deleteBtn, includeLibBtn;
     private JCheckBox useSyntaxEditor;
     private HashMap<String, String> includes = new HashMap<>();
 
@@ -111,10 +111,17 @@ public class JsUIHandler {
             JOptionPane.showMessageDialog(mainPanel, "Remove success!");
         });
 
+        includeLibBtn = new JButton("Include...");
+        includeLibBtn.setMaximumSize(includeLibBtn.getPreferredSize());
+        includeLibBtn.addActionListener(e -> {
+            JsSnippet[] snippet = JsSnippets.GetSnippetList();
+            JOptionPane.showMessageDialog(mainPanel, snippet[0].name);
+        });
 
 
         panel4.add(label3);
         panel4.add(useSyntaxEditor);
+        panel4.add(includeLibBtn);
         panel1.add(label2);
         panel1.add(methodText);
         panel1.add(label4);
@@ -130,6 +137,7 @@ public class JsUIHandler {
 
         return mainPanel;
     }
+
     private void initEditor(boolean useSyntax) {
         if (useSyntax) {
             jsCodeText = new RSyntaxTextArea(5, 10);
@@ -176,6 +184,7 @@ public class JsUIHandler {
         codePanel.removeAll();
         codePanel.add(codePane);
     }
+
     private boolean canUseCodeEditor() {
         try {
             String[] version = parent.callbacks.getBurpVersion();
