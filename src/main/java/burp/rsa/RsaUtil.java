@@ -40,7 +40,7 @@ public class RsaUtil {
 
     public String encrypt(byte[] inputArray) throws Exception {
         cipher.init(Cipher.ENCRYPT_MODE, key);
-        int MAX_ENCRYPT_BLOCK = cipher.getBlockSize();
+        int MAX_ENCRYPT_BLOCK = 117;
         int offSet = 0;
         int inputLength = inputArray.length;
         byte[] resultBytes = {};
