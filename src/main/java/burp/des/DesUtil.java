@@ -1,7 +1,5 @@
 package burp.des;
 
-import burp.aes.AesAlgorithms;
-import burp.aes.AesConfig;
 import burp.utils.CipherInfo;
 import burp.utils.OutFormat;
 import burp.utils.Utils;
@@ -11,18 +9,7 @@ import cn.hutool.crypto.symmetric.DES;
 import cn.hutool.crypto.symmetric.DESede;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
 
-import javax.crypto.*;
-import javax.crypto.spec.DESKeySpec;
-import javax.crypto.spec.DESedeKeySpec;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
 
 public class DesUtil {
     private DesConfig config;
