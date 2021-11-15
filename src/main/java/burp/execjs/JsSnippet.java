@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class JsSnippet {
     public String name;
-    public  String author;
+    public String description;
+    public String author;
     public ArrayList<String> engine;
     public ArrayList<String> path;
     public ArrayList<FunctionCase> functionCase;

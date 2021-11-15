@@ -4,6 +4,11 @@ import burp.BurpExtender;
 import burp.utils.KeyFormat;
 import burp.utils.UIUtil;
 import org.fife.rsta.ac.LanguageSupportFactory;
+import org.fife.rsta.ac.js.JavaScriptCompletionProvider;
+import org.fife.rsta.ac.js.JavaScriptLanguageSupport;
+import org.fife.ui.autocomplete.AutoCompletion;
+import org.fife.ui.autocomplete.CompletionProvider;
+import org.fife.ui.autocomplete.DefaultCompletionProvider;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
@@ -111,7 +116,7 @@ public class JsUIHandler {
             JOptionPane.showMessageDialog(mainPanel, "Remove success!");
         });
 
-        includeLibBtn = new JButton("Include...");
+        includeLibBtn = new JButton("Include(Test)...");
         includeLibBtn.setMaximumSize(includeLibBtn.getPreferredSize());
         includeLibBtn.addActionListener(e -> {
             JsSnippet[] snippet = JsSnippets.GetSnippetList();
@@ -147,6 +152,7 @@ public class JsUIHandler {
             textArea.setMarkOccurrences(true);
             textArea.setCodeFoldingEnabled(true);
             textArea.setTabsEmulated(true);
+
             ToolTipManager.sharedInstance().registerComponent(textArea);
             codePane = new RTextScrollPane(jsCodeText, true);
             RTextScrollPane scrollPane = (RTextScrollPane) codePane;
