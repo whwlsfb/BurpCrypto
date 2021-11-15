@@ -3,6 +3,10 @@ package burp.aes;
 import burp.utils.CipherInfo;
 import burp.utils.OutFormat;
 import burp.utils.Utils;
+import cn.hutool.crypto.Mode;
+import cn.hutool.crypto.Padding;
+import cn.hutool.crypto.symmetric.AES;
+import cn.hutool.crypto.symmetric.SymmetricCrypto;
 
 import javax.crypto.*;
 import javax.crypto.spec.GCMParameterSpec;
@@ -16,65 +20,31 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 
 public class AesUtil {
-    private Cipher cipher;
     private AesAlgorithms algorithms;
-    private byte[] IV;
-    private SecretKey sKey;
-    private OutFormat outFormat;
+    private AesConfig config;
     private CipherInfo cipherInfo;
-    private boolean zeroPaddingMode = false;
+    private SymmetricCrypto crypto;
 
     public void setConfig(AesConfig config) {
+        this.config = config;
         try {
-            this.algorithms = config.Algorithms;
-            String algorithmsName = algorithms.name();
-            if (algorithmsName.contains("ZeroPadding")) {
-                zeroPaddingMode = true;
-                algorithmsName = algorithmsName.replace("ZeroPadding", "NoPadding");
-            }
-            String algName = algorithmsName.replace('_', '/');
-            this.cipherInfo = new CipherInfo(algName);
-            this.cipher = Cipher.getInstance(algName);
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
+            this.cipherInfo = new CipherInfo(algorithms.name().replace("_", "/"));
+            this.crypto = new AES(Mode.valueOf(this.cipherInfo.Mode), Padding.valueOf(this.cipherInfo.Padding), this.config.Key, this.config.IV);
+        } catch (Exception e) {
             throw fail(e);
         }
-        sKey = new SecretKeySpec(config.Key, "AES");
-        IV = config.IV;
-        outFormat = config.OutFormat;
     }
 
     public String encrypt(byte[] plaintext) {
-        byte[] dataBytes;
-        if (zeroPaddingMode) {
-            dataBytes = Utils.ZeroPadding(plaintext, cipher.getBlockSize());
-        } else dataBytes = plaintext;
-        byte[] encrypted = doFinal(Cipher.ENCRYPT_MODE, sKey, IV, dataBytes);
-        return outFormat == OutFormat.Base64 ? Utils.base64(encrypted) : Utils.hex(encrypted);
+        byte[] encrypted = crypto.encrypt(plaintext);
+        return config.OutFormat == OutFormat.Base64 ? Utils.base64(encrypted) : Utils.hex(encrypted);
     }
 
     public String decrypt(String cipherText) {
         try {
-            byte[] decrypted = doFinal(Cipher.DECRYPT_MODE, sKey, IV, Utils.base64(cipherText));
+            byte[] decrypted = crypto.decrypt(Utils.base64(cipherText));
             return new String(decrypted, "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            throw fail(e);
-        }
-    }
-
-    private byte[] doFinal(int encryptMode, SecretKey key, byte[] iv, byte[] bytes) {
-        try {
-            if (cipherInfo.Mode.equals("ECB")) {
-                cipher.init(encryptMode, key);
-            } else if (cipherInfo.Mode.equals("GCM")) {
-                cipher.init(encryptMode, key, new GCMParameterSpec(128, iv));
-            } else {
-                cipher.init(encryptMode, key, new IvParameterSpec(iv));
-            }
-            return cipher.doFinal(bytes);
-        } catch (InvalidKeyException
-                | InvalidAlgorithmParameterException
-                | IllegalBlockSizeException
-                | BadPaddingException e) {
             throw fail(e);
         }
     }
