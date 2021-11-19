@@ -11,7 +11,6 @@ import cn.hutool.crypto.symmetric.SymmetricCrypto;
 import java.io.UnsupportedEncodingException;
 
 public class AesUtil {
-    private AesAlgorithms algorithms;
     private AesConfig config;
     private CipherInfo cipherInfo;
     private SymmetricCrypto crypto;
@@ -19,7 +18,7 @@ public class AesUtil {
     public void setConfig(AesConfig config) {
         this.config = config;
         try {
-            this.cipherInfo = new CipherInfo(algorithms.name().replace("_", "/"));
+            this.cipherInfo = new CipherInfo(config.Algorithms.name().replace("_", "/"));
             this.crypto = new AES(Mode.valueOf(this.cipherInfo.Mode), Padding.valueOf(this.cipherInfo.Padding), this.config.Key, this.config.IV);
         } catch (Exception e) {
             throw fail(e);

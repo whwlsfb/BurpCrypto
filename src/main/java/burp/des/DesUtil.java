@@ -19,10 +19,9 @@ public class DesUtil {
 
     public void setConfig(DesConfig config) {
         this.config = config;
-        DesAlgorithms algorithms = config.Algorithms;
         try {
-            if (algorithms != DesAlgorithms.strEnc) {
-                this.cipherInfo = new CipherInfo(algorithms.name().replace("_","/"));
+            if (config.Algorithms != DesAlgorithms.strEnc) {
+                this.cipherInfo = new CipherInfo(config.Algorithms.name().replace("_","/"));
                 if (this.cipherInfo.Algorithm.equals("DES")) {
                     this.crypto = new DES(Mode.valueOf(this.cipherInfo.Mode), Padding.valueOf(this.cipherInfo.Padding), this.config.Key, this.config.IV);
                 } else {
