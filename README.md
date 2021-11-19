@@ -41,3 +41,9 @@ ExecJs Example (Here is the modified MD5 algorithm):
 Quick Crypto:
 
 ![](screenshot/quick_crypto.gif)
+
+
+# 404Starlink
+![png](https://github.com/knownsec/404StarLink-Project/raw/master/logo.png)
+
+BurpCrypto has joined [404Starlink](https://github.com/knownsec/404StarLink).
