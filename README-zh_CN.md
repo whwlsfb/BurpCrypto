@@ -206,7 +206,7 @@ function calc(pass) {
 ## 加密
 通过在上述几个模块中成功添加processor后，即可通过以下两个渠道进行使用。
 ### QuickCrypto（全局调用）
-BurpCrypto几乎可以在BurpCrypto的任何位置进行调用，调用方法也较为简单，以下动图为示例：
+BurpCrypto几乎可以在BurpSuite的任何位置进行调用，调用方法也较为简单，以下动图为示例：
 
 ![](screenshot/quick_crypto.gif)
 
