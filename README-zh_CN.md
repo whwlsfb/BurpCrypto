@@ -29,6 +29,8 @@ BurpCrypto是一款支持多种加密算法、或直接执行浏览器JS代码�
        * [Intruder（爆破模块）](#intruder爆破模块)
    * [解密（查询原文）](#解密查询原文)
 * [404Starlink](#404starlink)
+* [其他注意事项](#其他注意事项)
+   * [数据库清理](#数据库清理)
 
 # 编译
 ```
@@ -224,6 +226,13 @@ BurpCrypto几乎可以在BurpSuite的任何位置进行调用，调用方法也�
 ![](screenshot/aed8a864a19e40888b163abca1921a23.png)
 ![](screenshot/48c6507e2471401aba3288bc920aa824.png)
 
+# 其他注意事项
+
+## 数据库清理
+
+本插件中使用了本地化的K/V数据库（leveldb），由于在爆破等使用场景时会写入大量的数据，长时间使用后将有可能会拖慢插件的响应速度。为了保证用户爆破数据不会丢失，插件将不会自动清理数据，所以建议用户确定不在需要陈旧的数据的时候，及时清理数据库。
+
+K/V数据库清理较为简单，首先需将BurpSuite完全退出，然后手动删除BurpSuite的jar文件同目录下的`BurpCrypto.ldb`文件夹即可
 
 # 404Starlink
 ![png](https://github.com/knownsec/404StarLink-Project/raw/master/logo.png)
