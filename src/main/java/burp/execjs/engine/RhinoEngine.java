@@ -4,9 +4,13 @@ import burp.BurpExtender;
 
 import burp.execjs.IJsEngine;
 import burp.execjs.JsConfig;
+import burp.utils.HttpUtils;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.Scriptable;
+import org.mozilla.javascript.ScriptableObject;
+
+import java.lang.reflect.InvocationTargetException;
 
 public class RhinoEngine implements IJsEngine {
     Context engine;
@@ -24,9 +28,11 @@ public class RhinoEngine implements IJsEngine {
         this.parent = parent;
     }
 
-    private Scriptable initEngine() {
+    private Scriptable initEngine() throws InvocationTargetException, IllegalAccessException, InstantiationException {
         engine = Context.enter();
-        return engine.initStandardObjects();
+        Scriptable scope = engine.initStandardObjects();
+        ScriptableObject.defineClass(scope, HttpUtils.class);
+        return scope;
     }
 
     public Scriptable loadJsCode(String jsCode) {

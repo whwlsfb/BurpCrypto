@@ -16,9 +16,15 @@ import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Utils {
     private static MessageDigest md;
+    private static Random rand = new Random();
+
+    public static int GetRandomNumber(int min, int max) {
+        return rand.nextInt(max - min + 1) + min;
+    }
 
     public static byte[] HTTPGet(String uri) {
         HttpClient client = new HttpClient();
