@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static burp.IContextMenuInvocation.*;
+
 public class BurpCryptoMenuFactory implements IContextMenuFactory {
 
     private BurpExtender parent;
@@ -46,14 +48,24 @@ public class BurpCryptoMenuFactory implements IContextMenuFactory {
             JMenuItem _menu = new JMenuItem(entry.getProcessorName());
             _menu.addActionListener(e -> {
                 IHttpRequestResponse req = invocation.getSelectedMessages()[0];
-                byte[] request = req.getRequest();
+                SelectionInfo sInfo = getSelectionInfo(invocation);
+                byte[] data;
+                if (sInfo.Location == SelectionLocation.Request) {
+                    data = req.getRequest();
+                } else {
+                    data = req.getResponse();
+                }
                 int[] selectedIndexRange = invocation.getSelectionBounds();
-                byte[] selectedBytes = getSelectedBytes(request, selectedIndexRange);
+                byte[] selectedBytes = getSelectedBytes(data, selectedIndexRange);
                 if (selectedBytes != null && selectedBytes.length > 0) {
                     byte[] encryptResult = entry.processPayload(selectedBytes, selectedBytes, selectedBytes);
                     if (encryptResult != null) {
-                        if (invocation.getToolFlag() == parent.callbacks.TOOL_INTRUDER || invocation.getToolFlag() == parent.callbacks.TOOL_REPEATER) {
-                            req.setRequest(Replace(request, selectedIndexRange, encryptResult));
+                        if (!sInfo.ReadOnly) {
+                            if (sInfo.Location == SelectionLocation.Request) {
+                                req.setRequest(Replace(data, selectedIndexRange, encryptResult));
+                            } else {
+                                req.setResponse(Replace(data, selectedIndexRange, encryptResult));
+                            }
                         } else {
                             ShowCopiableMessage(new String(encryptResult), "CipherText result: ");
                         }
@@ -70,6 +82,28 @@ public class BurpCryptoMenuFactory implements IContextMenuFactory {
         return menus;
     }
 
+    private  SelectionInfo getSelectionInfo(IContextMenuInvocation invocation) {
+        SelectionInfo info = new SelectionInfo();
+        switch (invocation.getInvocationContext()) {
+            case CONTEXT_MESSAGE_EDITOR_RESPONSE:
+            case CONTEXT_MESSAGE_VIEWER_RESPONSE:
+                info.Location = SelectionLocation.Response;
+                break;
+            default:
+                info.Location = SelectionLocation.Request;
+                break;
+        }
+        switch (invocation.getInvocationContext()) {
+            case CONTEXT_MESSAGE_EDITOR_REQUEST:
+            case CONTEXT_MESSAGE_EDITOR_RESPONSE:
+            case CONTEXT_INTRUDER_PAYLOAD_POSITIONS:
+                info.ReadOnly = false;
+                break;
+            default:
+                info.ReadOnly = true;
+        }
+        return info;
+    }
     public void ShowCopiableMessage(String message, String title) {
         EventQueue.invokeLater(new Runnable() {
             @Override
