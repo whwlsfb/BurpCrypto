@@ -27,7 +27,7 @@ public class AesUtil {
 
     public String encrypt(byte[] plaintext) {
         byte[] encrypted = crypto.encrypt(plaintext);
-        return config.OutFormat == OutFormat.Base64 ? Utils.base64(encrypted) : Utils.hex(encrypted);
+        return Utils.encode(encrypted, config.OutFormat);
     }
 
     public String decrypt(String cipherText) {

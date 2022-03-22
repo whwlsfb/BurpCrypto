@@ -29,7 +29,7 @@ public class SM3IntruderPayloadProcessor implements IIntruderPayloadProcessor {
 
     private String SM3Digest(byte[] data) {
         byte[] hash = sm3Utils.digest(data);
-        return config.OutFormat == OutFormat.Base64 ? Utils.base64(hash) : Utils.hex(hash);
+        return Utils.encode(hash, config.OutFormat);
     }
 
     @Override

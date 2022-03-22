@@ -28,7 +28,7 @@ public class PBKDF2IntruderPayloadProcessor implements IIntruderPayloadProcessor
 
     private String pbkdf2(byte[] data) {
         byte[] hash = pbkdf2.encrypt(new String(data).toCharArray(), config.Salt);
-        return config.OutFormat == OutFormat.Base64 ? Utils.base64(hash) : Utils.hex(hash);
+        return Utils.encode(hash, config.OutFormat);
     }
 
     @Override

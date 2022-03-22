@@ -1,6 +1,7 @@
 package burp.rsa;
 
 import burp.utils.OutFormat;
+import burp.utils.Utils;
 import cn.hutool.crypto.asymmetric.AsymmetricCrypto;
 import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
@@ -28,7 +29,7 @@ public class RsaUtil {
 
     public String encrypt(byte[] inputArray) throws Exception {
         byte[] resultBytes = this.crypto.encrypt(inputArray, KeyType.PublicKey);
-        return config.OutFormat == OutFormat.Base64 ? base64(resultBytes) : hex(resultBytes);
+        return Utils.encode(resultBytes, config.OutFormat);
     }
 
     private IllegalStateException fail(Exception e) {
