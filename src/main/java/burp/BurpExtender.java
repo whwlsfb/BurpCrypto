@@ -123,8 +123,6 @@ public class BurpExtender implements IBurpExtender, ITab {
             bthis.mainPanel.addTab("RSA", bthis.rsaPanel);
             bthis.desPanel = DesUI.getPanel();
             bthis.mainPanel.addTab("DES", bthis.desPanel);
-            bthis.execJsPanel = JsUI.getPanel();
-            bthis.mainPanel.addTab("Exec Js", bthis.execJsPanel);
             bthis.sm3Panel = SM3UI.getPanel();
             bthis.mainPanel.addTab("SM3", bthis.sm3Panel);
             bthis.sm4Panel = SM4UI.getPanel();
@@ -133,6 +131,8 @@ public class BurpExtender implements IBurpExtender, ITab {
             bthis.mainPanel.addTab("ZUC", bthis.zucPanel);
             bthis.pbkdf2Panel = PBKDF2UI.getPanel();
             bthis.mainPanel.addTab("PBKDF2", bthis.pbkdf2Panel);
+            bthis.execJsPanel = JsUI.getPanel();
+            bthis.mainPanel.addTab("Exec Js", bthis.execJsPanel);
             bthis.callbacks.addSuiteTab(bthis);
         });
     }
