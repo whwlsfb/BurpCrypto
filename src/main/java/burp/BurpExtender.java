@@ -3,19 +3,20 @@ package burp;
 import burp.aes.AesUIHandler;
 import burp.des.DesUIHandler;
 import burp.execjs.JsUIHandler;
+import burp.pbkdf2.PBKDF2UIHandler;
 import burp.rsa.RsaUIHandler;
 import burp.sm3.SM3UIHandler;
+import burp.sm4.SM4UIHandler;
 import burp.utils.BurpCryptoMenuFactory;
 import burp.utils.BurpStateListener;
 import burp.utils.DictLogManager;
+import burp.zuc.ZUCUIHandler;
 import org.iq80.leveldb.DB;
 import org.iq80.leveldb.Options;
 
-import javax.script.ScriptException;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -50,6 +51,15 @@ public class BurpExtender implements IBurpExtender, ITab {
 
     public JPanel sm3Panel;
     public SM3UIHandler SM3UI;
+
+    public JPanel sm4Panel;
+    public SM4UIHandler SM4UI;
+
+    public JPanel zucPanel;
+    public ZUCUIHandler ZUCUI;
+
+    public JPanel pbkdf2Panel;
+    public PBKDF2UIHandler PBKDF2UI;
 
     public boolean RegIPProcessor(String extName, IIntruderPayloadProcessor processor) {
         if (IPProcessors.containsKey(extName)) {
@@ -101,6 +111,9 @@ public class BurpExtender implements IBurpExtender, ITab {
         this.JsUI = new JsUIHandler(this);
         this.DesUI = new DesUIHandler(this);
         this.SM3UI = new SM3UIHandler(this);
+        this.SM4UI = new SM4UIHandler(this);
+        this.ZUCUI = new ZUCUIHandler(this);
+        this.PBKDF2UI = new PBKDF2UIHandler(this);
         SwingUtilities.invokeLater(() -> {
             BurpExtender bthis = BurpExtender.this;
             bthis.mainPanel = new JTabbedPane();
@@ -114,6 +127,12 @@ public class BurpExtender implements IBurpExtender, ITab {
             bthis.mainPanel.addTab("Exec Js", bthis.execJsPanel);
             bthis.sm3Panel = SM3UI.getPanel();
             bthis.mainPanel.addTab("SM3", bthis.sm3Panel);
+            bthis.sm4Panel = SM4UI.getPanel();
+            bthis.mainPanel.addTab("SM4", bthis.sm4Panel);
+            bthis.zucPanel = ZUCUI.getPanel();
+            bthis.mainPanel.addTab("ZUC", bthis.zucPanel);
+            bthis.pbkdf2Panel = PBKDF2UI.getPanel();
+            bthis.mainPanel.addTab("PBKDF2", bthis.pbkdf2Panel);
             bthis.callbacks.addSuiteTab(bthis);
         });
     }

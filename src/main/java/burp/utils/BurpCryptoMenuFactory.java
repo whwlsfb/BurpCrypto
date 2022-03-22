@@ -34,7 +34,6 @@ public class BurpCryptoMenuFactory implements IContextMenuFactory {
                     String plainText = searchKey(selectedText);
                     if (plainText != null && plainText != "") {
                         ShowCopiableMessage(plainText, "This message plaintext is: ");
-                        req.setComment(plainText);
                     } else {
                         JOptionPane.showMessageDialog(menu1, "Not found!");
                     }
