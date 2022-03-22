@@ -82,7 +82,7 @@ public class BurpCryptoMenuFactory implements IContextMenuFactory {
         return menus;
     }
 
-    private  SelectionInfo getSelectionInfo(IContextMenuInvocation invocation) {
+    private SelectionInfo getSelectionInfo(IContextMenuInvocation invocation) {
         SelectionInfo info = new SelectionInfo();
         switch (invocation.getInvocationContext()) {
             case CONTEXT_MESSAGE_EDITOR_RESPONSE:
@@ -104,6 +104,7 @@ public class BurpCryptoMenuFactory implements IContextMenuFactory {
         }
         return info;
     }
+
     public void ShowCopiableMessage(String message, String title) {
         EventQueue.invokeLater(new Runnable() {
             @Override

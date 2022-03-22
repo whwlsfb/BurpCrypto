@@ -4,6 +4,7 @@ import burp.aes.AesUIHandler;
 import burp.des.DesUIHandler;
 import burp.execjs.JsUIHandler;
 import burp.rsa.RsaUIHandler;
+import burp.sm3.SM3UIHandler;
 import burp.utils.BurpCryptoMenuFactory;
 import burp.utils.BurpStateListener;
 import burp.utils.DictLogManager;
@@ -46,6 +47,9 @@ public class BurpExtender implements IBurpExtender, ITab {
 
     public JPanel execJsPanel;
     public JsUIHandler JsUI;
+
+    public JPanel sm3Panel;
+    public SM3UIHandler SM3UI;
 
     public boolean RegIPProcessor(String extName, IIntruderPayloadProcessor processor) {
         if (IPProcessors.containsKey(extName)) {
@@ -96,6 +100,7 @@ public class BurpExtender implements IBurpExtender, ITab {
         this.RsaUI = new RsaUIHandler(this);
         this.JsUI = new JsUIHandler(this);
         this.DesUI = new DesUIHandler(this);
+        this.SM3UI = new SM3UIHandler(this);
         SwingUtilities.invokeLater(() -> {
             BurpExtender bthis = BurpExtender.this;
             bthis.mainPanel = new JTabbedPane();
@@ -107,6 +112,8 @@ public class BurpExtender implements IBurpExtender, ITab {
             bthis.mainPanel.addTab("DES", bthis.desPanel);
             bthis.execJsPanel = JsUI.getPanel();
             bthis.mainPanel.addTab("Exec Js", bthis.execJsPanel);
+            bthis.sm3Panel = SM3UI.getPanel();
+            bthis.mainPanel.addTab("SM3", bthis.sm3Panel);
             bthis.callbacks.addSuiteTab(bthis);
         });
     }
