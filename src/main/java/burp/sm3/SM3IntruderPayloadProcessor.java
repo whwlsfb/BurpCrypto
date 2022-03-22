@@ -9,7 +9,7 @@ import cn.hutool.crypto.digest.SM3;
 public class SM3IntruderPayloadProcessor implements IIntruderPayloadProcessor {
     private BurpExtender parent;
     private final String extName;
-    private final SM3 sm3Utils = new SM3();
+    private final SM3 sm3Utils;
     private final SM3Config config;
 
 
@@ -17,6 +17,9 @@ public class SM3IntruderPayloadProcessor implements IIntruderPayloadProcessor {
         this.parent = newParent;
         this.extName = extName;
         this.config = (config);
+        if (config.Salt != null)
+            this.sm3Utils = new SM3(config.Salt);
+        else this.sm3Utils = new SM3();
     }
 
     @Override
