@@ -2,13 +2,9 @@ package burp.execjs;
 
 
 import burp.utils.Utils;
-import org.graalvm.compiler.api.replacements.Snippet;
 import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.Constructor;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class JsSnippets {
     private static final String PackageRootURL = "https://cdn.jsdelivr.net/gh/whwlsfb/BurpCrypto-JsLibrary/";
