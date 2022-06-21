@@ -11,6 +11,7 @@ import burp.utils.BurpCryptoMenuFactory;
 import burp.utils.BurpStateListener;
 import burp.utils.DictLogManager;
 import burp.zuc.ZUCUIHandler;
+import cn.hutool.crypto.SecureUtil;
 import org.iq80.leveldb.DB;
 import org.iq80.leveldb.Options;
 
@@ -81,6 +82,7 @@ public class BurpExtender implements IBurpExtender, ITab {
 
     @Override
     public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks) {
+        SecureUtil.disableBouncyCastle();
         this.callbacks = callbacks;
         this.helpers = callbacks.getHelpers();
         this.stdout = new PrintWriter(callbacks.getStdout(), true);
