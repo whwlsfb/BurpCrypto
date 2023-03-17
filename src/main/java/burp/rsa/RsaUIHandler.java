@@ -71,9 +71,10 @@ public class RsaUIHandler {
         modulusText = new JTextField(200);
         modulusText.setMaximumSize(modulusText.getPreferredSize());
 
-        final JLabel label4 = new JLabel("Exponent(HEX): ");
+        final JLabel label4 = new JLabel("Exponent: ");
         exponentText = new JTextField(200);
         exponentText.setMaximumSize(exponentText.getPreferredSize());
+        exponentText.setText("010001");
 
         final JLabel label5 = new JLabel("X509 Key(Base64): ");
         x509Text = new JTextField(200);
@@ -100,7 +101,12 @@ public class RsaUIHandler {
                         return;
                     }
                     try {
-                        config.Exponent = new BigInteger(exponentText.getText(), 16);
+                        String exponentStr = exponentText.getText();
+                        if (Utils.isNumeric(exponentStr) && Utils.isPrime(Integer.parseInt(exponentStr))) {
+                            config.Exponent = new BigInteger(exponentStr, 10);
+                        } else {
+                            config.Exponent = new BigInteger(exponentStr, 16);
+                        }
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(mainPanel, "Exponent error!");
                         return;

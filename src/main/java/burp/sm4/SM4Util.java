@@ -40,6 +40,7 @@ public class SM4Util {
     }
 
     private IllegalStateException fail(Exception e) {
+        e.printStackTrace(Utils.stderr);
         return new IllegalStateException(e);
     }
 }

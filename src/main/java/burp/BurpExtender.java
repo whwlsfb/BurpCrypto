@@ -10,6 +10,7 @@ import burp.sm4.SM4UIHandler;
 import burp.utils.BurpCryptoMenuFactory;
 import burp.utils.BurpStateListener;
 import burp.utils.DictLogManager;
+import burp.utils.Utils;
 import burp.zuc.ZUCUIHandler;
 import cn.hutool.crypto.SecureUtil;
 import org.iq80.leveldb.DB;
@@ -85,8 +86,8 @@ public class BurpExtender implements IBurpExtender, ITab {
         SecureUtil.disableBouncyCastle();
         this.callbacks = callbacks;
         this.helpers = callbacks.getHelpers();
-        this.stdout = new PrintWriter(callbacks.getStdout(), true);
-        this.stderr = new PrintWriter(callbacks.getStderr(), true);
+        Utils.stdout = this.stdout = new PrintWriter(callbacks.getStdout(), true);
+        Utils.stderr = this.stderr = new PrintWriter(callbacks.getStderr(), true);
         callbacks.setExtensionName("BurpCrypto v" + version);
         callbacks.registerExtensionStateListener(new BurpStateListener(this));
         callbacks.registerContextMenuFactory(new BurpCryptoMenuFactory(this));

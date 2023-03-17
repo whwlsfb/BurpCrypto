@@ -42,7 +42,7 @@ public class SM3IntruderPayloadProcessor implements IIntruderPayloadProcessor {
         } catch (Exception e) {
             this.parent.callbacks.issueAlert(e.toString());
             this.parent.stderr.println();
-            e.printStackTrace(this.parent.stderr);
+            e.printStackTrace(Utils.stderr);
             return null;
         }
     }

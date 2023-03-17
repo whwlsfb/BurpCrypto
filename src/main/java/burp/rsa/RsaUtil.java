@@ -1,6 +1,5 @@
 package burp.rsa;
 
-import burp.utils.OutFormat;
 import burp.utils.Utils;
 import cn.hutool.crypto.asymmetric.AsymmetricCrypto;
 import cn.hutool.crypto.asymmetric.KeyType;
@@ -8,9 +7,6 @@ import cn.hutool.crypto.asymmetric.RSA;
 
 import java.security.KeyFactory;
 import java.security.spec.RSAPublicKeySpec;
-
-import static burp.utils.Utils.base64;
-import static burp.utils.Utils.hex;
 
 public class RsaUtil {
     private RsaConfig config;
@@ -33,6 +29,7 @@ public class RsaUtil {
     }
 
     private IllegalStateException fail(Exception e) {
+        e.printStackTrace(Utils.stderr);
         return new IllegalStateException(e);
     }
 }

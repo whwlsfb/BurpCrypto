@@ -8,6 +8,7 @@ import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.http.client.methods.HttpGet;
 
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.KeyFactory;
@@ -21,11 +22,31 @@ import java.util.Random;
 public class Utils {
     private static MessageDigest md;
     private static Random rand = new Random();
+    public static PrintWriter stdout = null;
+    public static PrintWriter stderr = null;
 
     public static int GetRandomNumber(int min, int max) {
         return rand.nextInt(max - min + 1) + min;
     }
+    public static boolean isPrime(int n) {
+        if (n <= 1) {
+            return false;
+        }
 
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    public static boolean isNumeric(String str) {
+        if (str == null || str.length() == 0) {
+            return false;
+        }
+        return str.matches("^[0-9]+$");
+    }
     public static byte[] HTTPGet(String uri) {
         HttpClient client = new HttpClient();
         byte[] resp = null;
