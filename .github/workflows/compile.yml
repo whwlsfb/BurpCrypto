@@ -24,6 +24,14 @@ jobs:
         run: mvn -B package --file pom.xml
       - run: mkdir release && cp target/*-full.jar release
       - run: echo "NOW=$(date +'%Y%m%dT%H%M%S')" >> $GITHUB_ENV
+      
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: dev-${{ env.NOW }}
+          prerelease: true
+          title: Auto Build - ${{ env.NOW }}
+          files: release/*.jar
       - name: Upload artifact
         uses: actions/upload-artifact@v1.0.0
         with:
